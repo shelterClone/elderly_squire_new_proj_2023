@@ -1,6 +1,8 @@
 //import 'package:elderly_squire_capstone/HomePage2.dart';
 //import 'package:elderly_squire_capstone/todo_list.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
+import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
+import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todos.dart';
 import 'package:flutter/material.dart';
 //import 'package:firebase_auth/firebase_auth.dart';
 //import 'Homeage.dart';
@@ -9,8 +11,8 @@ import 'package:flutter/material.dart';
 //import 'todos.dart';
 
 class MedicineMenu extends StatelessWidget {
-//  final String email;
-//  MedicineMenu({@required this.email});
+ // final String email;
+ // MedicineMenu({required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +52,11 @@ class MedicineMenu extends StatelessWidget {
                           margin: EdgeInsets.only(left: 30),
                           child: InkWell(
                             onTap: () {
-//                              Navigator.push(
-//                                context,
-//                                MaterialPageRoute(
-//                                    builder: (context) => ID_Reg()),
-//                              );
+                             Navigator.push(
+                               context,
+                               MaterialPageRoute(
+                                   builder: (context) => ReminderHome()),
+                             );
                             },
                             child: Image.asset('assets/images/reminder.png',
                                 height: 300, width: 70),
@@ -64,17 +66,17 @@ class MedicineMenu extends StatelessWidget {
                           Container(
                               margin: EdgeInsets.only(top: 51, left: 25),
                               child: InkWell(
-//                                onTap: () {
-//                                  Navigator.push(
-//                                    context,
-//                                    MaterialPageRoute(
-//                                        builder: (context) => ID_Reg()),
-//                                  );
-//                                },
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ReminderHome()),
+                                  );
+                                },
                                 child: Text(
                                   'Medication Reminder',
                                   style: TextStyle(
-                                      fontFamily: ('OpenSans'), fontSize: 21
+                                      fontFamily: ('OpenSans'), fontSize: 18
 
 //                                  fontWeight: FontWeight.bold
                                   ),
@@ -118,7 +120,7 @@ class MedicineMenu extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => MedicineMenu()),
+                                    builder: (context) => TodoLanding()),
                               );
                             },
                             child: Image.asset('assets/images/todolist.png',
@@ -133,7 +135,7 @@ class MedicineMenu extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => MedicineMenu()),
+                                        builder: (context) => TodoLanding()),
                                   );
                                 },
                                 child: Text(

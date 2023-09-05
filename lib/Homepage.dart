@@ -1,9 +1,13 @@
+import 'package:elderly_squire_2023_remastered_v2/AboutUs.dart';
+import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/ID_Registration.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine/MedicineMenu.dart';
+import 'package:elderly_squire_2023_remastered_v2/MyProfile/UserProfile.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
@@ -12,8 +16,29 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+  User? _displayemail;
+  User? _displayfirstName;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserInfo(); // Fetch the user information when the page is initialized.
+  }
+
+  void _getUserInfo() {
+    final user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      _displayemail = user;
+      _displayemail = user;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+
+
     return MaterialApp(
       home: Scaffold(
           drawer: Theme(
@@ -41,20 +66,35 @@ class _HomepageState extends State<Homepage> {
                       Container(
                         margin: EdgeInsets.only(left: 20),
                         child: GestureDetector(
-                          // onTap: (){
-                          //   Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfile()));
-                          // },
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfile()));
+                          },
 
-                          child: new Text('User',
-                       // // email != null ? email.toString : "$email",
-                       //      email != null ? email : 'User',
-                       //   // '${widget.email}',
+                       //    child: new Text('User',
+                       // // // email != null ? email.toString : "$email",
+                       // //      email != null ? email : 'User',
+                       // //   // '${widget.email}',
+                       //
+                       //      style: TextStyle(
+                       //          fontStyle: FontStyle.normal,
+                       //          color: Colors.white,
+                       //          fontSize: 15),
+                       //    ),
 
+                          child: Text(
+                            _displayemail?.email ?? 'User',
                             style: TextStyle(
-                                fontStyle: FontStyle.normal,
-                                color: Colors.white,
-                                fontSize: 15),
+                              fontStyle: FontStyle.normal,
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold
+                            ),
                           ),
+
+
+
+
+
                         ),
                       )
 
@@ -94,10 +134,10 @@ class _HomepageState extends State<Homepage> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onTap: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => AboutUs()),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => AboutUs()),
+                        );
                       }
                       ),
                   ListTile(
@@ -353,11 +393,11 @@ class _HomepageState extends State<Homepage> {
                            margin: EdgeInsets.only(left: 30),
                            child: InkWell(
                              onTap: () {
-//                     Navigator.push(
-//                       context,
-//                       MaterialPageRoute(
-//                           builder: (context) => MedicineMenu()),
-//                     );
+                               Navigator.push(
+                                 context,
+                                 MaterialPageRoute(
+                                     builder: (context) => SupportPage()),
+                               );
                              },
                              child: Image.asset('assets/images/chat2.png',
                                  height: 600, width: 90),
@@ -368,11 +408,11 @@ class _HomepageState extends State<Homepage> {
                                margin: EdgeInsets.only(top: 51, left: 25),
                                child: InkWell(
                                  onTap: () {
-//                         Navigator.push(
-//                           context,
-//                           MaterialPageRoute(
-//                               builder: (context) => MedicineMenu()),
-//                         );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SupportPage()),
+                        );
                                  },
                                  child: Text(
                                    'Chat Support',

@@ -1,9 +1,60 @@
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class LoginPage2 extends StatelessWidget {
+class LoginPage2 extends StatefulWidget {
+
+  @override
+  LoginState2 createState() => LoginState2();
+}
+
+  class LoginState2 extends State<LoginPage2>{
+
+    TextEditingController myEmail = TextEditingController() ;
+    TextEditingController password = TextEditingController();
+    bool isPasswordHidden = true;
+
+    final GlobalKey <FormState> formkey = GlobalKey<FormState>();
+
+    Future<void> _UserLogin(String myEmail, String password) async {
+      if (validate()) {
+        try {
+          UserCredential userCredential = await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: myEmail, password: password );
+          print("User: $userCredential");
+
+          await Navigator.push(context, MaterialPageRoute(builder: (context)=>Homepage()
+          ),
+          );
+
+        } on FirebaseAuthException
+        catch (e) {
+          print("Error: $e");
+        }
+//      catch (e) {
+//        print("Error: $e");
+//      }
+      }
+    }
+
+    bool validate(){
+      final form = formkey.currentState;
+      form!.save();
+      if(form.validate()){
+        form.save();
+        return true;
+      }
+      else{
+        return false;
+      }
+
+    }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,109 +78,187 @@ class LoginPage2 extends StatelessWidget {
 
         ), systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 40),
-        height: MediaQuery.of(context).size.height + 100,
-        width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Column(
+      body:SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 40),
+          height: MediaQuery.of(context).size.height + 100,
+          width: double.infinity,
+          child: Form(
+            key: formkey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Container(
-                    margin:EdgeInsets.only(bottom:10),
-                    child: Image.asset(
-                        'assets/images/nursing.jpg',
-                        height:200
+                Column(
+                  children: <Widget>[
+                    Container(
+                        margin:EdgeInsets.only(bottom:10),
+                        child: Image.asset(
+                            'assets/images/nursing.jpg',
+                            height:200,
+                        )
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 8),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Login",
+                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Container(
+                      margin:EdgeInsets.only(bottom:10),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("Login to your Elderly Squire account",
+                          style: TextStyle(
+                              fontSize: 15,
+                              color:Colors.grey[700]),),
+                      ),
                     )
+
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.only(bottom: 8),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Login",
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
-                  ),
-                ),
-                SizedBox(height: 5),
-                Container(
-                  margin:EdgeInsets.only(bottom:29),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Login to your Elderly Squire account",
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // inputFile(label: "Email"),
+                    // inputFile(label: "Password", obscureText: true),
+
+
+
+                    Text(
+                      'Email',
                       style: TextStyle(
                           fontSize: 15,
-                          color:Colors.grey[700]),),
-                  ),
-                )
+                          fontWeight: FontWeight.w400,
+                          color:Colors.black87
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField( //----------------------Email txtField-----------------------------//
+                        enableSuggestions: true,
+                        keyboardType: TextInputType.emailAddress,
 
-              ],
-            ),
-            Column(
-              children: <Widget>[
-                inputFile(label: "Email"),
-                inputFile(label: "Password", obscureText: true),
-                SizedBox(
-                  height: 20,
-                )
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom:105),
-              height: 60,
-              width: 330,
+                        obscureText: false,
+                        validator: EmailValidator.validate,
+                        onSaved: (input)=> myEmail.text = input!,
+                        onChanged: (value){
+                          myEmail.text= value;
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0,
+                                horizontal: 10),
+
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.blueGrey
+                              ),
+
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey)
+                            )
+                        ),
+                      ),
+                    ),
+                    // SizedBox(height: 10,),
+                    Text(
+                      'Password',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color:Colors.black87
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField( //----------------------Password txtField-----------------------------//
+                        obscureText: isPasswordHidden,
+                        validator:PasswordValidator.validate,
+
+                        onSaved: (input)=> password.text = input!,
+                        onChanged: (value){
+                          password.text= value;
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0,
+                                horizontal: 10),
+                            suffixIcon: IconButton(
+                              icon:Icon(isPasswordHidden? Icons.visibility_off : Icons.visibility,color: Colors.grey),
+                              onPressed: (){
+                                setState(() {
+                                  isPasswordHidden =! isPasswordHidden;
+                                });
+                              },
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Colors.blueGrey
+                              ),
+
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey)
+                            )
+                        ),
+                      ),
+                    ),
+
+
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(bottom:200),
+                  height: 60,
+                  width: 330,
 //              margin: EdgeInsets.only(bottom:200),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  elevation: 2,
-                  primary: Colors.blueGrey,
-                  onPrimary: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 2,
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.blueGrey,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Ok",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: ('OpenSans'),
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
+                    onPressed: (){
+                         _UserLogin(myEmail.text, password.text);
+                      // Navigator.push(context, MaterialPageRoute(builder: (context)=> Homepage()));
+
+                    },
+
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    "Ok",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: ('OpenSans'),
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                onPressed: (){
-//                        _UserLogin(myEmail.text, password.text);
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Homepage()));
 
-                },
+              ],
 
-              ),
             ),
-//              Container(
-//                margin: EdgeInsets.only(bottom:10),
-//                child: Row(
-//                  mainAxisAlignment: MainAxisAlignment.center,
-//                  children: <Widget>[
-//                    Text("Already have an account?"),
-//                    Container(
-//                      child: Text(" Login", style:TextStyle(
-//                          fontWeight: FontWeight.w600,
-//                          fontSize: 18
-//                      ),
-//                      ),
-//                    )
-//                  ],
-//                ),
-//              )
-//
+          ),
 
-
-
-          ],
 
         ),
-
-
       ),
 
     );
@@ -138,44 +267,46 @@ class LoginPage2 extends StatelessWidget {
 
 
 
-// we will be creating a widget for text field
-Widget inputFile({label, obscureText = false})
-{
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: <Widget>[
-      Text(
-        label,
-        style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color:Colors.black87
-        ),
+class EmailValidator {
+  RegExp numReg = RegExp(r".*[0-9].*");
+  RegExp letterReg = RegExp(r".*[A-Za-z].*");
+  RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
 
-      ),
-      SizedBox(
-        height: 5,
-      ),
-      Container(
-        margin: EdgeInsets.only(bottom: 20),
-        child: TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 0,
-                  horizontal: 10),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                    color: Colors.blueGrey
-                ),
 
-              ),
-              border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.blueGrey)
-              )
-          ),
-        ),
-      ),
-      SizedBox(height: 10,)
-    ],
-  );
+  static String? validate(String? value) {
+
+    if (value!.isEmpty) {
+      return "Email Required";
+    }
+    // else if (value.isEmpty || !value.contains('@gmail')) {
+    //   return "Please Enter a valid email address";
+    // }
+    else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')){
+      return "Please Enter a valid email address";
+    }
+
+
+    else {
+      return null;
+    }
+  }
 }
+
+class PasswordValidator {
+  static String? validate(String? value) {
+    if (value!.isEmpty) {
+      return "Password Required";
+    }
+    else if (value.isEmpty || value.length <8) {
+      return "Password must be 8-16 characters";
+    }
+    else if (value.length > 16) {
+      return "Password must be 8-16 characters";
+    }
+
+    else {
+      return null;
+    }
+  }
+}
+
