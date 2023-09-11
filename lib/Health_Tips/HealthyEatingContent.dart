@@ -44,7 +44,8 @@ class HealthyEatingContent extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 5200,
+            // height: 5200,
+            height: 5300,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
@@ -393,7 +394,7 @@ class HealthyEatingContent extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(right:85, top:20),
+                    margin: EdgeInsets.only(right:40, top:20),
                     child: Text(
                       "Tips for limiting sodium in your diet",
                       style: TextStyle(
@@ -580,7 +581,7 @@ class HealthyEatingContentP2 extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 5000,
+            height: 5500,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
@@ -1188,7 +1189,7 @@ class HealthyEatingContentP3  extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 5000,
+            height: 5500,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
@@ -1804,7 +1805,7 @@ class HealthyEatingContentP4  extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 5000,
+            height: 4500,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
