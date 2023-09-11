@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "869145184024",
+    "project_id": "elderlysquire2023db",
+    "storage_bucket": "elderlysquire2023db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869145184024:android:e1006ed3fff5ef5951c06d",
+        "android_client_info": {
+          "package_name": "com.example.elderly_squire_2023_remastered_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869145184024-umm3lpgklkaesoilep0rqf8jt67ga6em.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgDzajLz04YzL7BlzukRUHROMt4KeNXtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869145184024-umm3lpgklkaesoilep0rqf8jt67ga6em.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
