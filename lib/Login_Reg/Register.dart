@@ -356,6 +356,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                                 borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
+
                     Text(
                       'Gender',
                       style: TextStyle(
@@ -369,7 +370,7 @@ class RegistrationPageState extends State<RegistrationPage> {
 
                     Container(
                       height:100,
-                      margin: EdgeInsets.only(right:200, bottom: 20),
+                      margin: EdgeInsets.only(right:150),
                       child: DropdownButtonFormField(
                         hint: Text('Select Gender',
                           style: TextStyle(
