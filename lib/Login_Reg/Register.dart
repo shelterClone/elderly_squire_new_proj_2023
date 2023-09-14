@@ -22,6 +22,7 @@ class RegistrationPageState extends State<RegistrationPage> {
 
 
 
+
   RegExp numReg = RegExp(r".*[0-9].*");
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
   RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
@@ -39,8 +40,13 @@ class RegistrationPageState extends State<RegistrationPage> {
   TextEditingController confirmpassword = TextEditingController();
   bool isPasswordHidden = true;
 
+
+  User? _user = FirebaseAuth.instance.currentUser;
+
   final _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+
 
   Future<void> _createUser(
       String firstname,

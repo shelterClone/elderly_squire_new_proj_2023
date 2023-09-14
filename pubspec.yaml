@@ -57,6 +57,7 @@ dependencies:
   flutter_lints: ^2.0.0 #chat support
   timezone: ^0.8.0
   flutter_facebook_auth: ^3.5.0
+  editable_image: ^2.0.0 #profile pic image uploader
 
 
 
