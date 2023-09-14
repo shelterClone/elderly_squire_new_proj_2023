@@ -52,7 +52,8 @@ class AboutUs extends StatelessWidget {
 
 
                   Container(
-                    margin:EdgeInsets.only(top:20,left:60),
+                    // margin:EdgeInsets.only(top:20,left:25),
+                    padding: EdgeInsets.symmetric(horizontal: 35, vertical: 30),
                     child: Column(
                       children: <Widget>[
                         Container(
@@ -166,7 +167,7 @@ class AboutUs extends StatelessWidget {
                   ),
 
                   Container(
-                    margin: EdgeInsets.only(top:40),
+                    margin: EdgeInsets.only(top:20),
                     height: 45,
                     width: 150,
                     child: ElevatedButton(

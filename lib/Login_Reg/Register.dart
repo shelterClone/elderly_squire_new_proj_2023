@@ -473,7 +473,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                           //     !value.contains('@gmail.com')) {
                           //   return "Invalid Email";
                           // }
-                          else if (value.isEmpty || !value.contains('@') || !value.contains('.')) {
+                          else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')) {
                             return "Invalid Email";
                           }
 

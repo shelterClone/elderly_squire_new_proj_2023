@@ -4,24 +4,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class UserProfile extends StatefulWidget {
-  // final String email;
-  // final String name;
-  // UserProfile({@required this.email, this.name});
-
-
-
   @override
-  _UserProfileState createState() => _UserProfileState();
+  State<UserProfile> createState() => _UserProfileState();
 }
 
 class _UserProfileState extends State<UserProfile> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? _user = FirebaseAuth.instance.currentUser;
 
-  bool isObscurePassword = true;
-  User? _user;
+  CollectionReference usersCollection =
+      FirebaseFirestore.instance.collection('Users');
 
+  // User? _user;
   get email => null;
-  get firstname => null;
-  @override
+
   void initState() {
     super.initState();
     _getUserInfo(); // Fetch the user information when the page is initialized.
@@ -34,146 +30,269 @@ class _UserProfileState extends State<UserProfile> {
     });
   }
 
-
-
-
+  @override
   Widget build(BuildContext context) {
-
-
-
-
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 75,
-        backgroundColor: Colors.blueGrey,
-        title: new Text(
-          // widget.email != null? widget.email :
-          'User',
+      backgroundColor: Colors.grey[200],
+        appBar: AppBar(
+          toolbarHeight: 75,
+          backgroundColor: Colors.blueGrey,
+          title: Text('User Profile'),
         ),
-        leading: IconButton(
-          icon: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Homepage()));
-            },
-            child: Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-          ),
-          onPressed: () {},
-        ),
-        actions: [IconButton(icon: Icon(Icons.settings), onPressed: () {})],
-      ),
-      body: Container(
-        padding: EdgeInsets.only(left: 15, top: 20, right: 15),
-        child: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
-            child: ListView(
-              children: [
-                Center(
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 130,
-                        height: 130,
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 4, color: Colors.white),
-                            boxShadow: [
-                              BoxShadow(
-                                  spreadRadius: 2,
-                                  blurRadius: 10,
-                                  color: Colors.black.withOpacity(0.1))
-                            ],
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'))),
-                      ),
-                      Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 4, color: Colors.white),
-                                color: Colors.redAccent),
-                            child: Icon(Icons.edit),
-                          ))
-                    ],
-                  ),
-                ),
-                SizedBox(height: 30),
-                buildTextField("Full Name", _user?.displayName ??  "", false),
-                buildTextField("Email", _user?.email ?? "", false),
-                buildTextField("Password", "********", true),
-                buildTextField("Location", "", false),
-                SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text("Cancel",
-                          style: TextStyle(
-                              fontSize: 15,
-                              letterSpacing: 2,
-                              color: Colors.black)),
-                      style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 50),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text("SAVE",
-                          style: TextStyle(
-                              fontSize: 15,
-                              letterSpacing: 2,
-                              color: Colors.white)),
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.redAccent,
-                          padding: EdgeInsets.symmetric(horizontal: 50),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
-                    )
-                  ],
-                )
-              ],
-            )),
-      ),
-    );
-  }
+        body: Center(
+          child: StreamBuilder<DocumentSnapshot>(
+              stream: usersCollection.doc(_user!.uid).snapshots(),
+              builder: (context, streamSnapshot) {
+                if (streamSnapshot.connectionState ==
+                    ConnectionState.waiting) {
+                  return CircularProgressIndicator(
+                    color: Colors.blue,
+                  );
+                }
+                return SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Container(
 
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: 30),
-      child: TextField(
-        obscureText: isPasswordTextField ? isObscurePassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-                    icon: Icon(Icons.remove_red_eye, color: Colors.grey),
-                    onPressed: () {
-                      setState(() {
-                        isObscurePassword = !isObscurePassword;
-                      });
-                    })
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 5),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-                fontSize: 16, fontWeight: FontWeight.bold, color: Colors.grey)),
-      ),
-    );
+                      height: 2445,
+                      width: 1000,
+                      child: Card(
+                        margin: EdgeInsets.all(20),
+                        elevation: 1,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: 25),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+
+                            children: <Widget>[
+                              // Container(
+                              //   margin: EdgeInsets.only(left: 20, top: 150),
+                              //   child:
+                              //   Text(
+                              //       // Display the user's email
+                              //       streamSnapshot.data!['First Name'],
+                              //       // _user?.email ?? "",
+                              //       style: TextStyle(
+                              //         fontSize: 24,
+                              //         fontFamily: ('OpenSans'),
+                              //         // fontWeight: FontWeight.bold,
+                              //       )),
+                              //
+                              // ),
+                              Center(
+                                child: Container(
+                                  width: 130,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(width: 4, color: Colors.white),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            spreadRadius: 2,
+                                            blurRadius: 10,
+                                            color: Colors.black.withOpacity(0.1))
+                                      ],
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                              'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'))),
+                                ),
+                              ),
+                              Positioned(
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border:
+                                        Border.all(width: 4, color: Colors.white),
+                                        color: Colors.redAccent),
+                                    child: Icon(Icons.edit),
+                                  )),
+
+
+                              Container(//--------------------First Name
+                                margin: EdgeInsets.only(top: 100,),
+                                child: Text(
+                                  'Firstname',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: ('OpenSans'),
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.orangeAccent),
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Container(
+                                // margin: EdgeInsets.only(left:15, top: 200,),
+                                child: Text(
+                                  // Display the user's email
+                                    streamSnapshot.data!['First Name'],
+                                    // _user?.email ?? "",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 15,
+                                    )),
+                              ),
+
+
+                              // SizedBox(
+                              //   height: 5,
+                              // ),
+
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(//--------------------Middle Name
+                                child: Text(
+                                  'Middlename',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: ('OpenSans'),
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.orangeAccent
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height:5),
+                              Container(
+                                // margin: EdgeInsets.only(left:15),
+                                child: Text(
+                                  // Display the user's email
+                                    streamSnapshot.data!['Middle'],
+                                    // _user?.email ?? "",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 15,
+                                    )),
+                              ),
+
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(//--------------------Last Name
+
+                                child: Text(
+                                  'Lastname',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: ('OpenSans'),
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.orangeAccent),
+                                ),
+                              ),
+                              SizedBox(height:5),
+                              Container(
+                                child: Text(
+                                  // Display the user's email
+                                    streamSnapshot.data!['Last Name'],
+                                    // _user?.email ?? "",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 15,
+                                    )),
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(//--------------------Gender
+                                child: Text(
+                                  'Gender',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: ('OpenSans'),
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.orangeAccent),
+                                ),
+                              ),
+                              SizedBox(height:5),
+                              Container(
+                                child: Text(
+                                  // Display the user's email
+                                    streamSnapshot.data!['Gender'],
+                                    // _user?.email ?? "",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 15,
+                                    )),
+                              ),
+
+                              SizedBox(
+                                height: 30,
+                              ),
+                              Container(//--------------------Email
+                                child: Text(
+                                  'Email address',
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontFamily: ('OpenSans'),
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.orangeAccent),
+                                ),
+                              ),
+                              SizedBox(
+                                height:5
+                              ),
+                              Container(
+                                child: Text(
+                                  // Display the user's email
+                                    streamSnapshot.data!['email'],
+                                    // _user?.email ?? "",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 15,
+                                    )),
+                              ),
+
+
+
+
+
+
+
+
+                            ],
+                          ),
+                        ),
+                      ),
+                    ));
+              }),
+        ));
   }
 }
+
+// Widget buildImage() {
+//   final image = NetworkImage(imagePath);
+//
+//   return ClipOval(
+//     child: Material(
+//       color: Colors.transparent,
+//       child: Ink.image(
+//         image: image,
+//         fit: BoxFit.cover,
+//         width: 128,
+//         height: 128,
+//         child: InkWell(onTap: onClicked),
+//       ),
+//     ),
+//   );
+// }
+
+Widget buildCircle({
+  required Widget child,
+  required double all,
+  required Color color,
+}) =>
+    ClipOval(
+      child: Container(
+        padding: EdgeInsets.all(all),
+        color: color,
+        child: child,
+      ),
+    );

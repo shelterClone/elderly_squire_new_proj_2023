@@ -24,13 +24,12 @@ class _HomepageState extends State<Homepage> {
   @override
   void initState() {
     super.initState();
-    _getUserInfo(); // Fetch the user information when the page is initialized.
+    _getUserInfo();
   }
 
   void _getUserInfo() {
     final user = FirebaseAuth.instance.currentUser;
     setState(() {
-      _displayemail = user;
       _displayemail = user;
     });
   }
@@ -58,8 +57,12 @@ class _HomepageState extends State<Homepage> {
                           //   Navigator.push(context, MaterialPageRoute(builder: (context) => UserProfile()));
                           // },
                           child: CircleAvatar(
-                            child: Icon(Icons.person),
-                            maxRadius: 25,
+                            child: Icon(
+                              Icons.person,
+                              color: Colors.white,
+                            ),
+                            maxRadius: 23,
+                            backgroundColor: Colors.grey[400],
                           ),
                         ),
                       ),
@@ -87,7 +90,6 @@ class _HomepageState extends State<Homepage> {
                               fontStyle: FontStyle.normal,
                               color: Colors.white,
                               fontSize: 15,
-                              fontWeight: FontWeight.bold
                             ),
                           ),
 
@@ -109,8 +111,8 @@ class _HomepageState extends State<Homepage> {
                         ),
                       ),
                       onTap: () {
-                        // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()),
-                        // );
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Homepage()),
+                        );
                       }),
 //                ListTile(
 //                    leading: Icon(Icons.settings, color: Colors.white),
