@@ -34,11 +34,13 @@ class _MyAppState extends State<MyApp> {
   late GlobalBloc globalBloc;
   late TodoService toDoService;
 
+
   get email => null;
 
   void initState() {
     globalBloc = GlobalBloc();
     toDoService= TodoService();
+
 
 
     super.initState();

@@ -566,8 +566,11 @@ class RegistrationPageState extends State<RegistrationPage> {
                         //----------------------Confirm Password txtField-----------------------------//
                         controller: confirmpassword,
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
+                          if (password.text.isNotEmpty & confirmpassword.text.isEmpty) {
                             return "Please Re Enter Password";
+                          }
+                          if (value == null || value.isEmpty) {
+                            return "Password Required";
                           }
 
                           if (password.text != confirmpassword.text) {
