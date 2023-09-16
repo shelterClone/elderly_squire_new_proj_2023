@@ -679,14 +679,14 @@ class RegistrationPageState extends State<RegistrationPage> {
                       ),
                     ),
                     onPressed: () {
-                        _createUser(
-                            firstname.text,
-                            middle.text,
-                            lastname.text,
-                            selectgender.text,
-                            address.text,
-                            email.text,
-                            password.text);
+                      _createUser(
+                          firstname.text,
+                          middle.text,
+                          lastname.text,
+                          selectgender.text,
+                          address.text,
+                          email.text,
+                          password.text);
 
                     },
                   ),
@@ -720,7 +720,3 @@ class RegistrationPageState extends State<RegistrationPage> {
     );
   }
 }
-
-
-
-

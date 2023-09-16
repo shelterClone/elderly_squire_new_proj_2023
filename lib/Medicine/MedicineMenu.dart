@@ -21,7 +21,7 @@ class MedicineMenu extends StatelessWidget {
         centerTitle: true,
         toolbarHeight: 75,
 //        backgroundColor: Colors.blueGrey[900],
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blueGrey[900],
         leading: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -39,82 +39,108 @@ class MedicineMenu extends StatelessWidget {
           children:<Widget>[
             GestureDetector(
               child: Container(
-                height: 150,
+                height: 120,
                 child: Card(
-                  //------------------------------Medication Reminder---------------------------------//
+                  elevation: 3,
+                  // color: Colors.indigo,
+                  color: Colors.white,
+                  //------------------------------Medicine Reminder---------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
                     children: <Widget>[
                       Container(
-                          margin: EdgeInsets.only(left: 30),
+                          margin: EdgeInsets.only(left: 30,bottom:10,top:8),
                           child: InkWell(
                             onTap: () {
-                             Navigator.push(
-                               context,
-                               MaterialPageRoute(
-                                   builder: (context) => ReminderHome()),
-                             );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ReminderHome()),
+                              );
                             },
                             child: Image.asset('assets/images/reminder.png',
-                                height: 300, width: 70),
+                                height: 75, width: 90
+                            ),
                           )),
-                      Column(
-                        children: <Widget>[
-                          Container(
-                              margin: EdgeInsets.only(top: 51, left: 25),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ReminderHome()),
-                                  );
-                                },
-                                child: Text(
-                                  'Medication Reminder',
-                                  style: TextStyle(
-                                      fontFamily: ('OpenSans'), fontSize: 18
+                      Container(
+                        margin: EdgeInsets.only(left:15,top:29),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.only(left: 25),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ReminderHome()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Medicine Reminder',
+                                    style: TextStyle(
+                                      color: Colors.black54,
+                                      fontFamily: ('BebasNeue'),
+                                      fontSize: 25,
 
 //                                  fontWeight: FontWeight.bold
+                                    ),
                                   ),
-                                ),
-                              )),
-//                        Container(
-//                            margin: EdgeInsets.only(top: 5),
-//                            child: Text(
-//                              'Application for Senior Citizen ID',
-//                              style: TextStyle(
-//                                fontFamily: ('OpenSans'),
-//                                fontSize: 14,
-//
-////                                  fontWeight: FontWeight.bold
-//                              ),
-//                            ))
-                        ],
-                      )
+                                )),
+                            Container(
+                              // margin: EdgeInsets.only(left: 25),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ReminderHome()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Alarm notification for medicine intake.',
+                                    style: TextStyle(
+
+                                      color: Colors.black54,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 10,
+
+
+//                                  fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ))
+
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
                 ),
               ),
-
             ),
 
             GestureDetector(
               child: Container(
-                height: 150,
+                height: 120,
                 child: Card(
-                  //------------------------------To Do List Menu---------------------------------//
+                  elevation: 3,
+                  color: Colors.white,
+                  // color: Colors.blueGrey[900],
+                  //------------------------------To Do List-------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Row(
                     children: <Widget>[
                       Container(
-                          margin: EdgeInsets.only(left: 30),
+                          margin: EdgeInsets.only(left: 30,bottom:10,top:8),
                           child: InkWell(
                             onTap: () {
                               Navigator.push(
@@ -124,50 +150,69 @@ class MedicineMenu extends StatelessWidget {
                               );
                             },
                             child: Image.asset('assets/images/todolist.png',
-                                height: 300, width: 70),
+                                height: 75, width: 90
+
+                            ),
                           )),
-                      Column(
-                        children: <Widget>[
-                          Container(
-                              margin: EdgeInsets.only(top: 51, left: 25),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => TodoLanding()),
-                                  );
-                                },
-                                child: Text(
-                                  'To Do List',
-                                  style: TextStyle(
-                                      fontFamily: ('OpenSans'), fontSize: 21
+                      Container(
+                        margin: EdgeInsets.only(left:15,top:29),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.only(left: 25),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TodoLanding()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'To-do List',
+                                    style: TextStyle(
+                                      color: Colors.black54,
+                                      fontFamily: ('BebasNeue'),
+                                      fontSize: 25,
 
 //                                  fontWeight: FontWeight.bold
+                                    ),
                                   ),
-                                ),
-                              )),
-//                        Container(
-//                            margin: EdgeInsets.only(top: 5),
-//                            child: Text(
-//                              '(Description)',
-//                              style: TextStyle(
-//                                fontFamily: ('OpenSans'),
-//                                fontSize: 14,
-//
-////                                  fontWeight: FontWeight.bold
-//                              ),
-//                            ))
-                        ],
-                      )
+                                )),
+                            Container(
+                              // margin: EdgeInsets.only(left: 25),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TodoLanding()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Creates list of to-do list.',
+                                    style: TextStyle(
+
+                                      color: Colors.black54,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 10,
+
+
+//                                  fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ))
+
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
                 ),
               ),
-
             ),
-
-
 
 
           ]
@@ -175,3 +220,133 @@ class MedicineMenu extends StatelessWidget {
     );
   }
 }
+
+//             GestureDetector(
+//               child: Container(
+//                 height: 150,
+//                 child: Card(
+//                   //------------------------------Medication Reminder---------------------------------//
+//                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(18),
+//                   ),
+//                   child: Row(
+//                     children: <Widget>[
+//                       Container(
+//                           margin: EdgeInsets.only(left: 30),
+//                           child: InkWell(
+//                             onTap: () {
+//                              Navigator.push(
+//                                context,
+//                                MaterialPageRoute(
+//                                    builder: (context) => ReminderHome()),
+//                              );
+//                             },
+//                             child: Image.asset('assets/images/reminder.png',
+//                                 height: 300, width: 70),
+//                           )),
+//                       Column(
+//                         children: <Widget>[
+//                           Container(
+//                               margin: EdgeInsets.only(top: 51, left: 25),
+//                               child: InkWell(
+//                                 onTap: () {
+//                                   Navigator.push(
+//                                     context,
+//                                     MaterialPageRoute(
+//                                         builder: (context) => ReminderHome()),
+//                                   );
+//                                 },
+//                                 child: Text(
+//                                   'Medication Reminder',
+//                                   style: TextStyle(
+//                                       fontFamily: ('OpenSans'), fontSize: 18
+//
+// //                                  fontWeight: FontWeight.bold
+//                                   ),
+//                                 ),
+//                               )),
+// //                        Container(
+// //                            margin: EdgeInsets.only(top: 5),
+// //                            child: Text(
+// //                              'Application for Senior Citizen ID',
+// //                              style: TextStyle(
+// //                                fontFamily: ('OpenSans'),
+// //                                fontSize: 14,
+// //
+// ////                                  fontWeight: FontWeight.bold
+// //                              ),
+// //                            ))
+//                         ],
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//
+//             ),
+
+//             GestureDetector(
+//               child: Container(
+//                 height: 150,
+//                 child: Card(
+//                   //------------------------------To Do List Menu---------------------------------//
+//                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(18),
+//                   ),
+//                   child: Row(
+//                     children: <Widget>[
+//                       Container(
+//                           margin: EdgeInsets.only(left: 30),
+//                           child: InkWell(
+//                             onTap: () {
+//                               Navigator.push(
+//                                 context,
+//                                 MaterialPageRoute(
+//                                     builder: (context) => TodoLanding()),
+//                               );
+//                             },
+//                             child: Image.asset('assets/images/todolist.png',
+//                                 height: 300, width: 70),
+//                           )),
+//                       Column(
+//                         children: <Widget>[
+//                           Container(
+//                               margin: EdgeInsets.only(top: 51, left: 25),
+//                               child: InkWell(
+//                                 onTap: () {
+//                                   Navigator.push(
+//                                     context,
+//                                     MaterialPageRoute(
+//                                         builder: (context) => TodoLanding()),
+//                                   );
+//                                 },
+//                                 child: Text(
+//                                   'To Do List',
+//                                   style: TextStyle(
+//                                       fontFamily: ('OpenSans'), fontSize: 21
+//
+// //                                  fontWeight: FontWeight.bold
+//                                   ),
+//                                 ),
+//                               )),
+// //                        Container(
+// //                            margin: EdgeInsets.only(top: 5),
+// //                            child: Text(
+// //                              '(Description)',
+// //                              style: TextStyle(
+// //                                fontFamily: ('OpenSans'),
+// //                                fontSize: 14,
+// //
+// ////                                  fontWeight: FontWeight.bold
+// //                              ),
+// //                            ))
+//                         ],
+//                       )
+//                     ],
+//                   ),
+//                 ),
+//               ),
+//
+//             ),

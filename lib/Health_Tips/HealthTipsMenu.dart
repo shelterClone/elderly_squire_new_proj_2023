@@ -11,8 +11,9 @@ class HealthTipsMenu extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 75,
-//        backgroundColor: Colors.blueGrey[900],
-        backgroundColor: Colors.blueGrey,
+// //        backgroundColor: Colors.blueGrey[900],
+//         backgroundColor: Colors.blueGrey[900],
+        backgroundColor: Colors.blueGrey[900],
         leading: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -30,198 +31,482 @@ class HealthTipsMenu extends StatelessWidget {
         children: <Widget>[
           GestureDetector(
             child: Container(
-              height: 150,
+              height: 120,
               child: Card(
-                //------------------------------Health Weight---------------------------------//
+                elevation: 3,
+                // color: Colors.indigo,
+                color: Colors.white,
+                //------------------------------Healthy Weight---------------------------------//
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: <Widget>[
                     Container(
-                        margin: EdgeInsets.only(left: 30),
+                        margin: EdgeInsets.only(left: 30,bottom:10,top:8),
                         child: InkWell(
                           onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HealthWeightContent()),
-                              );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HealthWeightContent()),
+                            );
                           },
                           child: Image.asset('assets/images/weight-scale.png',
-                              height: 300, width: 70),
+                              height: 75, width: 90),
                         )),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                            margin: EdgeInsets.only(top: 51, left: 25),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HealthWeightContent()),
-                                );
-                              },
-                              child: Text(
-                                'Health Weight',
-                                style: TextStyle(
-                                    fontFamily: ('OpenSans'), fontSize: 21
+                    Container(
+                      margin: EdgeInsets.only(left:15,top:29),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            // margin: EdgeInsets.only(left: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HealthWeightContent()),
+                                  );
+                                },
+                                child: Text(
+                                  'Health Weight',
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontFamily: ('BebasNeue'),
+                                    fontSize: 25,
 
 //                                  fontWeight: FontWeight.bold
+                                  ),
                                 ),
-                              ),
-                            )),
-//                        Container(
-//                            margin: EdgeInsets.only(top: 5),
-//                            child: Text(
-//                              'Application for Senior Citizen ID',
-//                              style: TextStyle(
-//                                fontFamily: ('OpenSans'),
-//                                fontSize: 14,
-//
-////                                  fontWeight: FontWeight.bold
-//                              ),
-//                            ))
-                      ],
-                    )
+                              )),
+                          Container(
+                            // margin: EdgeInsets.only(left: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HealthWeightContent()),
+                                  );
+                                },
+                                child: Text(
+                                  'Some tips to maintain healthy weight.',
+                                  style: TextStyle(
+
+                                    color: Colors.black54,
+                                    fontFamily: ('OpenSans'),
+                                    fontSize: 10,
+
+
+//                                  fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              )),
+
+                        ],
+                      ),
+                    ),
+
                   ],
                 ),
               ),
             ),
-
           ),
-
           GestureDetector(
             child: Container(
-              height: 150,
+              height: 120,
               child: Card(
+                elevation: 3,
+                // color: Colors.indigo,
+                color: Colors.white,
                 //------------------------------Healthy Eating---------------------------------//
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: <Widget>[
                     Container(
-                        margin: EdgeInsets.only(left: 30),
+                        margin: EdgeInsets.only(left: 30,bottom:10,top:8),
                         child: InkWell(
                           onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HealthyEatingContent()),
-                              );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HealthyEatingContent()),
+                            );
                           },
                           child: Image.asset('assets/images/diet.png',
-                              height: 300, width: 70),
+                              height: 75, width: 90),
                         )),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                            margin: EdgeInsets.only(top: 51, left: 25),
-                            child: InkWell(
-//                                onTap: () {
-//                                  Navigator.push(
-//                                    context,
-//                                    MaterialPageRoute(
-//                                        builder: (context) => ID_Reg()),
-//                                  );
-//                                },
-                              child: Text(
-                                'Healthy Eating',
-                                style: TextStyle(
-                                    fontFamily: ('OpenSans'), fontSize: 21
+                    Container(
+                      margin: EdgeInsets.only(left:15,top:29),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            // margin: EdgeInsets.only(left: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HealthWeightContent()),
+                                  );
+                                },
+                                child: const Text(
+                                  'Healthy Eating',
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontFamily: ('BebasNeue'),
+                                    fontSize: 25,
 
 //                                  fontWeight: FontWeight.bold
+                                  ),
                                 ),
-                              ),
-                            )),
-//                        Container(
-//                            margin: EdgeInsets.only(top: 5),
-//                            child: Text(
-//                              'Application for Senior Citizen ID',
-//                              style: TextStyle(
-//                                fontFamily: ('OpenSans'),
-//                                fontSize: 14,
-//
-////                                  fontWeight: FontWeight.bold
-//                              ),
-//                            ))
-                      ],
-                    )
+                              )),
+                          Container(
+                            // margin: EdgeInsets.only(left: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HealthWeightContent()),
+                                  );
+                                },
+                                child: const Text(
+                                  'Some tips to have proper diet.',
+                                  style: TextStyle(
+
+                                    color: Colors.black54,
+                                    fontFamily: ('OpenSans'),
+                                    fontSize: 10,
+
+
+//                                  fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              )),
+                        ],
+                      ),
+                    ),
+
                   ],
                 ),
               ),
             ),
-
           ),
-
           GestureDetector(
             child: Container(
-              height: 150,
+              height: 120,
               child: Card(
+                elevation: 3,
+                // color: Colors.indigo,
+                color: Colors.white,
                 //------------------------------Physical Activity---------------------------------//
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: <Widget>[
                     Container(
-                        margin: EdgeInsets.only(left: 30),
+                        margin: EdgeInsets.only(left: 30,bottom:10,top:8),
                         child: InkWell(
                           onTap: () {
-//                              Navigator.push(
-//                                context,
-//                                MaterialPageRoute(
-//                                    builder: (context) => ID_Reg()),
-//                              );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HealthWeightContent()),
+                            );
                           },
                           child: Image.asset('assets/images/weights_new.png',
-                              height: 300, width: 70),
+                              height: 75, width: 90),
                         )),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                            margin: EdgeInsets.only(top: 51, left: 25),
-                            child: InkWell(
-//                                onTap: () {
-//                                  Navigator.push(
-//                                    context,
-//                                    MaterialPageRoute(
-//                                        builder: (context) => ID_Reg()),
-//                                  );
-//                                },
-                              child: Text(
-                                'Physical Activty',
-                                style: TextStyle(
-                                    fontFamily: ('OpenSans'), fontSize: 21
+                    Container(
+                      margin: EdgeInsets.only(left:15,top:24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            // margin: EdgeInsets.only(left: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HealthWeightContent()),
+                                  );
+                                },
+                                child: Text(
+                                  'Physical Activity',
+                                  style: TextStyle(
+                                    color: Colors.black54,
+                                    fontFamily: ('BebasNeue'),
+                                    fontSize: 25,
 
 //                                  fontWeight: FontWeight.bold
+                                  ),
                                 ),
-                              ),
-                            )),
-//                        Container(
-//                            margin: EdgeInsets.only(top: 5),
-//                            child: Text(
-//                              'Application for Senior Citizen ID',
-//                              style: TextStyle(
-//                                fontFamily: ('OpenSans'),
-//                                fontSize: 14,
-//
-////                                  fontWeight: FontWeight.bold
-//                              ),
-//                            ))
-                      ],
-                    )
+                              )),
+                          Container(
+                            // margin: EdgeInsets.only(left: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HealthWeightContent()),
+                                  );
+                                },
+                                child: Text(
+                                  'Some activties to do for a better',
+                                  style: TextStyle(
+
+                                    color: Colors.black54,
+                                    fontFamily: ('OpenSans'),
+                                    fontSize: 10,
+
+
+//                                  fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              )),
+                          Container(
+                            // margin: EdgeInsets.only(left: 25),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => HealthWeightContent()),
+                                  );
+                                },
+                                child: Text(
+                                  'lifestyle.',
+                                  style: TextStyle(
+
+                                    color: Colors.white,
+                                    fontFamily: ('OpenSans'),
+                                    fontSize: 10,
+
+
+//                                  fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                              ))
+
+                        ],
+                      ),
+                    ),
+
                   ],
                 ),
               ),
             ),
-
           ),
+
+
+
+
+//           GestureDetector(
+//             child: Container(
+//               height: 150,
+//               child: Card(
+//                 //------------------------------Health Weight---------------------------------//
+//                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+//                 shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(18),
+//                 ),
+//                 child: Row(
+//                   children: <Widget>[
+//                     Container(
+//                         margin: EdgeInsets.only(left: 30),
+//                         child: InkWell(
+//                           onTap: () {
+//                               Navigator.push(
+//                                 context,
+//                                 MaterialPageRoute(
+//                                     builder: (context) => HealthWeightContent()),
+//                               );
+//                           },
+//                           child: Image.asset('assets/images/weight-scale.png',
+//                               height: 300, width: 70),
+//                         )),
+//                     Column(
+//                       children: <Widget>[
+//                         Container(
+//                             margin: EdgeInsets.only(top: 51, left: 25),
+//                             child: InkWell(
+//                               onTap: () {
+//                                 Navigator.push(
+//                                   context,
+//                                   MaterialPageRoute(
+//                                       builder: (context) => HealthWeightContent()),
+//                                 );
+//                               },
+//                               child: Text(
+//                                 'Health Weight',
+//                                 style: TextStyle(
+//                                     fontFamily: ('OpenSans'), fontSize: 21
+//
+// //                                  fontWeight: FontWeight.bold
+//                                 ),
+//                               ),
+//                             )),
+// //                        Container(
+// //                            margin: EdgeInsets.only(top: 5),
+// //                            child: Text(
+// //                              'Application for Senior Citizen ID',
+// //                              style: TextStyle(
+// //                                fontFamily: ('OpenSans'),
+// //                                fontSize: 14,
+// //
+// ////                                  fontWeight: FontWeight.bold
+// //                              ),
+// //                            ))
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ),
+//
+//           ),
+//
+//           GestureDetector(
+//             child: Container(
+//               height: 150,
+//               child: Card(
+//                 //------------------------------Healthy Eating---------------------------------//
+//                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+//                 shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(18),
+//                 ),
+//                 child: Row(
+//                   children: <Widget>[
+//                     Container(
+//                         margin: EdgeInsets.only(left: 30),
+//                         child: InkWell(
+//                           onTap: () {
+//                               Navigator.push(
+//                                 context,
+//                                 MaterialPageRoute(
+//                                     builder: (context) => HealthyEatingContent()),
+//                               );
+//                           },
+//                           child: Image.asset('assets/images/diet.png',
+//                               height: 300, width: 70),
+//                         )),
+//                     Column(
+//                       children: <Widget>[
+//                         Container(
+//                             margin: EdgeInsets.only(top: 51, left: 25),
+//                             child: InkWell(
+// //                                onTap: () {
+// //                                  Navigator.push(
+// //                                    context,
+// //                                    MaterialPageRoute(
+// //                                        builder: (context) => ID_Reg()),
+// //                                  );
+// //                                },
+//                               child: Text(
+//                                 'Healthy Eating',
+//                                 style: TextStyle(
+//                                     fontFamily: ('OpenSans'), fontSize: 21
+//
+// //                                  fontWeight: FontWeight.bold
+//                                 ),
+//                               ),
+//                             )),
+// //                        Container(
+// //                            margin: EdgeInsets.only(top: 5),
+// //                            child: Text(
+// //                              'Application for Senior Citizen ID',
+// //                              style: TextStyle(
+// //                                fontFamily: ('OpenSans'),
+// //                                fontSize: 14,
+// //
+// ////                                  fontWeight: FontWeight.bold
+// //                              ),
+// //                            ))
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ),
+//
+//           ),
+//
+//           GestureDetector(
+//             child: Container(
+//               height: 150,
+//               child: Card(
+//                 //------------------------------Physical Activity---------------------------------//
+//                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+//                 shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(18),
+//                 ),
+//                 child: Row(
+//                   children: <Widget>[
+//                     Container(
+//                         margin: EdgeInsets.only(left: 30),
+//                         child: InkWell(
+//                           onTap: () {
+// //                              Navigator.push(
+// //                                context,
+// //                                MaterialPageRoute(
+// //                                    builder: (context) => ID_Reg()),
+// //                              );
+//                           },
+//                           child: Image.asset('assets/images/weights_new.png',
+//                               height: 300, width: 70),
+//                         )),
+//                     Column(
+//                       children: <Widget>[
+//                         Container(
+//                             margin: EdgeInsets.only(top: 51, left: 25),
+//                             child: InkWell(
+// //                                onTap: () {
+// //                                  Navigator.push(
+// //                                    context,
+// //                                    MaterialPageRoute(
+// //                                        builder: (context) => ID_Reg()),
+// //                                  );
+// //                                },
+//                               child: Text(
+//                                 'Physical Activty',
+//                                 style: TextStyle(
+//                                     fontFamily: ('OpenSans'), fontSize: 21
+//
+// //                                  fontWeight: FontWeight.bold
+//                                 ),
+//                               ),
+//                             )),
+// //                        Container(
+// //                            margin: EdgeInsets.only(top: 5),
+// //                            child: Text(
+// //                              'Application for Senior Citizen ID',
+// //                              style: TextStyle(
+// //                                fontFamily: ('OpenSans'),
+// //                                fontSize: 14,
+// //
+// ////                                  fontWeight: FontWeight.bold
+// //                              ),
+// //                            ))
+//                       ],
+//                     )
+//                   ],
+//                 ),
+//               ),
+//             ),
+//
+//           ),
 
         ],
 
