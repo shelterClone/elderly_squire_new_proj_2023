@@ -21,7 +21,7 @@ class HealthyEatingContent extends StatelessWidget {
           toolbarHeight: 75,
 //          backgroundColor: Colors.blueGrey[900],
         centerTitle: true,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey[900],
           leading: GestureDetector(
             onTap: () {
               Navigator.push(
@@ -558,7 +558,7 @@ class HealthyEatingContentP2 extends StatelessWidget {
           toolbarHeight: 75,
 //          backgroundColor: Colors.blueGrey[900],
           centerTitle: true,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey[900],
           leading: GestureDetector(
             onTap: () {
               Navigator.push(
@@ -1166,7 +1166,7 @@ class HealthyEatingContentP3  extends StatelessWidget {
           toolbarHeight: 75,
 //          backgroundColor: Colors.blueGrey[900],
           centerTitle: true,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey[900],
           leading: GestureDetector(
             onTap: () {
               Navigator.push(
@@ -1782,7 +1782,7 @@ class HealthyEatingContentP4  extends StatelessWidget {
           toolbarHeight: 75,
 //          backgroundColor: Colors.blueGrey[900],
           centerTitle: true,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey[900],
           leading: GestureDetector(
             onTap: () {
               Navigator.push(

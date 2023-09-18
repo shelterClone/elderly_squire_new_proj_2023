@@ -22,7 +22,7 @@ class HealthWeightContent extends StatelessWidget {
           centerTitle: true,
           toolbarHeight: 75,
 //          backgroundColor: Colors.blueGrey[900],
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey[900],
 
           leading: GestureDetector(
             onTap: () {

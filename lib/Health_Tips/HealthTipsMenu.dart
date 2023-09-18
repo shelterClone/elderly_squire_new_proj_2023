@@ -1,5 +1,6 @@
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthWeightContent.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthyEatingContent.dart';
+import 'package:elderly_squire_2023_remastered_v2/Health_Tips/PhysicalActivity.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:flutter/material.dart';
 
@@ -23,8 +24,9 @@ class HealthTipsMenu extends StatelessWidget {
             Icons.arrow_back, // add custom icons also
           ),
         ),
-        title: Image.asset('assets/images/healthy.png',
-            height: 40, width: 125),
+        title:
+            Image.asset('assets/images/healthy.png',
+                height: 40, width: 125,),
       ),
 
       body: Column(
@@ -33,9 +35,8 @@ class HealthTipsMenu extends StatelessWidget {
             child: Container(
               height: 120,
               child: Card(
-                elevation: 3,
                 // color: Colors.indigo,
-                color: Colors.white,
+                color: Colors.orange[400],
                 //------------------------------Healthy Weight---------------------------------//
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                 shape: RoundedRectangleBorder(
@@ -74,7 +75,7 @@ class HealthTipsMenu extends StatelessWidget {
                                 child: Text(
                                   'Health Weight',
                                   style: TextStyle(
-                                    color: Colors.black54,
+                                    color: Colors.white,
                                     fontFamily: ('BebasNeue'),
                                     fontSize: 25,
 
@@ -96,7 +97,7 @@ class HealthTipsMenu extends StatelessWidget {
                                   'Some tips to maintain healthy weight.',
                                   style: TextStyle(
 
-                                    color: Colors.black54,
+                                    color: Colors.white,
                                     fontFamily: ('OpenSans'),
                                     fontSize: 10,
 
@@ -119,9 +120,8 @@ class HealthTipsMenu extends StatelessWidget {
             child: Container(
               height: 120,
               child: Card(
-                elevation: 3,
                 // color: Colors.indigo,
-                color: Colors.white,
+                color: Colors.orange[400],
                 //------------------------------Healthy Eating---------------------------------//
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                 shape: RoundedRectangleBorder(
@@ -154,13 +154,13 @@ class HealthTipsMenu extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HealthWeightContent()),
+                                        builder: (context) => HealthyEatingContent()),
                                   );
                                 },
                                 child: const Text(
                                   'Healthy Eating',
                                   style: TextStyle(
-                                    color: Colors.black54,
+                                    color: Colors.white,
                                     fontFamily: ('BebasNeue'),
                                     fontSize: 25,
 
@@ -175,14 +175,14 @@ class HealthTipsMenu extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HealthWeightContent()),
+                                        builder: (context) => HealthyEatingContent()),
                                   );
                                 },
                                 child: const Text(
                                   'Some tips to have proper diet.',
                                   style: TextStyle(
 
-                                    color: Colors.black54,
+                                    color: Colors.white,
                                     fontFamily: ('OpenSans'),
                                     fontSize: 10,
 
@@ -204,9 +204,8 @@ class HealthTipsMenu extends StatelessWidget {
             child: Container(
               height: 120,
               child: Card(
-                elevation: 3,
                 // color: Colors.indigo,
-                color: Colors.white,
+                color: Colors.orange[400],
                 //------------------------------Physical Activity---------------------------------//
                 margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                 shape: RoundedRectangleBorder(
@@ -221,7 +220,7 @@ class HealthTipsMenu extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HealthWeightContent()),
+                                  builder: (context) => PhysicalActContent()),
                             );
                           },
                           child: Image.asset('assets/images/weights_new.png',
@@ -239,13 +238,13 @@ class HealthTipsMenu extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HealthWeightContent()),
+                                        builder: (context) => PhysicalActContent()),
                                   );
                                 },
                                 child: Text(
                                   'Physical Activity',
                                   style: TextStyle(
-                                    color: Colors.black54,
+                                    color: Colors.white,
                                     fontFamily: ('BebasNeue'),
                                     fontSize: 25,
 
@@ -260,14 +259,14 @@ class HealthTipsMenu extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HealthWeightContent()),
+                                        builder: (context) => PhysicalActContent()),
                                   );
                                 },
                                 child: Text(
                                   'Some activties to do for a better',
                                   style: TextStyle(
 
-                                    color: Colors.black54,
+                                    color: Colors.white,
                                     fontFamily: ('OpenSans'),
                                     fontSize: 10,
 
@@ -283,7 +282,7 @@ class HealthTipsMenu extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => HealthWeightContent()),
+                                        builder: (context) => PhysicalActContent()),
                                   );
                                 },
                                 child: Text(

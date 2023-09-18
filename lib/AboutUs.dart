@@ -11,7 +11,7 @@ class AboutUs extends StatelessWidget {
         '/emailadd': (BuildContext context) => Homepage(),
       },
       home: Scaffold(
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blueGrey[900],
         body:
         SafeArea(
           child: Center(
@@ -175,7 +175,7 @@ class AboutUs extends StatelessWidget {
                         primary: Colors.orangeAccent,
                         onPrimary: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
                       ),
                       child: Row(

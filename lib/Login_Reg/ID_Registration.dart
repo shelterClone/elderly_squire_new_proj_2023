@@ -81,7 +81,7 @@ class _ID_RegState extends State< ID_Reg> {
               Column(
                 children: <Widget>[
                   Container(//-------------------------------------------Date Issued----------------------------------//
-                      margin:EdgeInsets.only(right:250, bottom: 10),
+                      margin:EdgeInsets.only(right:180, bottom: 10),
                       child: Text("Date Issued",
                         style: TextStyle(
                             fontSize: 15,
@@ -435,6 +435,7 @@ class _ID_RegState extends State< ID_Reg> {
 //                ),
 //              )
 //
+
 
 
 

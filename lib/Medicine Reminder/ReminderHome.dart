@@ -19,7 +19,7 @@ late GlobalBloc globalBloc;
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 75,
-        backgroundColor: Colors.blueGrey,
+        backgroundColor: Colors.blueGrey[900],
         leading: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -29,7 +29,7 @@ late GlobalBloc globalBloc;
             Icons.arrow_back, // add custom icons also
           ),
         ),
-        title: Image.asset('assets/images/elderly_squire_logo_classic_icon.png',
+        title: Image.asset('assets/images/reminder.png',
             height: 40, width: 125),
       ),
       body:

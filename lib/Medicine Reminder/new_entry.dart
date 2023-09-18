@@ -357,14 +357,16 @@ class _NewEntryState extends State<NewEntry> {
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
 
+    // await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+    //     onSelectNotification: (String? payload) async {
+    //       selectNotification(payload);
+    //     }
+    // );
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: (String? payload) async {
-          selectNotification(payload);
-        }
-    );
+        onSelectNotification: onSelectNotification);
   }
 
-  Future <void> selectNotification(String? payload) async {
+  Future onSelectNotification(String? payload) async {
     if (payload != null) {
       debugPrint('notification payload: ' + payload);
     }
@@ -426,9 +428,12 @@ class _NewEntryState extends State<NewEntry> {
 //   }
 
   Future <void> scheduleNotification(Medicine medicine) async {
-    var hour = int.parse(medicine.startTime.substring(0, 2));
+    // var hour = int.parse(medicine.startTime.substring(0, 2));
+    // var ogValue = hour;
+    // var minute = int.parse(medicine.startTime.substring(2, 4));
+    var hour = int.parse(medicine.startTime[0] + medicine.startTime[1]);
     var ogValue = hour;
-    var minute = int.parse(medicine.startTime.substring(2, 4));
+    var minute = int.parse(medicine.startTime[2] + medicine.startTime[3]);
 
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
       'repeatDailyAtTime channel id',
@@ -456,7 +461,7 @@ class _NewEntryState extends State<NewEntry> {
       } else {
         hour = hour + (medicine.interval * i);
       }
-      flutterLocalNotificationsPlugin.showDailyAtTime(
+      await flutterLocalNotificationsPlugin.showDailyAtTime(
         int.parse(medicine.notificationIDs[i]),
         'Elderly Squire: ${medicine.medicineName}',
         medicine.medicineType.toString() != MedicineType.None.toString()

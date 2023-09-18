@@ -1,3 +1,4 @@
+import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/database_services.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todovar.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,10 @@ class TodoLanding extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: Todos(),
           theme: ThemeData(
-            scaffoldBackgroundColor: Colors.grey[800],
-            primarySwatch: Colors.red,
+            // scaffoldBackgroundColor: Colors.grey[800],
+            scaffoldBackgroundColor: Colors.white,
+            primarySwatch: Colors.teal,
+            // primarySwatch: Colors.red,
           ),
         );
       },
@@ -45,7 +48,20 @@ class _TodoListState extends State<Todos> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: SafeArea(
+      appBar: AppBar(
+        leading: GestureDetector(
+          onTap: (){
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Homepage()));
+          },
+            child: Icon(Icons.arrow_back)
+        ),
+        centerTitle: true,
+        toolbarHeight: 75,
+        backgroundColor: Colors.blueGrey[900],
+        title: Image.asset('assets/images/todolist.png',height: 40, width: 125)
+      ),
+      body: Center(
         child: StreamBuilder<List<TodoVar>?>(
             stream: DatabaseService().listTodos(),
             builder: (context, snapshot) {
@@ -58,23 +74,31 @@ class _TodoListState extends State<Todos> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "All Todos",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Row(
+                      children: [
+                        Text(
+                          "To-Do list",
+                          style: TextStyle(
+                            fontSize: 25,
+                            // color: Colors.white,
+                            color: Colors.grey[800],
+                            fontWeight: FontWeight.bold,
+                            fontFamily: ('BebasNeue')
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(height: 10),
                     Divider(
-                      color: Colors.grey[600],
+                      color: Colors.grey[500],
                     ),
                     SizedBox(height: 20),
-                    ListView.separated(
-                      separatorBuilder: (context, index) => Divider(
-                        color: Colors.grey[800],
-                      ),
+                    // ListView.separated(
+                    ListView.builder(
+                    //   separatorBuilder: (context, index) => Divider(
+                    //     // color: Colors.grey[800],
+                    //     color: Colors.grey[500],
+                    //   ),
                       shrinkWrap: true,
                       itemCount: todos!.length,
                       itemBuilder: (context, index) {
@@ -84,7 +108,7 @@ class _TodoListState extends State<Todos> {
                             padding: EdgeInsets.only(left: 20),
                             alignment: Alignment.centerLeft,
                             child: Icon(Icons.delete),
-                            color: Colors.red,
+                            color: Colors.teal[400],
                           ),
                           onDismissed: (direction) async {
                             await DatabaseService()
@@ -115,20 +139,21 @@ class _TodoListState extends State<Todos> {
                               todos[index].title,
                               style: TextStyle(
                                 fontSize: 20,
-                                color: Colors.grey[200],
+                                // color: Colors.grey[200],
+                                color: Colors.grey[700],
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                           ),
                         );
                       },
-                    )
-                  ],
+                    // )
+                    )],
                 ),
               );
             }),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         backgroundColor: Theme.of(context).primaryColor,

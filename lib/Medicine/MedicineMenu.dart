@@ -41,9 +41,8 @@ class MedicineMenu extends StatelessWidget {
               child: Container(
                 height: 120,
                 child: Card(
-                  elevation: 3,
                   // color: Colors.indigo,
-                  color: Colors.white,
+                  color: Colors.teal[400],
                   //------------------------------Medicine Reminder---------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                   shape: RoundedRectangleBorder(
@@ -83,7 +82,7 @@ class MedicineMenu extends StatelessWidget {
                                   child: Text(
                                     'Medicine Reminder',
                                     style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('BebasNeue'),
                                       fontSize: 25,
 
@@ -105,7 +104,7 @@ class MedicineMenu extends StatelessWidget {
                                     'Alarm notification for medicine intake.',
                                     style: TextStyle(
 
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('OpenSans'),
                                       fontSize: 10,
 
@@ -129,8 +128,7 @@ class MedicineMenu extends StatelessWidget {
               child: Container(
                 height: 120,
                 child: Card(
-                  elevation: 3,
-                  color: Colors.white,
+                  color: Colors.teal[400],
                   // color: Colors.blueGrey[900],
                   //------------------------------To Do List-------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -172,7 +170,7 @@ class MedicineMenu extends StatelessWidget {
                                   child: Text(
                                     'To-do List',
                                     style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('BebasNeue'),
                                       fontSize: 25,
 
@@ -194,7 +192,7 @@ class MedicineMenu extends StatelessWidget {
                                     'Creates list of to-do list.',
                                     style: TextStyle(
 
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('OpenSans'),
                                       fontSize: 10,
 

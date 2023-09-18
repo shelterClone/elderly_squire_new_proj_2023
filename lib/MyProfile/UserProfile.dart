@@ -49,7 +49,7 @@ class _UserProfileState extends State<UserProfile> {
       backgroundColor: Colors.grey[200],
         appBar: AppBar(
           toolbarHeight: 75,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.blueGrey[900],
           title: Text('User Profile'),
         ),
         body: Center(

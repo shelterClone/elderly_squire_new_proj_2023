@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/AboutUs.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/ID_Registration.dart';
@@ -225,9 +226,8 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 height: 120,
                 child: Card(
-                  elevation: 3,
                   // color: Colors.indigo,
-                  color: Colors.white,
+                  color: Colors.blue[500],
                   //------------------------------ID Registration---------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                   shape: RoundedRectangleBorder(
@@ -264,12 +264,11 @@ class _HomepageState extends State<Homepage> {
                                     );
                                   },
                                   child: Text(
-                                    'ID REGISTRATION',
+                                    'ID Registration',
                                     style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('BebasNeue'),
                                       // fontFamily: ('OpenSans'),
-                                      // fontWeight: FontWeight.bold,
                                       fontSize: 25,
 
 //                                  fontWeight: FontWeight.bold
@@ -290,7 +289,7 @@ class _HomepageState extends State<Homepage> {
                                     'Application for Senior Citizens ID',
                                     style: TextStyle(
 
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('OpenSans'),
                                       fontSize: 10,
 
@@ -316,8 +315,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 height: 120,
                 child: Card(
-                  elevation: 3,
-                  color: Colors.white,
+                  color: Colors.teal[400],
                   // color: Colors.blueGrey[900],
                   //------------------------------Medicine New---------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -358,7 +356,7 @@ class _HomepageState extends State<Homepage> {
                                   child: Text(
                                     'Medicine',
                                     style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('BebasNeue'),
                                       fontSize: 25,
 
@@ -380,7 +378,7 @@ class _HomepageState extends State<Homepage> {
                                     'Medicine Reminder, To-do List',
                                     style: TextStyle(
 
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('OpenSans'),
                                       fontSize: 10,
 
@@ -404,8 +402,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 height: 120,
                 child: Card(
-                  elevation: 3,
-                  color: Colors.white,
+                  color: Colors.orange[400],
                   // color: Colors.blueGrey[900],
                   //------------------------------Health Tips---------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -439,13 +436,13 @@ class _HomepageState extends State<Homepage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ID_Reg()),
+                                          builder: (context) => HealthTipsMenu()),
                                     );
                                   },
                                   child: Text(
                                     'Health Tips',
                                     style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('BebasNeue'),
                                       fontSize: 25,
 
@@ -460,14 +457,14 @@ class _HomepageState extends State<Homepage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ID_Reg()),
+                                          builder: (context) => HealthTipsMenu()),
                                     );
                                   },
                                   child: Text(
                                     'Health Weight, Healthy Eating etc.',
                                     style: TextStyle(
 
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('OpenSans'),
                                       fontSize: 10,
 
@@ -490,8 +487,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 height: 120,
                 child: Card(
-                  elevation: 3,
-                  color: Colors.white,
+                  color: Colors.brown[400],
                   // color: Colors.blueGrey[900],
                   //------------------------------Benefits---------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -507,7 +503,7 @@ class _HomepageState extends State<Homepage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ID_Reg()),
+                                    builder: (context) => BenefitsMenu()),
                               );
                             },
                             child: Image.asset('assets/images/scardbene.png',
@@ -525,13 +521,13 @@ class _HomepageState extends State<Homepage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ID_Reg()),
+                                          builder: (context) => BenefitsMenu()),
                                     );
                                   },
                                   child: Text(
                                     'Benefits',
                                     style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('BebasNeue'),
                                       fontSize: 25,
 
@@ -546,14 +542,14 @@ class _HomepageState extends State<Homepage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ID_Reg()),
+                                          builder: (context) => BenefitsMenu()),
                                     );
                                   },
                                   child: Text(
                                     'Senior Citizen Benefits',
                                     style: TextStyle(
 
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('OpenSans'),
                                       fontSize: 10,
 
@@ -576,8 +572,7 @@ class _HomepageState extends State<Homepage> {
               child: Container(
                 height: 120,
                 child: Card(
-                  elevation: 3,
-                  color: Colors.white,
+                  color: Colors.purple[400],
                   // color: Colors.blueGrey[900],
                   //------------------------------Chat Support---------------------------------//
                   margin: EdgeInsets.only(left: 20, right: 20, top: 20),
@@ -617,7 +612,7 @@ class _HomepageState extends State<Homepage> {
                                   child: Text(
                                     'Chat Support',
                                     style: TextStyle(
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('BebasNeue'),
                                       fontSize: 25,
 
@@ -639,7 +634,7 @@ class _HomepageState extends State<Homepage> {
                                     'Elderly Squire Customer Care',
                                     style: TextStyle(
 
-                                      color: Colors.black54,
+                                      color: Colors.white,
                                       fontFamily: ('OpenSans'),
                                       fontSize: 10,
 
