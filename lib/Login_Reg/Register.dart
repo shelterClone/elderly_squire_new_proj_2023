@@ -258,6 +258,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                         },
 
                         decoration: InputDecoration(
+
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -305,6 +306,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                         },
 
                         decoration: InputDecoration(
+
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -353,6 +355,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                         },
 
                         decoration: InputDecoration(
+
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -420,6 +423,8 @@ class RegistrationPageState extends State<RegistrationPage> {
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
+                        maxLines: 2,
+
                         //----------------------Address txtField-----------------------------//
                         controller: address,
                         validator: (value) {
@@ -445,8 +450,9 @@ class RegistrationPageState extends State<RegistrationPage> {
                         },
 
                         decoration: InputDecoration(
+
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),

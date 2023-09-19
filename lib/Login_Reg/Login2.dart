@@ -193,6 +193,7 @@ class LoginPage2 extends StatefulWidget {
                         },
 
                         decoration: InputDecoration(
+
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0,
                                 horizontal: 10),
@@ -205,6 +206,7 @@ class LoginPage2 extends StatefulWidget {
                               },
                             ),
                             enabledBorder: OutlineInputBorder(
+
                               borderSide: BorderSide(
                                   color: Colors.blueGrey
                               ),
@@ -278,6 +280,7 @@ class EmailValidator {
     if (value!.isEmpty) {
       return "Email Required";
     }
+
     // else if (value.isEmpty || !value.contains('@gmail')) {
     //   return "Please Enter a valid email address";
     // }

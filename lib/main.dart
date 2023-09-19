@@ -26,11 +26,13 @@ Future<void> main() async {
 
 class MyApp extends StatefulWidget {
 
+
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+
   late GlobalBloc globalBloc;
   late TodoService toDoService;
 
@@ -52,6 +54,7 @@ class _MyAppState extends State<MyApp> {
    return Provider<GlobalBloc>.value(
    value: globalBloc,
     child: MaterialApp(
+      debugShowCheckedModeBanner: false,
 
       home: SplashScreen(),
     ),);
