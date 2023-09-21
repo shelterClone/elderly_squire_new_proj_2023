@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/MyProfile/EditUserProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,8 +24,10 @@ class _UserProfileState extends State<UserProfile> {
   // get email => null;
 
   void initState() {
+
+    _getUserInfo();
     super.initState();
-    _getUserInfo(); // Fetch the user information when the page is initialized.
+     // Fetch the user information when the page is initialized.
   }
 
   void _getUserInfo() {
@@ -54,7 +57,7 @@ class _UserProfileState extends State<UserProfile> {
         appBar: AppBar(
           toolbarHeight: 75,
           backgroundColor: Colors.blueGrey[900],
-          title: Text('User Profile'),
+          title: Text('My Profile'),
         ),
         body: Center(
           child: StreamBuilder<DocumentSnapshot>(
@@ -71,7 +74,7 @@ class _UserProfileState extends State<UserProfile> {
                     child: Container(
 
                       // height: 2445,
-                      height: 1000,
+                      height: 1100,
                       width: 1000,
                       child: Card(
                         margin: EdgeInsets.all(20),
@@ -95,13 +98,13 @@ class _UserProfileState extends State<UserProfile> {
                                     Text(
                                       '${streamSnapshot.data!['First Name'][0]}${streamSnapshot.data!['Last Name'][0]}',
                                       style: TextStyle(
-                                        color: Colors.white,
+                                        color: Colors.red[200],
                                         fontSize: 40
                                       ),
                                     ),
                                     // maxRadius: 23,
                                     maxRadius: 50,
-                                    backgroundColor: Colors.red[400],
+                                    backgroundColor: Colors.redAccent,
                                     // backgroundColor: Colors.grey[400],
                                   ),
                                 ),
@@ -369,6 +372,35 @@ class _UserProfileState extends State<UserProfile> {
                                       ),
                                       border: OutlineInputBorder(
                                           borderSide: BorderSide(color: Colors.blueGrey))),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top:30),
+                                height: 60,
+                                width: 330,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 2,
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: Colors.redAccent,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      "Edit Profile",
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: ('OpenSans'),
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                  onPressed: (){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> EditUserProfile()));
+
+                                  },
+
                                 ),
                               ),
 

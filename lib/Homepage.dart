@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/AboutUs.dart';
-import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/ID_Registration.dart';
@@ -80,14 +80,14 @@ class _HomepageState extends State<Homepage> {
                                 Text(
                                   '${streamSnapshot.data!['First Name'][0]}${streamSnapshot.data!['Last Name'][0]}',
                                   style: TextStyle(
-                                      color: Colors.white,
+                                    color: Colors.red[200],
                                     // color: Colors.red[200],
                                       fontSize: 19,
                                   ),
                                 ),
                                 maxRadius: 23,
                                 // backgroundColor: Colors.grey[400],
-                                backgroundColor: Colors.red[400],
+                                backgroundColor: Colors.redAccent,
                               ),
                             ),
                           ),

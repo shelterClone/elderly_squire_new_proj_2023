@@ -56,7 +56,7 @@ dependencies:
   flutter_tawk: ^0.1.0 #chat support
   flutter_lints: ^2.0.0 #chat support
   timezone: ^0.8.0
-  flutter_facebook_auth: ^3.5.0
+#  flutter_facebook_auth: ^3.5.0
 #  editable_image: ^2.0.0 #profile pic image uploader
 #  flutter_timezone:
 
@@ -153,6 +153,20 @@ flutter:
    - assets/images/diet_list.png
    - assets/images/calories.png
    - assets/images/scardbene.png
+   - assets/images/train.png
+   - assets/images/med_history.png
+   - assets/images/company.png
+   - assets/images/park.png
+   - assets/images/coffin.png
+   - assets/images/taxes.png
+   - assets/images/eco_house.png
+   - assets/images/vaccine.png
+   - assets/images/flat.png
+   - assets/images/grave.png
+   - assets/images/bank.png
+
+
+
    - assets/animations/
    - assets/sound/
    - assets/icons/
