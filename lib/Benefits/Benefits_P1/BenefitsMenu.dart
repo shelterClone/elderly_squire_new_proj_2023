@@ -1,6 +1,9 @@
 //import 'package:elderly_squire_capstone/HomePage2.dart';
 //import 'package:elderly_squire_capstone/todo_list.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu2.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/Establishments.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/MedPrivilege.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/RecreationCenters.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/Transportation.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
@@ -52,16 +55,11 @@ class BenefitsMenu extends StatelessWidget {
                             margin: EdgeInsets.only(left: 30,bottom:10,top:8),
                             child: InkWell(
                               onTap: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => ReminderHome()),
-                                // );
-                                TranspoBenefits(context);
-
-
-
-
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => TranspoBenefits()),
+                                );
 
                               },
                               child: Image.asset('assets/images/train.png',
@@ -80,7 +78,7 @@ class BenefitsMenu extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ReminderHome()),
+                                            builder: (context) => TranspoBenefits()),
                                       );
                                     },
                                     child: Text(
@@ -126,7 +124,7 @@ class BenefitsMenu extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => MedPrivileges()),
                                 );
                               },
                               child: Image.asset('assets/images/med_history.png',
@@ -146,7 +144,7 @@ class BenefitsMenu extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => MedPrivileges()),
                                       );
                                     },
                                     child: Text(
@@ -166,7 +164,7 @@ class BenefitsMenu extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => MedPrivileges()),
                                       );
                                     },
                                     child: Text(
@@ -210,7 +208,7 @@ class BenefitsMenu extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => Establishments()),
                                 );
                               },
                               child: Image.asset('assets/images/company.png',
@@ -230,7 +228,7 @@ class BenefitsMenu extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => Establishments()),
                                       );
                                     },
                                     child: Text(
@@ -274,7 +272,7 @@ class BenefitsMenu extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => RecreationCenters()),
                                 );
                               },
                               child: Image.asset('assets/images/park.png',
@@ -294,7 +292,7 @@ class BenefitsMenu extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => RecreationCenters()),
                                       );
                                     },
                                     child: Text(

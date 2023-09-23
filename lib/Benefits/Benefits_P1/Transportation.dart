@@ -1,106 +1,153 @@
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
+import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
+
 import 'package:flutter/material.dart';
 
-void TranspoBenefits(BuildContext context) {//--------------------TransportationBene
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Center(child: Text('Privacy Policy')),
-        content: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-//            height: 2310,
-//                 height: 33700,
-                width: 8000,
-                child: Column(
-                  children: <Widget>[
-                    Center(
-                      child: Container(
-                          margin: EdgeInsets.only(left: 10, top: 20, right: 10),
-                          child: Text(
-                            'Republic of the Philippines',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: ('OpenSans'),
-                                fontWeight: FontWeight.bold),
-                          )),
-                    ),
-                    Center(
-                      child: Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
-                          child: Text(
-                            'Congress of the Philippines',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: ('OpenSans'),
-                                fontWeight: FontWeight.bold),
-                          )),
-                    ),
-                    Center(
-                      child: Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
-                          child: Text(
-                            'Metro Manila',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: ('OpenSans'),
-                                fontWeight: FontWeight.bold),
-                          )),
-                    ),
-                    Center(
-                      child: Container(
-                          margin: EdgeInsets.only(left: 10, right: 10),
-                          child: Text(
-                            'Fifteenth Congress',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: ('OpenSans'),
-                                fontWeight: FontWeight.bold),
-                          )),
-                    ),
-                    Center(
-                      child: Container(
-                          margin:
-                          EdgeInsets.only(left: 10, bottom: 20, right: 10),
-                          child: Text(
-                            'Second Regular Session',
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontFamily: ('OpenSans'),
-                                fontWeight: FontWeight.bold),
-                          )),
-                    ),
 
-                    Container(
-                        margin: EdgeInsets.only(
-                            left: 10, top: 10, bottom: 20, right: 10),
-                        child: Text(
-                          'Begun and held in Metro Manila, on Monday, the twenty-fifth day of July, two thousand eleven.',
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontFamily: ('OpenSans'),
-                              fontWeight: FontWeight.normal),
-                        )),
+class TranspoBenefits extends StatelessWidget {
 
-                  ],
+  @override
+  Widget build(BuildContext context) {
+    var widget;
+    return MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              toolbarHeight: 75,
+//          backgroundColor: Colors.blueGrey[900],
+              backgroundColor: Colors.blueGrey[900],
+
+              leading: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BenefitsMenu()),
+                  );
+                },
+                child: Icon(
+                  Icons.arrow_back_ios, // add custom icons also
                 ),
               ),
-            ],
-          ),
-        ),
-        actions: <Widget>[
-          Center(
-            child: TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Close',
+              title: Container(
+                margin: EdgeInsets.only(left: 50, right: 50),
+                child: Image.asset(
+                    'assets/images/elderly_squire_logo_classic_icon.png',
+                    height: 40,
+                    width: 125
+
+                ),
               ),
             ),
-          ),
-        ],
-      );
-    },
-  );
-}
+            body: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Container(
+                  height: 500,
+                  width: 1000,
+
+                  child: Card(
+                    margin: EdgeInsets.all(20),
+                    elevation: 1,
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(height:40),
+                        Container(
+                          alignment: Alignment.center,
+                          child: Image.asset(
+                            'assets/images/train.png',
+                            height: 100,
+                            width: 130,
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          margin: EdgeInsets.only(top: 30),
+                          child: Text(
+                            "Transportation",
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontFamily: ('BebasNeue'),
+                            ),
+                          ),
+                        ),
+                        // ),
+                        SizedBox(height:20),
+                        Container(
+                          // margin: EdgeInsets.only(left: 5, top: 30, bottom: 20),
+                          padding:EdgeInsets.only(left:20),
+                          child: Row(
+
+                            children: [
+                              Icon(Icons.check_circle_rounded,color:Colors.lightGreen),
+                              SizedBox(width: 10),
+                              Text(
+                                "Air and sea.",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: ('OpenSans'),
+
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        Container(
+                          // margin: EdgeInsets.only(left: 5, top: 30, bottom: 20),
+                          padding:EdgeInsets.only(left:20),
+                          child: Row(
+                            children: [
+                              Icon(Icons.check_circle_rounded,color:Colors.lightGreen),
+                              SizedBox(width: 10),
+                              Text(
+                                "Land: LRT,MRT, PNR, buses, jeepneys,\n taxi and shuttle services",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontFamily: ('OpenSans'),
+
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(//----next-----------//
+                          margin: EdgeInsets.only(top:50),
+                          height: 45,
+                          width: 150,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.redAccent,
+                              onPrimary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.only(left:40,right:10),
+                                  child: Text('Back',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ) ,),
+                                )
+
+
+                              ],
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => BenefitsMenu()),
+                              );
+                            },
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ))));
+  }}

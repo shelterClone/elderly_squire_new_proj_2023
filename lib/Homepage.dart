@@ -80,7 +80,7 @@ class _HomepageState extends State<Homepage> {
                                 Text(
                                   '${streamSnapshot.data!['First Name'][0]}${streamSnapshot.data!['Last Name'][0]}',
                                   style: TextStyle(
-                                    color: Colors.red[200],
+                                    color: Colors.red[900],
                                     // color: Colors.red[200],
                                       fontSize: 19,
                                   ),
@@ -389,7 +389,7 @@ class _HomepageState extends State<Homepage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ID_Reg()),
+                                              builder: (context) => MedicineMenu()),
                                         );
                                       },
                                       child: Text(
@@ -410,7 +410,7 @@ class _HomepageState extends State<Homepage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ID_Reg()),
+                                              builder: (context) => MedicineMenu()),
                                         );
                                       },
                                       child: Text(
@@ -627,7 +627,7 @@ class _HomepageState extends State<Homepage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ID_Reg()),
+                                        builder: (context) => SupportPage()),
                                   );
                                 },
                                 child: Image.asset('assets/images/chat2.png',
@@ -645,7 +645,7 @@ class _HomepageState extends State<Homepage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ID_Reg()),
+                                              builder: (context) => SupportPage()),
                                         );
                                       },
                                       child: Text(
@@ -666,7 +666,7 @@ class _HomepageState extends State<Homepage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ID_Reg()),
+                                              builder: (context) => SupportPage()),
                                         );
                                       },
                                       child: Text(
