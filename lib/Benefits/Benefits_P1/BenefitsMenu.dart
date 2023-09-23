@@ -1,6 +1,6 @@
 //import 'package:elderly_squire_capstone/HomePage2.dart';
 //import 'package:elderly_squire_capstone/todo_list.dart';
-import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu2.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/BenefitsMenu2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/Establishments.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/MedPrivilege.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/RecreationCenters.dart';

@@ -2,6 +2,11 @@
 //import 'package:elderly_squire_capstone/todo_list.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu3.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/RecreationCenters.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/Exemptions.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/Freebies.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/FuneralServices.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/TaxExemption.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todos.dart';
@@ -23,7 +28,7 @@ class BenefitsMenu2 extends StatelessWidget {
           leading: GestureDetector(
             onTap: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Homepage()));
+                  context, MaterialPageRoute(builder: (context) => BenefitsMenu()));
             },
             child: Icon(
               Icons.arrow_back, // add custom icons also
@@ -55,7 +60,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ReminderHome()),
+                                      builder: (context) => FuneralServices()),
                                 );
                               },
                               child: Image.asset('assets/images/coffin.png',
@@ -74,7 +79,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ReminderHome()),
+                                            builder: (context) => FuneralServices()),
                                       );
                                     },
                                     child: Text(
@@ -120,7 +125,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => Exemptions()),
                                 );
                               },
                               child: Image.asset('assets/images/eco_house.png',
@@ -140,7 +145,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => Exemptions()),
                                       );
                                     },
                                     child: Text(
@@ -185,7 +190,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => TaxExemption()),
                                 );
                               },
                               child: Image.asset('assets/images/taxes.png',
@@ -205,7 +210,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => TaxExemption()),
                                       );
                                     },
                                     child: Text(
@@ -235,7 +240,7 @@ class BenefitsMenu2 extends StatelessWidget {
                   child: Card(
                     color: Colors.brown[400],
                     // color: Colors.blueGrey[900],
-                    //------------------------------Recreation Centers-------------------------------//
+                    //------------------------------Freebies-------------------------------//
                     margin: EdgeInsets.only(left: 20, right: 20, top: 20),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -249,7 +254,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => Freebies()),
                                 );
                               },
                               child: Image.asset('assets/images/vaccine.png',
@@ -269,7 +274,7 @@ class BenefitsMenu2 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => Freebies()),
                                       );
                                     },
                                     child: Text(
