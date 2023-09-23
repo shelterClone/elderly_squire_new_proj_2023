@@ -1,7 +1,7 @@
 //import 'package:elderly_squire_capstone/HomePage2.dart';
 //import 'package:elderly_squire_capstone/todo_list.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
-import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu3.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P3/BenefitsMenu3.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/RecreationCenters.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/Exemptions.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/Freebies.dart';

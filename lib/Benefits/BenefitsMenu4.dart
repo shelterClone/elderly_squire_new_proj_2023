@@ -2,7 +2,7 @@
 //import 'package:elderly_squire_capstone/todo_list.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/BenefitsMenu2.dart';
-import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu3.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P3/BenefitsMenu3.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todos.dart';

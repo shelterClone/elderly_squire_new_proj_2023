@@ -3,6 +3,10 @@
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/BenefitsMenu2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsMenu4.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P3/DeathBenefits.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P3/MandatoryPHealth.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P3/SocialPension.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P3/SocialSafetyNets.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todos.dart';
@@ -56,7 +60,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ReminderHome()),
+                                      builder: (context) => SocialPension()),
                                 );
                               },
                               child: Image.asset('assets/images/flat.png',
@@ -75,7 +79,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ReminderHome()),
+                                            builder: (context) => SocialPension()),
                                       );
                                     },
                                     child: Text(
@@ -120,7 +124,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => MandatoryPhealth()),
                                 );
                               },
                               child: Image.asset('assets/images/dumbbell.png',
@@ -140,7 +144,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => MandatoryPhealth()),
                                       );
                                     },
                                     child: Text(
@@ -161,7 +165,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => MandatoryPhealth()),
                                       );
                                     },
                                     child: Text(
@@ -205,7 +209,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => SocialSafetyNets()),
                                 );
                               },
                               child: Image.asset('assets/images/lola.png',
@@ -225,7 +229,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => SocialSafetyNets()),
                                       );
                                     },
                                     child: Text(
@@ -270,7 +274,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => DeathBenefits()),
                                 );
                               },
                               child: Image.asset('assets/images/grave.png',
@@ -290,7 +294,7 @@ class BenefitsMenu3 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => DeathBenefits()),
                                       );
                                     },
                                     child: Text(
