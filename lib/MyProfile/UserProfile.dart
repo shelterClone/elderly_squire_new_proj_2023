@@ -25,12 +25,12 @@ class _UserProfileState extends State<UserProfile> {
 
   void initState() {
 
-    _getUserInfo();
+    fetchUserInfo();
     super.initState();
-     // Fetch the user information when the page is initialized.
+
   }
 
-  void _getUserInfo() {
+  void fetchUserInfo() {
     final user = FirebaseAuth.instance.currentUser;
     setState(() {
       _user = user;
@@ -57,6 +57,17 @@ class _UserProfileState extends State<UserProfile> {
         appBar: AppBar(
           toolbarHeight: 75,
           backgroundColor: Colors.blueGrey[900],
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Homepage()),
+              );
+            },
+            child: Icon(
+              Icons.arrow_back_ios, // add custom icons also
+            ),
+          ),
           title: Text('My Profile'),
         ),
         body: Center(

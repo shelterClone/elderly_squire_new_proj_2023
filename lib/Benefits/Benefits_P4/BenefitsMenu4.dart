@@ -3,6 +3,8 @@
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P2/BenefitsMenu2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P3/BenefitsMenu3.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P4/BenefitsAndPrivileges.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P4/ExpressLanes.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todos.dart';
@@ -27,7 +29,7 @@ class BenefitsMenu4 extends StatelessWidget {
                   context, MaterialPageRoute(builder: (context) => Homepage()));
             },
             child: Icon(
-              Icons.arrow_back, // add custom icons also
+              Icons.arrow_back_ios_new, // add custom icons also
             ),
           ),
           title: Image.asset('assets/images/scardbene.png',
@@ -56,7 +58,7 @@ class BenefitsMenu4 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => ReminderHome()),
+                                      builder: (context) => ExpressLanes()),
                                 );
                               },
                               child: Image.asset('assets/images/bank.png',
@@ -75,7 +77,7 @@ class BenefitsMenu4 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ReminderHome()),
+                                            builder: (context) => ExpressLanes()),
                                       );
                                     },
                                     child: Text(
@@ -120,7 +122,7 @@ class BenefitsMenu4 extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => TodoLanding()),
+                                      builder: (context) => BenefitsAndPrivileges()),
                                 );
                               },
                               child: Image.asset('assets/images/lolo.png',
@@ -140,7 +142,7 @@ class BenefitsMenu4 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => BenefitsAndPrivileges()),
                                       );
                                     },
                                     child: Text(
@@ -161,7 +163,7 @@ class BenefitsMenu4 extends StatelessWidget {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => TodoLanding()),
+                                            builder: (context) => BenefitsAndPrivileges()),
                                       );
                                     },
                                     child: Text(

@@ -26,7 +26,7 @@ class Freebies extends StatelessWidget {
                   );
                 },
                 child: Icon(
-                  Icons.arrow_back_ios, // add custom icons also
+                  Icons.arrow_back_ios_new, // add custom icons also
                 ),
               ),
               title: Container(

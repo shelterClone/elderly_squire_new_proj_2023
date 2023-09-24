@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/MyProfile/UserProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -457,7 +458,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                     setState(() {
                                       _isEditing = false;
                                     });
-                                    // Navigator.push(context, MaterialPageRoute(builder: (context)=> EditUserProfile()));
+                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> UserProfile()));
 
                                   },
 
