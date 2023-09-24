@@ -81,8 +81,11 @@ class DeathBenefits extends StatelessWidget {
                             children: [
                               Container(
                                   margin:EdgeInsets.only(),
-                                  child: Icon(
-                                      Icons.check_circle_rounded,color:Colors.lightGreen)),
+                                  child: Container(
+                                    margin:EdgeInsets.only(bottom:58),
+                                    child: Icon(
+                                        Icons.check_circle_rounded,color:Colors.lightGreen),
+                                  )),
                               SizedBox(width: 10),
                               Text(
                                 "Assistance of a minimum of\n"
