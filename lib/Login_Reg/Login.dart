@@ -1,6 +1,6 @@
 //import 'package:elderly_squire_2023_remastered/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/ID_Registration.dart';
+import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Register.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
 import 'package:flutter/material.dart';

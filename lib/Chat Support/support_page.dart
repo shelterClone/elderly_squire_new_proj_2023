@@ -1,3 +1,4 @@
+import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tawk/flutter_tawk.dart';
 
@@ -9,6 +10,16 @@ class SupportPage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          leading: GestureDetector(
+            onTap:(){
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Homepage()));
+            } ,
+            child: Icon(
+                Icons.arrow_back_ios_new,
+
+            ),
+          ),
           title: const Text('Elderly Squire'),
           backgroundColor: const Color(0XFF526D82),
           elevation: 0,
