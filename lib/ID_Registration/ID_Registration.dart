@@ -57,31 +57,40 @@ class _ID_RegState extends State< ID_Reg> {
               Column(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(bottom: 8),
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: Image.asset('assets/images/health_consult.png',
+                          height: 200)),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 5),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text("Application form for Senior Citizen ID",
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),),
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+
+                        ),)
+                      ,
                     ),
                   ),
                   SizedBox(height: 5),
-//                  Container(
-//                    margin: EdgeInsets.only(bottom: 10),
-//                    child: Align(
-//                      alignment: Alignment.centerLeft,
-//                      child: Text("Sign Up for your Elderly Squire account",
-//                        style: TextStyle(
-//                            fontSize: 15,
-//                            color:Colors.grey[700]),),
-//                    ),
-//                  )
+                 Container(
+                   margin: EdgeInsets.only(bottom: 10),
+                   child: Align(
+                     alignment: Alignment.centerLeft,
+                     child: Text("ID registration for senior citizen",
+                       style: TextStyle(
+                           fontSize: 15,
+                           color:Colors.grey[700]),),
+                   ),
+                 )
 
                 ],
               ),
               Column(
                 children: <Widget>[
                   Container(//-------------------------------------------Date Issued----------------------------------//
-                      margin:EdgeInsets.only(right:180, bottom: 10),
+                      margin:EdgeInsets.only(right:195, bottom: 10),
                       child: Text("Date Issued",
                         style: TextStyle(
                             fontSize: 15,
@@ -99,7 +108,7 @@ class _ID_RegState extends State< ID_Reg> {
                           hintStyle: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w400,
-                            color:Colors.black87
+                            color:Colors.grey
                         ),
                         ),
                         readOnly: true,
@@ -177,10 +186,10 @@ class _ID_RegState extends State< ID_Reg> {
                   inputFile(label: "Surname"),
                   // inputFile(label: "Lastname"),
                   inputFile(label: "Address"),
-                  inputFile(label: "Years of Residence in Manila"),
+                  // inputFile(label: "Years of Residence in Manila"),
                   inputFile(label: "Birthplace"),
                   Container(//-------------------------------------------Date of Birth----------------------------------//
-                    margin:EdgeInsets.only(top:10,right:245, bottom: 10),
+                    margin:EdgeInsets.only(top:10,right:190, bottom: 10),
                     child: Text("Date of Birth",
                       style: TextStyle(
                           fontSize: 15,
@@ -203,7 +212,7 @@ class _ID_RegState extends State< ID_Reg> {
                             hintStyle: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w400,
-                                color:Colors.black87
+                                color:Colors.grey
                             ),
                           ),
                           readOnly: true,
@@ -228,7 +237,7 @@ class _ID_RegState extends State< ID_Reg> {
                   inputFile(label: "Age"),
                   inputFile(label: "Nationality"),
                   Container(//-------------------------------------------Year of Residence in Manila----------------------------------//
-                    margin:EdgeInsets.only(top:10,right:146, bottom: 10),
+                    margin:EdgeInsets.only(top:10,right:90, bottom: 10),
                     child: Text("Year of Residence in Manila",
                       style: TextStyle(
                           fontSize: 15,
@@ -251,7 +260,7 @@ class _ID_RegState extends State< ID_Reg> {
                             hintStyle: TextStyle(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w400,
-                                color:Colors.black87
+                                color:Colors.grey
                             ),
                           ),
                           readOnly: true,
@@ -279,8 +288,9 @@ class _ID_RegState extends State< ID_Reg> {
                   inputFile(label: "Monthly Salary"),
                   inputFile(label: "Monthly Pension"),
                   inputFile(label: "Kasalukuyang Gawain/Present Work"),
+                  SizedBox(height:10),
                   Container(
-                    margin: EdgeInsets.only(bottom: 20,right:205),
+                    margin: EdgeInsets.only(bottom: 10,right:150),
                     child: Text("Valid ID Presented", style: TextStyle(//---------------------Valid ID presented----------------// L
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
@@ -357,6 +367,7 @@ class _ID_RegState extends State< ID_Reg> {
                       });
                     },
                   ),
+                  SizedBox(height: 10),
 
                   inputFile(label: "Email"),
                   Container(
