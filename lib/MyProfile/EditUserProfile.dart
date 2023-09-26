@@ -89,12 +89,56 @@ class _UserProfileState extends State<EditUserProfile> {
 
               stream: usersCollection.doc(_user?.uid).snapshots(),
               builder: (context, streamSnapshot) {
-                _firstNameController.text = streamSnapshot.data!['First Name'];
-                _middleNameController.text = streamSnapshot.data!['Middle'];
-                _lastNameController.text = streamSnapshot.data!['Last Name'];
-                _genderController.text = streamSnapshot.data!['Gender'];
-                _addressController.text = streamSnapshot.data!['Address'];
-                _emailController.text = streamSnapshot.data!['email'];
+
+                if (streamSnapshot.data != null) {//---------First Name----------------//
+                  _firstNameController.text = streamSnapshot.data!['First Name'];
+                }
+                else {
+                  return Text('Unknown');
+                }
+
+                if (streamSnapshot.data != null) {//---------Middle----------------//
+                  _middleNameController.text = streamSnapshot.data!['Middle'];
+
+                }
+                else {
+                  return Text('Unknown');
+                }
+
+                if (streamSnapshot.data != null) {//---------Last Name----------------//
+                  _lastNameController.text = streamSnapshot.data!['Last Name'];
+                }
+                else {
+                  return Text('Unknown');
+                }
+
+                if (streamSnapshot.data != null) {//---------Gender----------------//
+                   _genderController.text = streamSnapshot.data!['Gender'];
+                }
+                else {
+                  return Text('Unknown');
+                }
+
+                if (streamSnapshot.data != null) {//---------Address----------------//
+                  _genderController.text = streamSnapshot.data!['Address'];
+                }
+                else {
+                  return Text('Unknown');
+                }
+
+                if (streamSnapshot.data != null) {//---------email----------------//
+                  _genderController.text = streamSnapshot.data!['email'];
+                }
+                else {
+                  return Text('Unknown');
+                }
+
+                // _firstNameController.text = streamSnapshot.data!['First Name'];
+                // _middleNameController.text = streamSnapshot.data!['Middle'];
+                // _lastNameController.text = streamSnapshot.data!['Last Name'];
+                // _genderController.text = streamSnapshot.data!['Gender'];
+                // _addressController.text = streamSnapshot.data!['Address'];
+                // _emailController.text = streamSnapshot.data!['email'];
 
                 if (streamSnapshot.connectionState ==
                     ConnectionState.waiting) {
@@ -427,7 +471,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                     ),
                                   ),
                                   onPressed: () async {
-                                    final uid = _user!.uid;
+                                    final uid = _user?.uid;
                                     await usersCollection.doc(uid).update({
                                       'First Name': _firstNameController.text,
                                       'Middle': _middleNameController.text,
