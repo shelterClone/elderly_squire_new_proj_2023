@@ -66,10 +66,11 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          height: MediaQuery.of(context).size.height,
+          height: MediaQuery.of(context).size.height ,
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Column(
             // even space distribution
@@ -78,25 +79,52 @@ class HomeScreen extends StatelessWidget {
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  Center(
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Welcome to Elderly Squire",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        // fontFamily: ('OpenSans'),
+                        fontSize: 30,
+
+                      ),
+
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 5),
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        "Welcome to Elderly Squire",
+                        "A medicine reminder application for Senior Citizen's medicine intake.",
                         style: TextStyle(
-//                          fontWeight: FontWeight.bold,
-                          fontFamily: ('OpenSans'),
-                          fontSize: 30,
-
-                        ),
-
-
+                            fontSize: 15,
+                            color: Colors.grey[700]),
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 20,
+
+                  Container(
+                    margin: EdgeInsets.only(top:20),
+                    height: MediaQuery.of(context).size.height / 4,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage(
+                              "assets/images/elderly_home.png",
+
+                            )
+                        )
+                    ),
                   ),
+
+
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
+
+
 //                  Text("description here ",
 //                    textAlign: TextAlign.center,
 //                    style: TextStyle(
@@ -106,17 +134,15 @@ class HomeScreen extends StatelessWidget {
 //                    ),)
                 ],
               ),
-//              Container(
-//                height: MediaQuery.of(context).size.height / 4,
-//                decoration: BoxDecoration(
-//                    image: DecorationImage(
-//                        image: AssetImage("assets/images/elderly_home.png", )
-//                    )
-//                ),
-//              ),
-                Container(
-                  child: Image.asset('assets/images/elderly_home.png')
-                ),
+
+                // Container(
+                //   child: Image.asset(
+                //       'assets/images/elderly_squire_logo_classic.png',
+                //   height: 150,
+                //   width: 150,
+                //
+                //   )
+                // ),
 
 
               Column(
@@ -125,11 +151,14 @@ class HomeScreen extends StatelessWidget {
                   Container(//---------------------------------------------Login--------------------------//
                     height: 60,
                     width: 330,
-                    margin: EdgeInsets.only(bottom: 15),
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         elevation: 2,
-                        primary: Colors.blueGrey,
+                        primary: Colors.blueGrey[900],
                         onPrimary: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
@@ -150,50 +179,138 @@ class HomeScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  // creating the signup button
-                  Container(//--------------------------------Register--------------------------//
-                    height: 60,
-                    width: 330,
-                    margin: EdgeInsets.only(bottom: 40),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        elevation: 2,
-                        primary: Colors.redAccent,
-                        onPrimary: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Sign Up",
+
+//                   Container(//--------------------------------Register--------------------------//
+//                     height: 60,
+//                     width: 330,
+//                     margin: EdgeInsets.only(bottom: 150),
+//                     child: ElevatedButton(
+//                       style: ElevatedButton.styleFrom(
+//                         elevation: 2,
+//                         primary: Colors.redAccent,
+//                         onPrimary: Colors.white,
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(10.0),
+//                         ),
+//                       ),
+//                       child: Center(
+//                         child: Text(
+//                           "Sign Up",
+//                           style: TextStyle(
+//                               fontSize: 18,
+//                               fontFamily: ('OpenSans'),
+//                               fontWeight: FontWeight.w600),
+//                         ),
+//                       ),
+//                       onPressed: (){
+// //                        _UserLogin(myEmail.text, password.text);
+//                         Navigator.push(context, MaterialPageRoute(builder: (context)=> RegistrationPage()));
+//                       },
+//                     ),
+//                   ), //---reg
+
+                  Container(
+                    padding: EdgeInsets.only(left:35,bottom:20),
+                    child: Row(
+                      children: [
+                        Text(
+                          "Don't have an account?",
                           style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: ('OpenSans'),
-                              fontWeight: FontWeight.w600),
+                              fontSize: 13, color: Colors.grey[700]),
                         ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=> RegistrationPage()));
+                          },
+                          child: Text("Sign up here",
+                            style: TextStyle(
+                              fontSize: 13,
+
+                            ),
+
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+
+
+
+                //----------------------------------------OR--------------------------//
+
+                  Center(
+                      child: Row(
+                          children: <Widget>[
+                            Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(left:30,right:10),
+                                  child: Divider(
+                                    color: Colors.black54,
+                                  ),
+                                )
+                            ),
+
+                            Text("or",style: TextStyle(
+                                color: Colors.black54,
+
+                            ),),
+
+                            Expanded(
+                                child: Container(
+                                  margin: EdgeInsets.only(left:10,right:30),
+                                  child: Divider(
+                                    color: Colors.black54,
+                                  ),
+                                )
+                            ),
+                          ]
                       ),
+                    ),
+
+                 SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 13),
+                        child: Image.asset(
+                          'assets/images/google_logo.png',
+                        height: 40,
+                        width: 40,),
+                      ),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 13),
+                        child: Image.asset(
+                          'assets/images/fb_logo.png',
+                          height: 40,
+                          width: 40,),
+                      ),
+                    ],
+                  ),
+
+
+
+
+                  Container(
+                    margin: EdgeInsets.only(top:35),
+                    child: TextButton(
+                      child: Text('Privacy Policy',
+                          style: TextStyle(
+                            fontStyle: FontStyle.normal,
+
+                          )),
                       onPressed: (){
-//                        _UserLogin(myEmail.text, password.text);
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> RegistrationPage()));
+                        // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
+                        PrivacyPolicyDialog(context);
+
+
+
                       },
                     ),
                   ),
 
-                  TextButton(
-                    child: Text('Privacy Policy',
-                        style: TextStyle(
-                          fontStyle: FontStyle.normal,
 
-                        )),
-                    onPressed: (){
-                      // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
-                      PrivacyPolicyDialog(context);
-
-
-
-                    },
-                  ),
 
 
                 ],
@@ -2663,6 +2780,7 @@ void PrivacyPolicyDialog(BuildContext context) {
           Center(
             child: TextButton(
               onPressed: () {
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=> ()));
                 Navigator.of(context).pop();
               },
               child: Text('Close',

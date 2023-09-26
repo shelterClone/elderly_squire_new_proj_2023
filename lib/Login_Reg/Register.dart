@@ -423,7 +423,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
-                        maxLines: 2,
+                        // maxLines: 1,
 
                         //----------------------Address txtField-----------------------------//
                         controller: address,
@@ -452,7 +452,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                         decoration: InputDecoration(
 
                             contentPadding:
-                            EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
@@ -567,7 +567,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                       height: 5,
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 20),
+                      // margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         //----------------------Confirm Password txtField-----------------------------//
                         controller: confirmpassword,
@@ -622,42 +622,73 @@ class RegistrationPageState extends State<RegistrationPage> {
                 //   ],
                 // ),
 
-                FormField<bool>(
-                  builder: (state) {
-                    return Column(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Checkbox(
-                                value: ischecked,
-                                onChanged: (value) {
-                                  setState(() {
-                                    ischecked = value!;
-                                    state.didChange(value);
-                                  });
-                                }),
-                            Text('I agree to the Privacy Policy'),
-                          ],
-                        ),
 
-                        Text(
-                          state.errorText ?? '',
-                          style: TextStyle(
-                            color: Theme.of(context).errorColor,
-                          ),
-                        )
-                      ],
-                    );
-                  },
 
-                  validator: (value) {
-                    if (!ischecked) {
-                      return 'You need to accept Privacy Policy';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
+                  FormField<bool>(
+                    builder: (state) {
+                      return Column(
+                        children: <Widget>[
+                            Container(
+                              margin:EdgeInsets.only(top:20)
+,                              child: Row(
+                                children: <Widget>[
+                                   Container(
+                                     margin: EdgeInsets.only(right:10),
+                                     child: Checkbox(
+                                          value: ischecked,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              ischecked = value!;
+                                              state.didChange(value);
+                                            });
+                                          }),
+                                   ),
+
+                                  Row(
+                                    children: [
+                                      Text('I agree to the'),
+                                      TextButton(
+                                          child: Text('Privacy Policy',
+                                              style: TextStyle(
+                                                // fontStyle: FontStyle.normal,
+
+                                              )),
+                                          onPressed: (){
+                                            // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
+                                            PrivacyPolicyDialog(context);
+
+
+
+                                          },
+                                        ),
+
+
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+
+
+                          Text(
+                            state.errorText ?? '',
+                            style: TextStyle(
+                              color: Theme.of(context).errorColor,
+                            ),
+                          )
+                        ],
+                      );
+                    },
+
+                    validator: (value) {
+                      if (!ischecked) {
+                        return 'You need to accept Privacy Policy';
+                      } else {
+                        return null;
+                      }
+                    },
+                  ),
+
 
 
 

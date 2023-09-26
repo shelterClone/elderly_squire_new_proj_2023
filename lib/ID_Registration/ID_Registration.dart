@@ -11,9 +11,17 @@ class ID_Reg extends StatefulWidget {
 }
 
 class _ID_RegState extends State< ID_Reg> {
+
   TextEditingController dateController=TextEditingController();
   TextEditingController dateofbirthController=TextEditingController();
   TextEditingController yearofresController=TextEditingController();
+  TextEditingController firstname = TextEditingController();
+  TextEditingController surname = TextEditingController();
+  
+
+
+
+
 
   String? applicationtype;
   String? IDtype;
@@ -78,7 +86,7 @@ class _ID_RegState extends State< ID_Reg> {
                    margin: EdgeInsets.only(bottom: 10),
                    child: Align(
                      alignment: Alignment.centerLeft,
-                     child: Text("ID registration for senior citizen",
+                     child: Text("ID registration for senior citizen's ID",
                        style: TextStyle(
                            fontSize: 15,
                            color:Colors.grey[700]),),

@@ -121,7 +121,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                     Text(
                                       '${streamSnapshot.data!['First Name'][0]}${streamSnapshot.data!['Last Name'][0]}',
                                       style: TextStyle(
-                                          color: Colors.white,
+                                          color: Colors.red[900],
                                           fontSize: 40
                                       ),
                                     ),

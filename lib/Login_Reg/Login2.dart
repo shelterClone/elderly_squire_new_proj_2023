@@ -231,7 +231,7 @@ class LoginPage2 extends StatefulWidget {
                     style: ElevatedButton.styleFrom(
                       elevation: 2,
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.blueGrey,
+                      backgroundColor: Colors.blueGrey[900],
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
