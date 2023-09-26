@@ -81,7 +81,7 @@ class RegistrationPageState extends State<RegistrationPage> {
             barrierDismissible: false,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Success!"),
+                title: Text("Success"),
                 content: SingleChildScrollView(
                     child: ListBody(
                       children: <Widget>[

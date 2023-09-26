@@ -201,11 +201,14 @@ class _HomepageState extends State<Homepage> {
                                 ),
                               ),
                               onTap: () {
+
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => HomeScreen()),
                                 );
+
                               },
+
                             )
 
                           ],

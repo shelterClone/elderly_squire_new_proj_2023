@@ -71,12 +71,23 @@ class _UserProfileState extends State<EditUserProfile> {
         appBar: AppBar(
           toolbarHeight: 75,
           backgroundColor: Colors.blueGrey[900],
-          title: Text('Edit Profile'),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => UserProfile()),
+              );
+            },
+            child: Icon(
+              Icons.arrow_back_ios, // add custom icons also
+            ),
+          ),
+          title: Text('My Profile'),
         ),
         body: Center(
           child: StreamBuilder<DocumentSnapshot>(
 
-              stream: usersCollection.doc(_user!.uid).snapshots(),
+              stream: usersCollection.doc(_user?.uid).snapshots(),
               builder: (context, streamSnapshot) {
                 _firstNameController.text = streamSnapshot.data!['First Name'];
                 _middleNameController.text = streamSnapshot.data!['Middle'];
@@ -415,7 +426,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                           fontWeight: FontWeight.w600),
                                     ),
                                   ),
-                                  onPressed: () async{
+                                  onPressed: () async {
                                     final uid = _user!.uid;
                                     await usersCollection.doc(uid).update({
                                       'First Name': _firstNameController.text,
@@ -424,10 +435,36 @@ class _UserProfileState extends State<EditUserProfile> {
                                       'Gender': _genderController.text,
                                       'Address': _addressController.text,
                                       'email': _emailController.text,
+                                    }
 
-                                    });
-
-                                  },
+                                    );
+                                    return showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text("Success"),
+                                            content: SingleChildScrollView(
+                                                child: ListBody(
+                                                  children: <Widget>[
+                                                    Text("Save successfully"),
+                                                  ],
+                                                )),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                child: Text("Close"),
+                                                onPressed: () {
+                                                  // Navigator.of(context).pop();
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(builder: (context) => UserProfile()),
+                                                  );
+                                                },
+                                              )
+                                            ],
+                                          );
+                                        });
+                                  }
 
                                 ),
                               ),
