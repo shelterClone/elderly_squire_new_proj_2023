@@ -2279,37 +2279,7 @@ class HealthyEatingContentP4  extends StatelessWidget {
                             );
                           },
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Next",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthyEatingContentP4()),
-                            );
-                          },
-                        ),
+
 
                       ],
                     ),

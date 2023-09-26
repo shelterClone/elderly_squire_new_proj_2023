@@ -82,7 +82,7 @@ class _UserProfileState extends State<EditUserProfile> {
               Icons.arrow_back_ios, // add custom icons also
             ),
           ),
-          title: Text('My Profile'),
+          title: Text('Edit Profile'),
         ),
         body: Center(
           child: StreamBuilder<DocumentSnapshot>(

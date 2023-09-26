@@ -10,6 +10,7 @@ class SupportPage extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 75,
           leading: GestureDetector(
             onTap:(){
               Navigator.push(
@@ -21,8 +22,9 @@ class SupportPage extends StatelessWidget {
             ),
           ),
           title: const Text('Elderly Squire'),
-          backgroundColor: const Color(0XFF526D82),
-          elevation: 0,
+          // backgroundColor: const Color(0XFF526D82),
+          backgroundColor: Colors.blueGrey[900],
+          // elevation: 0,
         ),
         body: Tawk(
           // directChatLink: 'YOUR_DIRECT_CHAT_LINK',
