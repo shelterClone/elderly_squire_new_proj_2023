@@ -120,14 +120,14 @@ class _UserProfileState extends State<EditUserProfile> {
                 }
 
                 if (streamSnapshot.data != null) {//---------Address----------------//
-                  _genderController.text = streamSnapshot.data!['Address'];
+                  _addressController.text = streamSnapshot.data!['Address'];
                 }
                 else {
                   return Text('Unknown');
                 }
 
                 if (streamSnapshot.data != null) {//---------email----------------//
-                  _genderController.text = streamSnapshot.data!['email'];
+                  _emailController.text = streamSnapshot.data!['email'];
                 }
                 else {
                   return Text('Unknown');

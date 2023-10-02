@@ -6,8 +6,10 @@ import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Register.dart';
 import 'package:elderly_squire_2023_remastered_v2/PrivacyPolicy.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todo_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import 'Medicine Reminder/global_bloc.dart';
@@ -274,10 +276,23 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 13),
-                        child: Image.asset(
-                          'assets/images/google_logo.png',
-                        height: 40,
-                        width: 40,),
+                        child: GestureDetector(
+                          child: Image.asset(
+                            'assets/images/google_logo.png',
+                          height: 40,
+                          width: 40,
+
+                          ),
+                          onTap: (){
+                            // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
+                            signInWithGoogle();
+
+
+
+                          },
+                        ),
+
+
                       ),
                       Container(
                         padding: EdgeInsets.symmetric(horizontal: 13),
@@ -288,6 +303,10 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+
+
+
+
 
 
 
@@ -324,6 +343,24 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+
+void signInWithGoogle() async {
+  final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+  final GoogleSignInAuthentication googleSignInAuthentication =
+  await googleSignInAccount!.authentication;
+
+  final AuthCredential credential = GoogleAuthProvider.credential(
+    accessToken: googleSignInAuthentication.accessToken,
+    idToken: googleSignInAuthentication.idToken,
+  );
+
+  final UserCredential authResult =
+  await FirebaseAuth.instance.signInWithCredential(credential);
+  final User? user = authResult.user;
+
+  print('User signed in: ${user!.displayName}');
 }
 
 
