@@ -2,7 +2,7 @@ class Users{
     String? firstname;
     String? middle;
     String? lastname;
-    String? gender;
+    String? sex;
     String? address;
     String? email;
     // String? contact_number;
@@ -13,7 +13,7 @@ class Users{
     required this.firstname,
     required this.middle,
     required this.lastname,
-    required this.gender,
+    required this.sex,
     required this.address,
     required this.email,
     // required this.contact_number,
@@ -23,7 +23,7 @@ class Users{
     firstname = json['firstname'];
     middle = json['middlename'];
     lastname = json['lastname'];
-    gender =json['gender'];
+    sex =json['gender'];
     address = json['address'];
     email = json['email'];
     // contact_number = json['contactnum'];
@@ -35,7 +35,7 @@ class Users{
       "First Name":firstname,
       "Middle":middle,
       "Last Name":lastname,
-      "Gender": gender,
+      "Sex": sex,
       "Address":address,
       "email":email,
       // "contact number":contact_number,

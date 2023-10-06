@@ -113,16 +113,18 @@ class MedicineCard extends StatelessWidget {
           size: size,
         ),
       );
-    } else if (medicine.medicineType == "Syringe") {
-      return Hero(
-        tag: medicine.medicineName + medicine.medicineType,
-        child: Icon(
-          IconData(0xe902, fontFamily: "Ic"),
-          color: Colors.blueGrey[900],
-          size: size,
-        ),
-      );
-    } else if (medicine.medicineType == "Tablet") {
+    }
+    // else if (medicine.medicineType == "Syringe") {
+    //   return Hero(
+    //     tag: medicine.medicineName + medicine.medicineType,
+    //     child: Icon(
+    //       IconData(0xe902, fontFamily: "Ic"),
+    //       color: Colors.blueGrey[900],
+    //       size: size,
+    //     ),
+    //   );
+    // }
+    else if (medicine.medicineType == "Tablet") {
       return Hero(
         tag: medicine.medicineName + medicine.medicineType,
         child: Icon(

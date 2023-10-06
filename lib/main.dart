@@ -4,12 +4,11 @@ import 'package:elderly_squire_2023_remastered_v2/LaunchScreen.dart';
 // import 'package:elderly_squire_2023_remastered_v2/Login_Reg/ID_Registration.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Register.dart';
-import 'package:elderly_squire_2023_remastered_v2/PrivacyPolicy.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todo_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 import 'Medicine Reminder/global_bloc.dart';
@@ -285,7 +284,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           onTap: (){
                             // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
-                            signInWithGoogle();
+                            // signInWithGoogle();
 
 
 
@@ -346,22 +345,22 @@ class HomeScreen extends StatelessWidget {
 }
 
 
-void signInWithGoogle() async {
-  final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
-  final GoogleSignInAuthentication googleSignInAuthentication =
-  await googleSignInAccount!.authentication;
-
-  final AuthCredential credential = GoogleAuthProvider.credential(
-    accessToken: googleSignInAuthentication.accessToken,
-    idToken: googleSignInAuthentication.idToken,
-  );
-
-  final UserCredential authResult =
-  await FirebaseAuth.instance.signInWithCredential(credential);
-  final User? user = authResult.user;
-
-  print('User signed in: ${user!.displayName}');
-}
+// void signInWithGoogle() async {
+//   final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+//   final GoogleSignInAuthentication googleSignInAuthentication =
+//   await googleSignInAccount!.authentication;
+//
+//   final AuthCredential credential = GoogleAuthProvider.credential(
+//     accessToken: googleSignInAuthentication.accessToken,
+//     idToken: googleSignInAuthentication.idToken,
+//   );
+//
+//   final UserCredential authResult =
+//   await FirebaseAuth.instance.signInWithCredential(credential);
+//   final User? user = authResult.user;
+//
+//   print('User signed in: ${user!.displayName}');
+// }
 
 
 

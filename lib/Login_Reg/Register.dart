@@ -30,8 +30,8 @@ class RegistrationPageState extends State<RegistrationPage> {
   TextEditingController firstname = TextEditingController();
   TextEditingController middle = TextEditingController();
   TextEditingController lastname = TextEditingController();
-  List<String> gender = ['Male', 'Female'];
-  late TextEditingController selectgender;
+  List<String> sex = ['Male', 'Female'];
+  late TextEditingController selectsex;
   bool ischecked = false;
   TextEditingController address = TextEditingController();
   TextEditingController email = TextEditingController();
@@ -52,7 +52,7 @@ class RegistrationPageState extends State<RegistrationPage> {
       String firstname,
       String middle,
       String lastname,
-      String gender,
+      String sex,
       String address,
       String email,
       String password,) async {
@@ -61,14 +61,15 @@ class RegistrationPageState extends State<RegistrationPage> {
         print("Email: $email Password: $password");
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-            email: email, password: password);
+            email: email.characters.toString().trim(), password: password);
+        // email: email, password: password);
 
         await DBServices().saveUser(Users(
           uid: user?.uid,
           firstname: firstname,
           middle: middle,
           lastname: lastname,
-          gender: gender,
+          sex: sex,
           address: address,
           email: user?.email,
           // contact_number: contact_number,
@@ -119,7 +120,7 @@ class RegistrationPageState extends State<RegistrationPage> {
     firstname.text = '';
     middle.text = '';
     lastname.text = '';
-    selectgender = TextEditingController();
+    selectsex = TextEditingController();
     address.text = '';
     email.text = '';
     password.text = '';
@@ -146,7 +147,7 @@ class RegistrationPageState extends State<RegistrationPage> {
       firstname.dispose();
       middle.dispose();
       lastname.dispose();
-      selectgender.dispose();
+      selectsex.dispose();
       address.dispose();
       email.dispose();
       password.dispose();
@@ -367,7 +368,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                     ),
 
                     Text(
-                      'Gender',
+                      'Sex',//---------------------------------Sex------------------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -381,28 +382,28 @@ class RegistrationPageState extends State<RegistrationPage> {
                       height:100,
                       margin: EdgeInsets.only(right:150),
                       child: DropdownButtonFormField(
-                        hint: Text('Select Gender',
+                        hint: Text('Select Sex',
                           style: TextStyle(
                               fontSize: 15
                           ) ,), // Not necessary for Option 1
-                        value: selectgender.text.isEmpty ? null :selectgender.text,
+                        value: selectsex.text.isEmpty ? null :selectsex.text,
                         onChanged: (String? newValue) {
                           setState(() {
-                            selectgender.text = newValue!;
+                            selectsex.text = newValue!;
                           });
                         },
                         validator: (value){
                           if (value == null || value.isEmpty){
-                            return 'Gender required';
+                            return 'Sex required';
                           }
                           else {
                             return null;
                           }
                         },
-                        items: gender.map((gender) {
+                        items: sex.map((sex) {
                           return DropdownMenuItem(
-                            child: Text(gender),
-                            value: gender,
+                            child: Text(sex),
+                            value: sex,
                           );
                         }).toList(),
 
@@ -720,7 +721,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                           firstname.text,
                           middle.text,
                           lastname.text,
-                          selectgender.text,
+                          selectsex.text,
                           address.text,
                           email.text,
                           password.text);

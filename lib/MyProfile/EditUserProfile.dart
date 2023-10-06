@@ -17,7 +17,7 @@ class _UserProfileState extends State<EditUserProfile> {
   TextEditingController _firstNameController = TextEditingController();
   TextEditingController _middleNameController = TextEditingController();
   TextEditingController _lastNameController = TextEditingController();
-  TextEditingController _genderController = TextEditingController();
+  TextEditingController _sexController = TextEditingController();
   TextEditingController _addressController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
 
@@ -96,7 +96,6 @@ class _UserProfileState extends State<EditUserProfile> {
                 else {
                   return Text('Unknown');
                 }
-
                 if (streamSnapshot.data != null) {//---------Middle----------------//
                   _middleNameController.text = streamSnapshot.data!['Middle'];
 
@@ -104,7 +103,6 @@ class _UserProfileState extends State<EditUserProfile> {
                 else {
                   return Text('Unknown');
                 }
-
                 if (streamSnapshot.data != null) {//---------Last Name----------------//
                   _lastNameController.text = streamSnapshot.data!['Last Name'];
                 }
@@ -113,7 +111,7 @@ class _UserProfileState extends State<EditUserProfile> {
                 }
 
                 if (streamSnapshot.data != null) {//---------Gender----------------//
-                   _genderController.text = streamSnapshot.data!['Gender'];
+                   _sexController.text = streamSnapshot.data!['Sex'];
                 }
                 else {
                   return Text('Unknown');
@@ -337,8 +335,8 @@ class _UserProfileState extends State<EditUserProfile> {
                               ),
                               SizedBox(height: 10),
 
-                              Text( //----------------------Gender txtField-----------------------------//
-                                'Gender',
+                              Text( //----------------------SextxtField-----------------------------//
+                                'Sex',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontFamily: ('OpenSans'),
@@ -352,11 +350,11 @@ class _UserProfileState extends State<EditUserProfile> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 20),
                                 child: TextFormField(
-                                  controller: _genderController,
+                                  controller: _sexController,
                                   enabled: true,
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.person),
-                                      hintText:  '${streamSnapshot.data!['Gender']}',
+                                      hintText:  '${streamSnapshot.data!['Sex']}',
                                       hintStyle: TextStyle(
                                         color: Colors.grey,
                                         fontFamily: ('OpenSans'),
@@ -476,7 +474,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                       'First Name': _firstNameController.text,
                                       'Middle': _middleNameController.text,
                                       'Last Name': _lastNameController.text,
-                                      'Gender': _genderController.text,
+                                      'Sex': _sexController.text,
                                       'Address': _addressController.text,
                                       'email': _emailController.text,
                                     }

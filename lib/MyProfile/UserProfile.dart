@@ -271,8 +271,8 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               SizedBox(height: 10),
 
-                              Text( //----------------------Gender txtField-----------------------------//
-                                'Gender',
+                              Text( //----------------------Sex txtField-----------------------------//
+                                'Sex',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontFamily: ('OpenSans'),
@@ -291,7 +291,7 @@ class _UserProfileState extends State<UserProfile> {
                                   enabled: false,
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.person),
-                                      hintText:  '${streamSnapshot.data!['Gender']}',
+                                      hintText:  '${streamSnapshot.data!['Sex']}',
                                       hintStyle: TextStyle(
                                         color: Colors.grey,
                                         fontFamily: ('OpenSans'),
