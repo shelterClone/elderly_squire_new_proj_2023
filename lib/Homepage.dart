@@ -193,23 +193,65 @@ class _HomepageState extends State<Homepage> {
                                     MaterialPageRoute(builder: (context) => AboutUs()),
                                   );
                                 }),
+                            // ListTile(
+                            //   leading: Icon(Icons.exit_to_app, color: Colors.white),
+                            //   title: Text(
+                            //     'Log Out',
+                            //     style: TextStyle(color: Colors.white,
+                            //     ),
+                            //   ),
+                            //   onTap: () {
+                            //
+                            //     Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(builder: (context) => HomeScreen()),
+                            //     );
+                            //
+                            //   },
+                            //
+                            // )
                             ListTile(
                               leading: Icon(Icons.exit_to_app, color: Colors.white),
                               title: Text(
                                 'Log Out',
-                                style: TextStyle(color: Colors.white,
-                                ),
+                                style: TextStyle(color: Colors.white),
                               ),
                               onTap: () {
+                                // Show a confirmation dialog.
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Confirmation'),
+                                      content: Text('Are you sure you want to log out?'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text('Cancel'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop(); // Close the dialog.
+                                          },
+                                        ),
+                                       TextButton(
+                                          child: Text('Logout'),
+                                          onPressed: () {
+                                            // Perform the logout action here.
+                                            // Clear user session or credentials.
 
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                                            // After logging out, navigate to the HomeScreen.
+                                            Navigator.pushAndRemoveUntil(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => HomeScreen()),
+                                                  (route) => false,
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
                                 );
-
                               },
-
                             )
+
 
                           ],
                         ),

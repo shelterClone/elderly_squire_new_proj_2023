@@ -442,7 +442,6 @@ class _NewEntryState extends State<NewEntry> {
       importance: Importance.max,
       sound: RawResourceAndroidNotificationSound('sound'),
       priority: Priority.high,
-
       playSound: true,
       ledColor: Color(0xFF3EB16F),
       ledOffMs: 1000,
