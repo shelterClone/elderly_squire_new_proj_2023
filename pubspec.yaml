@@ -77,10 +77,10 @@ dev_dependencies:
   http: ^0.13.3
 
   image_picker: ^0.8.4
-#  flutter_pdfview: ^1.0.0 #pdf uploader
+  flutter_pdfview: ^1.0.0 #pdf uploader
 #  file_picker: ^4.0.0 #pdf uploader
   file_picker: ^5.5.0
-#  dio: ^4.0.0 #pdf uploader
+  dio: ^4.0.0 #pdf uploader
   flutter_launcher_icons: "^0.13.1"
 
 

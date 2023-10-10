@@ -438,7 +438,7 @@ class _NewEntryState extends State<NewEntry> {
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
       'repeatDailyAtTime channel id',
       'repeatDailyAtTime channel name',
-      channelDescription: 'repeatDailyAtTime description',
+      channelDescription:'repeatDailyAtTime description',
       importance: Importance.max,
       sound: RawResourceAndroidNotificationSound('sound'),
       priority: Priority.high,
