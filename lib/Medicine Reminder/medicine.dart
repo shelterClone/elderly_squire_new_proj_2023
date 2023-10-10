@@ -28,7 +28,6 @@ class Medicine {
     return {
       "ids": this.notificationIDs,
       "name": this.medicineName,
-      // "description": this.medicineName,
       "dosage": this.dosage,
       "type": this.medicineType,
       "interval": this.interval,
