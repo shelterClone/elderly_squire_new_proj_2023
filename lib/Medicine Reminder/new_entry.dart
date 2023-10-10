@@ -25,7 +25,7 @@ class _NewEntryState extends State<NewEntry> {
 
   late GlobalKey<ScaffoldState> _scaffoldKey;
 
-  get globalBloc => null;
+  // get globalBloc => null;
 
   void dispose() {
     super.dispose();
