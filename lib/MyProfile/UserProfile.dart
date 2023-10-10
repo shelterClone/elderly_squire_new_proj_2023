@@ -5,7 +5,7 @@ import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
 import 'package:elderly_squire_2023_remastered_v2/MyProfile/EditUserProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+// import 'package:image_picker/image_picker.dart';
 
 class UserProfile extends StatefulWidget {
   @override
