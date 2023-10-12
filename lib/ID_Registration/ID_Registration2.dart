@@ -33,10 +33,11 @@ class  ID_Reg2State extends State< ID_Reg2> {
   bool ischecked = false;
   TextEditingController address = TextEditingController();
   TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
+  TextEditingController dateofbirth = TextEditingController();
   // TextEditingController contactnum = TextEditingController();
-  TextEditingController confirmpassword = TextEditingController();
-  bool isPasswordHidden = true;
+  TextEditingController age = TextEditingController();
+  TextEditingController nationality = TextEditingController();
+
 
 
   User? _user = FirebaseAuth.instance.currentUser;
@@ -70,6 +71,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
           sex: sex,
           address: address,
           email: user?.email,
+
           // contact_number: contact_number,
 
         )
@@ -121,8 +123,8 @@ class  ID_Reg2State extends State< ID_Reg2> {
     selectsex = TextEditingController();
     address.text = '';
     email.text = '';
-    password.text = '';
-    confirmpassword.text = '';
+    age.text = '';
+    nationality.text = '';
     // contactnum.text = '';
 
     super.initState();
@@ -148,8 +150,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
       selectsex.dispose();
       address.dispose();
       email.dispose();
-      password.dispose();
-      confirmpassword.dispose();
+      age.dispose();
       super.dispose();
     }
 
@@ -378,7 +379,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         controller: lastname,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Last Name Required";
+                            return "Surname Required";
                           }
                           // else if (!numReg.hasMatch(value)) {
                           //   return "Invalid Last Name";
@@ -479,15 +480,13 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         controller: email,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Email Required";
+                            return "Birthday Required";
                           }
                           // else if (value.isEmpty ||
                           //     !value.contains('@gmail.com')) {
                           //   return "Invalid Email";
                           // }
-                          else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')) {
-                            return "Invalid Email";
-                          }
+
 
                           else {
                             return null;
@@ -527,24 +526,21 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         //----------------------Date of Birth txtField-----------------------------//
-                        controller: password,
+                        controller: dateofbirth,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Password Required";
-                          } else if (value.length < 8) {
-                            return "Password must be 8-16 characters";
-                          } else if (value.length > 16) {
-                            return "Password must be 8-16 characters";
-                          } else {
+                            return "Date of Birth Required";
+                          }
+                          else {
                             return null;
                           }
                         },
-                        obscureText: isPasswordHidden,
+
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              password.selection; //----------new
-                          password.text = value;
-                          password.selection =
+                              dateofbirth.selection; //----------new
+                          dateofbirth.text = value;
+                          dateofbirth.selection =
                               previousSelection; //--------------new
 //
                         },
@@ -573,26 +569,24 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       margin: EdgeInsets.only(right: 200,bottom: 20),
                       child: TextFormField(
                         //----------------------Age txtField-----------------------------//
-                        controller: confirmpassword,
+                        controller: age,
                         validator: (value) {
-                          if (password.text.isNotEmpty & confirmpassword.text.isEmpty) {
-                            return "Please Re Enter Password";
-                          }
-                          if (value == null || value.isEmpty) {
-                            return "Password Required";
+
+                          if (value!.length <1) {
+                            return "Invalid age";
                           }
 
-                          if (password.text != confirmpassword.text) {
-                            return "Password does not match";
+                          else if(value.isEmpty){
+                            return "Age required";
                           }
                           return null;
                         },
                         // obscureText: true,
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              confirmpassword.selection; //----------new
-                          confirmpassword.text = value;
-                          confirmpassword.selection =
+                              age.selection; //----------new
+                          age.text = value;
+                          age.selection =
                               previousSelection; //--------------new},
                         },
 
@@ -622,25 +616,22 @@ class  ID_Reg2State extends State< ID_Reg2> {
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
-                        //----------------------Date of Birth txtField-----------------------------//
-                        controller: password,
+                        //----------------------Nationality-----------------------------//
+                        controller: nationality,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Password Required";
-                          } else if (value.length < 8) {
-                            return "Password must be 8-16 characters";
-                          } else if (value.length > 16) {
-                            return "Password must be 8-16 characters";
-                          } else {
+                            return "Nationality Required";
+                          }
+
+                          else {
                             return null;
                           }
                         },
-                        obscureText: isPasswordHidden,
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              password.selection; //----------new
-                          password.text = value;
-                          password.selection =
+                              nationality.selection; //----------new
+                          nationality.text = value;
+                          nationality.selection =
                               previousSelection; //--------------new
 //
                         },
@@ -777,7 +768,8 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           selectsex.text,
                           address.text,
                           email.text,
-                          password.text);
+                          age.text,
+                          );
 
                     },
                   ),

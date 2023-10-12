@@ -437,19 +437,18 @@ class _NewEntryState extends State<NewEntry> {
 //     //await flutterLocalNotificationsPlugin.cancelAll();
 //   }
 
-  Future<void> scheduleNotification(Medicine medicine) async {
+  Future <void> scheduleNotification(Medicine medicine) async {
+    // var hour = int.parse(medicine.startTime.substring(0, 2));
+    // var ogValue = hour;
+    // var minute = int.parse(medicine.startTime.substring(2, 4));
     var hour = int.parse(medicine.startTime[0] + medicine.startTime[1]);
+    var ogValue = hour;
     var minute = int.parse(medicine.startTime[2] + medicine.startTime[3]);
-
-    tzdata.initializeTimeZones();
-
-    // final local = tz.getLocation('your_local_time_zone_here');
-    final local = tz.getLocation('Asia/Singapore');
 
     var androidPlatformChannelSpecifics = AndroidNotificationDetails(
       'repeatDailyAtTime channel id',
       'repeatDailyAtTime channel name',
-      channelDescription: 'repeatDailyAtTime description',
+      channelDescription:'repeatDailyAtTime description',
       importance: Importance.max,
       sound: RawResourceAndroidNotificationSound('sound'),
       priority: Priority.high,
@@ -465,35 +464,24 @@ class _NewEntryState extends State<NewEntry> {
       iOS: iOSPlatformChannelSpecifics,
     );
 
-
-    var ogValue = hour;
-
     for (int i = 0; i < (24 / medicine.interval).floor(); i++) {
-      if (hour + (medicine.interval * i) > 23) {
+      if ((hour + (medicine.interval * i) > 23)) {
         hour = hour + (medicine.interval * i) - 24;
       } else {
         hour = hour + (medicine.interval * i);
       }
-
-      final scheduledTime = tz.TZDateTime(tz.local, DateTime.now().year, DateTime.now().month, DateTime.now().day, hour, minute);
-
-
-      await flutterLocalNotificationsPlugin.zonedSchedule(
+      await flutterLocalNotificationsPlugin.showDailyAtTime(
         int.parse(medicine.notificationIDs[i]),
         'Elderly Squire: ${medicine.medicineName}',
         medicine.medicineType.toString() != MedicineType.None.toString()
             ? 'It is time to take ${medicine.medicineType.toLowerCase()}, according to the schedule'
             : 'It is time to take your medicine, according to the schedule',
-        scheduledTime,
+        Time(hour, minute, 0),
         platformChannelSpecifics,
-        androidAllowWhileIdle: true,
-        uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
       );
-
       hour = ogValue;
     }
   }
-
 
 
 }
