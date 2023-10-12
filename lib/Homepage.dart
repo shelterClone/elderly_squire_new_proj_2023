@@ -4,6 +4,7 @@ import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsM
 import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration.dart';
+import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine/MedicineMenu.dart';
@@ -326,7 +327,7 @@ class _HomepageState extends State<Homepage> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ID_Reg()),
+                                        builder: (context) => ID_Reg2()),
                                   );
                                 },
                                 child: Image.asset('assets/images/ID.png',
@@ -344,7 +345,7 @@ class _HomepageState extends State<Homepage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ID_Reg()),
+                                              builder: (context) => ID_Reg2()),
                                         );
                                       },
                                       child: Text(
@@ -366,7 +367,7 @@ class _HomepageState extends State<Homepage> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => ID_Reg()),
+                                              builder: (context) => ID_Reg2()),
                                         );
                                       },
                                       child: Text(

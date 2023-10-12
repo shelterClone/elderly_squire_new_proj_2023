@@ -205,6 +205,7 @@ class _NewEntryState extends State<NewEntry> {
                     onPressed: () {
                       String medicineName ='';
                       int dosage = 0;
+
                       //--------------------Error Checking------------------------
                       //Had to do error checking in UI
                       //Due to unoptimized BLoC value-grabbing architecture
@@ -366,10 +367,16 @@ class _NewEntryState extends State<NewEntry> {
         onSelectNotification: onSelectNotification);
   }
 
-  Future onSelectNotification(String? payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: ' + payload);
-    }
+  // Future onSelectNotification(String? payload) async {
+  //   if (payload != null) {
+  //     debugPrint('notification payload: ' + payload);
+  //   } //----original
+
+    Future onSelectNotification(String? payload) async {
+      if (payload != null) {
+        debugPrint('notification payload: ' + payload);
+      }
+
     await Navigator.push(
       context,
       new MaterialPageRoute(builder: (context) => ReminderHome()),

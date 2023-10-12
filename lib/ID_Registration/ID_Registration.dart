@@ -10,6 +10,7 @@ class ID_Reg extends StatefulWidget {
   _ID_RegState createState() => _ID_RegState();
 }
 
+
 class _ID_RegState extends State< ID_Reg> {
 
   TextEditingController dateController=TextEditingController();
@@ -83,7 +84,7 @@ class _ID_RegState extends State< ID_Reg> {
                   ),
                   SizedBox(height: 5),
                  Container(
-                   margin: EdgeInsets.only(bottom: 10),
+                   margin: EdgeInsets.only(bottom: 5),
                    child: Align(
                      alignment: Alignment.centerLeft,
                      child: Text("ID registration for senior citizen's ID",
@@ -97,46 +98,7 @@ class _ID_RegState extends State< ID_Reg> {
               ),
               Column(
                 children: <Widget>[
-                  Container(//-------------------------------------------Date Issued----------------------------------//
-                      margin:EdgeInsets.only(right:195, bottom: 10),
-                      child: Text("Date Issued",
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color:Colors.black87
-                        ),
-                      ),),
-                      Center(
-                          child: TextField(
-                        controller: dateController,
-                        decoration: const InputDecoration(
-                            icon: Icon(Icons.calendar_today),
-//                                labelText: "Enter Date",
-                          hintText: "Select Date",
-                          hintStyle: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color:Colors.grey
-                        ),
-                        ),
-                        readOnly: true,
-                        onTap:()async{
-                          DateTime? pickedDate=await showDatePicker(context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2000,30),
-                            lastDate: DateTime(2101),
-                          );
-                          if(pickedDate!=null){
-                            String formattedDate=DateFormat("yyyy-MM-dd").format(pickedDate).toString();
-                            setState(() {
-                              dateController.text=formattedDate.toString();
-                            });
-                          }
-                          else{
-                            print("Not Selected");
-                          }
-                        },
-                      )),
+
 
 
                   Container(//------------------------------------------------Radio Button
@@ -378,27 +340,27 @@ class _ID_RegState extends State< ID_Reg> {
                   SizedBox(height: 10),
 
                   inputFile(label: "Email"),
-                  Container(
-                    margin: EdgeInsets.only(top:5,bottom: 20,right:177),
-                    child: Text("Upload Recent Valid ID", style: TextStyle(//---------------------Valid ID presented----------------// L
-                        fontSize: 15,
-                        fontWeight: FontWeight.w400,
-                        color:Colors.black87
-                    ),),
-                  ),
-                  IDUploader(),
+                  // Container(
+                  //   margin: EdgeInsets.only(top:5,bottom: 20,right:177),
+                  //   child: Text("Upload Recent Valid ID", style: TextStyle(//---------------------Valid ID presented----------------// L
+                  //       fontSize: 15,
+                  //       fontWeight: FontWeight.w400,
+                  //       color:Colors.black87
+                  //   ),),
+                  // ),
+                  // IDUploader(),
 
                 ],
               ),
-              Container(
-                margin: EdgeInsets.only(top:5,bottom: 20,right:190),
-                child: Text("Upload 3 1x1 picture", style: TextStyle(//---------------------1x1 picture----------------// L
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color:Colors.black87
-                ),),
-              ),
-              Uploader2(),
+              // Container(
+              //   margin: EdgeInsets.only(top:5,bottom: 20,right:190),
+              //   child: Text("Upload 3 1x1 picture", style: TextStyle(//---------------------1x1 picture----------------// L
+              //       fontSize: 15,
+              //       fontWeight: FontWeight.w400,
+              //       color:Colors.black87
+              //   ),),
+              // ),
+              // Uploader2(),
 //              Container(
 //                margin: EdgeInsets.only(top:5,bottom: 20,right:190),
 //                child: Text("Please Print and Notarized: ", style: TextStyle(//---------------------1x1 picture----------------// L

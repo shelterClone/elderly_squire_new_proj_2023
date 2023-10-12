@@ -17,7 +17,9 @@ class _UserProfileState extends State<EditUserProfile> {
   TextEditingController _firstNameController = TextEditingController();
   TextEditingController _middleNameController = TextEditingController();
   TextEditingController _lastNameController = TextEditingController();
-  TextEditingController _sexController = TextEditingController();
+  // TextEditingController _sexController = TextEditingController();
+  List<String> sex = ['Male', 'Female'];
+  late TextEditingController selectsex;
   TextEditingController _addressController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
 
@@ -38,7 +40,7 @@ class _UserProfileState extends State<EditUserProfile> {
   // get email => null;
 
   void initState() {
-
+    selectsex = TextEditingController();
     _getUserInfo();
 
     super.initState();
@@ -110,12 +112,13 @@ class _UserProfileState extends State<EditUserProfile> {
                   return Text('Unknown');
                 }
 
-                if (streamSnapshot.data != null) {//---------Gender----------------//
-                   _sexController.text = streamSnapshot.data!['Sex'];
-                }
-                else {
-                  return Text('Unknown');
-                }
+
+                // if (streamSnapshot.data != null) {//---------Sex----------------//
+                //    _sexController.text = streamSnapshot.data!['Sex'];
+                // }
+                // else {
+                //   return Text('Unknown');
+                // }
 
                 if (streamSnapshot.data != null) {//---------Address----------------//
                   _addressController.text = streamSnapshot.data!['Address'];
@@ -347,28 +350,61 @@ class _UserProfileState extends State<EditUserProfile> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 20),
-                                child: TextFormField(
-                                  controller: _sexController,
-                                  enabled: true,
-                                  decoration: InputDecoration(
-                                      prefixIcon: Icon(Icons.person),
-                                      hintText:  '${streamSnapshot.data!['Sex']}',
-                                      hintStyle: TextStyle(
-                                        color: Colors.grey,
-                                        fontFamily: ('OpenSans'),
-                                        fontSize: 15,
+                              // Container(
+                              //   margin: EdgeInsets.only(bottom: 20),
+                              //   child: TextFormField(
+                              //     controller: _sexController,
+                              //     enabled: true,
+                              //     decoration: InputDecoration(
+                              //         prefixIcon: Icon(Icons.person),
+                              //         hintText:  '${streamSnapshot.data!['Sex']}',
+                              //         hintStyle: TextStyle(
+                              //           color: Colors.grey,
+                              //           fontFamily: ('OpenSans'),
+                              //           fontSize: 15,
+                              //
+                              //         ),
+                              //         contentPadding:
+                              //         EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                              //         enabledBorder: OutlineInputBorder(
+                              //           borderSide: BorderSide(color: Colors.blueGrey),
+                              //         ),
+                              //         border: OutlineInputBorder(
+                              //             borderSide: BorderSide(color: Colors.blueGrey))),
+                              //   ),
+                              // ),
 
-                                      ),
-                                      contentPadding:
-                                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: Colors.blueGrey),
-                                      ),
-                                      border: OutlineInputBorder(
-                                          borderSide: BorderSide(color: Colors.blueGrey))),
+                              Container(
+                                height:100,
+                                margin: EdgeInsets.only(right:150),
+                                child: DropdownButtonFormField(
+                                  hint: Text('${streamSnapshot.data!['Sex']}',
+                                    style: TextStyle(
+                                        fontSize: 15
+                                    ) ,),
+                                  value: selectsex.text.isEmpty ? null :selectsex.text,
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      selectsex.text = newValue!;
+                                    });
+                                  },
+                                  validator: (value){
+                                    if (value == null || value.isEmpty){
+                                      return 'Sex required';
+                                    }
+                                    else {
+                                      return null;
+                                    }
+                                  },
+                                  items: sex.map((sex) {
+                                    return DropdownMenuItem(
+                                      child: Text(sex),
+                                      value: sex,
+                                    );
+                                  }).toList(),
+
                                 ),
+
                               ),
 
                               SizedBox(height: 10),
@@ -474,7 +510,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                       'First Name': _firstNameController.text,
                                       'Middle': _middleNameController.text,
                                       'Last Name': _lastNameController.text,
-                                      'Sex': _sexController.text,
+                                      'Sex': selectsex.text,
                                       'Address': _addressController.text,
                                       'email': _emailController.text,
                                     }
