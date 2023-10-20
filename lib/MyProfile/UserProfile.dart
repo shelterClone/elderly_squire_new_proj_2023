@@ -233,7 +233,7 @@ class _UserProfileState extends State<UserProfile> {
                                 height: 10,
                               ),
 
-                              Text( //----------------------Lastname txtField-----------------------------//
+                              Text( //----------------------surname txtField-----------------------------//
                                 'Surname',
                                 style: TextStyle(
                                     fontSize: 15,

@@ -154,7 +154,7 @@ class _ID_RegState extends State< ID_Reg> {
 
                   inputFile(label: "Firstname"),
                   inputFile(label: "Surname"),
-                  // inputFile(label: "Lastname"),
+                  // inputFile(label: "surname"),
                   inputFile(label: "Address"),
                   // inputFile(label: "Years of Residence in Manila"),
                   inputFile(label: "Birthplace"),

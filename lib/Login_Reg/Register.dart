@@ -29,7 +29,7 @@ class RegistrationPageState extends State<RegistrationPage> {
 
   TextEditingController firstname = TextEditingController();
   TextEditingController middle = TextEditingController();
-  TextEditingController lastname = TextEditingController();
+  TextEditingController surname = TextEditingController();
   List<String> sex = ['Male', 'Female'];
   late TextEditingController selectsex;
   bool ischecked = false;
@@ -51,7 +51,7 @@ class RegistrationPageState extends State<RegistrationPage> {
   Future<void> _createUser(
       String firstname,
       String middle,
-      String lastname,
+      String surname,
       String sex,
       String address,
       String email,
@@ -68,7 +68,7 @@ class RegistrationPageState extends State<RegistrationPage> {
           uid: user?.uid,
           firstname: firstname,
           middle: middle,
-          lastname: lastname,
+          surname: surname,
           sex: sex,
           address: address,
           email: user?.email,
@@ -119,7 +119,7 @@ class RegistrationPageState extends State<RegistrationPage> {
   void initState() {
     firstname.text = '';
     middle.text = '';
-    lastname.text = '';
+    surname.text = '';
     selectsex = TextEditingController();
     address.text = '';
     email.text = '';
@@ -146,7 +146,7 @@ class RegistrationPageState extends State<RegistrationPage> {
     void dispose() {
       firstname.dispose();
       middle.dispose();
-      lastname.dispose();
+      surname.dispose();
       selectsex.dispose();
       address.dispose();
       email.dispose();
@@ -332,7 +332,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         //----------------------Last Name txtField-----------------------------//
-                        controller: lastname,
+                        controller: surname,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Last Name Required";
@@ -349,9 +349,9 @@ class RegistrationPageState extends State<RegistrationPage> {
                         },
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              lastname.selection; //----------new
-                          lastname.text = value;
-                          lastname.selection =
+                              surname.selection; //----------new
+                          surname.text = value;
+                          surname.selection =
                               previousSelection; //--------------new
                         },
 
@@ -720,7 +720,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                       _createUser(
                           firstname.text,
                           middle.text,
-                          lastname.text,
+                          surname.text,
                           selectsex.text,
                           address.text,
                           email.text,

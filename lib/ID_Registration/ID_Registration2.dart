@@ -25,106 +25,157 @@ class  ID_Reg2State extends State< ID_Reg2> {
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
   RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
 
-  TextEditingController firstname = TextEditingController();
-  TextEditingController middle = TextEditingController();
-  TextEditingController lastname = TextEditingController();
+
+
   List<String> applicationtype = ['New Senior(Voter)', 'New Senior(Non-Voter)', 'Old Senior'];
-  late TextEditingController selectsex;
-  bool ischecked = false;
+  late TextEditingController selectapptype;
+
+  TextEditingController surname = TextEditingController();
+
+  TextEditingController firstname = TextEditingController();
+  
+  TextEditingController middle = TextEditingController();
+
   TextEditingController address = TextEditingController();
-  TextEditingController email = TextEditingController();
+
+  TextEditingController yearsodresidence = TextEditingController();
+
+  TextEditingController birthplace = TextEditingController();
+
   TextEditingController dateofbirth = TextEditingController();
-  // TextEditingController contactnum = TextEditingController();
-  TextEditingController age = TextEditingController();
+
+  List<String> sex = ['Male','Female'];
+  late TextEditingController selectsex;
+
   TextEditingController nationality = TextEditingController();
 
+  TextEditingController age = TextEditingController();
 
+  TextEditingController brgy = TextEditingController();
 
-  User? _user = FirebaseAuth.instance.currentUser;
+  TextEditingController zone = TextEditingController();
 
-  final _auth = FirebaseAuth.instance;
+  List<String> district = ['District 1','District 2','District 3','District 4','District 5','District 6'];
+  late TextEditingController selectdistrict;
+
+  TextEditingController status= TextEditingController();
+
+  TextEditingController phonenum = TextEditingController();
+
+  TextEditingController pension = TextEditingController();
+
+  TextEditingController salary = TextEditingController();
+
+  TextEditingController work = TextEditingController();
+
+  List<String> id = ['Passport ID','Voter\'s ID','SSS ID','Umid ID','Police Clearance','NBI Clearance','National ID'];
+  late TextEditingController selectid;
+
+  TextEditingController email = TextEditingController();
+
+  bool ischecked = false;
+
+  // User? _user = FirebaseAuth.instance.currentUser;
+  //
+  // final _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
 
 
-  Future<void> _createUser(
-      String firstname,
-      String middle,
-      String lastname,
-      String sex,
-      String address,
-      String email,
-      String password,) async {
-    if (validateReg()) {
-      try {
-        print("Email: $email Password: $password");
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-            email: email.characters.toString().trim(), password: password);
-        // email: email, password: password);
+//   Future<void> _createUser( //-----------------------Create User Firebase------------------------------//
+//       String firstname,
+//       String middle,
+//       String surname,
+//       String sex,
+//       String address,
+//       String email,
+//       String password,) async {
+//     if (validateReg()) {
+//       try {
+//         print("Email: $email Password: $password");
+//         UserCredential userCredential = await FirebaseAuth.instance
+//             .createUserWithEmailAndPassword(
+//             email: email.characters.toString().trim(), password: password);
+//         // email: email, password: password);
+//
+//         await DBServices().saveUser(Users(
+//           uid: user?.uid,
+//           firstname: firstname,
+//           middle: middle,
+//           surname: surname,
+//           sex: sex,
+//           address: address,
+//           email: user?.email,
+//
+//           // contact_number: contact_number,
+//
+//         )
+//         );
+//         print("User: $userCredential");
+//         return showDialog(
+//             context: context,
+//             barrierDismissible: false,
+//             builder: (BuildContext context) {
+//               return AlertDialog(
+//                 title: Text("Success"),
+//                 content: SingleChildScrollView(
+//                     child: ListBody(
+//                       children: <Widget>[
+//                         Text("You are now offically registered!"),
+//                       ],
+//                     )),
+//                 actions: <Widget>[
+//                   TextButton(
+//                     child: Text("Close"),
+//                     onPressed: () {
+//                       Navigator.of(context).pop();
+//                       Navigator.push(
+//                         context,
+//                         MaterialPageRoute(builder: (context) => Homepage()),
+//                       );
+//                     },
+//                   )
+//                 ],
+//               );
+//             });
+//       } on FirebaseAuthException catch (e) {
+//         // print("Error: $e");
+//
+//
+//       } catch (e) {
+//         print("Error: $e");
+//       }
+// //    }
+//     }
+//   }
 
-        await DBServices().saveUser(Users(
-          uid: user?.uid,
-          firstname: firstname,
-          middle: middle,
-          lastname: lastname,
-          sex: sex,
-          address: address,
-          email: user?.email,
-
-          // contact_number: contact_number,
-
-        )
-        );
-        print("User: $userCredential");
-        return showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Success"),
-                content: SingleChildScrollView(
-                    child: ListBody(
-                      children: <Widget>[
-                        Text("You are now offically registered!"),
-                      ],
-                    )),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text("Close"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Homepage()),
-                      );
-                    },
-                  )
-                ],
-              );
-            });
-      } on FirebaseAuthException catch (e) {
-        // print("Error: $e");
-
-
-      } catch (e) {
-        print("Error: $e");
-      }
-//    }
-    }
-  }
-
-  User? get user => FirebaseAuth.instance.currentUser;
+  // User? get user => FirebaseAuth.instance.currentUser;
 
   void initState() {
+    selectapptype = TextEditingController();
+    surname.text = '';
     firstname.text = '';
     middle.text = '';
-    lastname.text = '';
-    selectsex = TextEditingController();
     address.text = '';
-    email.text = '';
-    age.text = '';
+    yearsodresidence.text = '';
+    birthplace.text = '';
+    dateofbirth.text = '';
+    selectsex = TextEditingController();
     nationality.text = '';
+    age.text = '';
+    brgy.text = '';
+    zone.text = '';
+    selectdistrict = TextEditingController();
+    selectid = TextEditingController();
+    status.text = '';
+    phonenum.text = '';
+    pension.text = '';
+    salary.text = '';
+    work.text = '';
+    selectid = TextEditingController();
+    email.text = '';
+
+
     // contactnum.text = '';
 
     super.initState();
@@ -144,13 +195,24 @@ class  ID_Reg2State extends State< ID_Reg2> {
   @override
   Widget build(BuildContext context) {
     void dispose() {
+      selectapptype.dispose();
+      surname.dispose();
       firstname.dispose();
       middle.dispose();
-      lastname.dispose();
-      selectsex.dispose();
       address.dispose();
-      email.dispose();
+      yearsodresidence.dispose();
+      birthplace.dispose();
+      dateofbirth.dispose();
+      selectsex.dispose();
+      nationality.dispose();
       age.dispose();
+      brgy.dispose();
+      zone.dispose();
+      selectdistrict.dispose();
+      selectid.dispose();
+      status.dispose();
+      email.dispose();
+
       super.dispose();
     }
 
@@ -181,7 +243,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
           padding: EdgeInsets.symmetric(horizontal: 40),
           // height: MediaQuery.of(context).size.height + 500,
           // height: MediaQuery.of(context).size.height + 700, //-----original
-          height: MediaQuery.of(context).size.height + 1000,
+          height: MediaQuery.of(context).size.height + 2050,
           width: double.infinity,
           child: Form(
             key: formkey,
@@ -207,7 +269,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                     ),
                     SizedBox(height: 5),
                     Container(
-                      margin: EdgeInsets.only(bottom: 10),
+                      margin: EdgeInsets.only(bottom: 60),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
@@ -233,18 +295,17 @@ class  ID_Reg2State extends State< ID_Reg2> {
                     ),
 
                     Container(
-                      height:100,
-
+                      height:80,
                       margin: EdgeInsets.only(right:40),
                       child: DropdownButtonFormField(
                         hint: Text('Select Application Type',
                           style: TextStyle(
                               fontSize: 15
                           ) ,), // Not necessary for Option 1
-                        value: selectsex.text.isEmpty ? null :selectsex.text,
+                        value: selectapptype.text.isEmpty ? null :selectapptype.text,
                         onChanged: (String? newValue) {
                           setState(() {
-                            selectsex.text = newValue!;
+                            selectapptype.text = newValue!;
                           });
                         },
                         validator: (value){
@@ -263,8 +324,64 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         }).toList(),
 
                       ),
-
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Surname',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Surname txtField-----------------------------//
+                        controller: surname,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Surname Required";
+                          }
+                          // else if (!numReg.hasMatch(value)) {
+                          //   return "Invalid Last Name";
+                          // }
+                          // else if (!specialReg.hasMatch(value)) {
+                          //   return "Invalid Last Name";
+                          // }
+                          else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              surname.selection; //----------new
+                          surname.text = value;
+                          surname.selection =
+                              previousSelection; //--------------new
+                        },
+
+                        decoration: InputDecoration(
+
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+
                     Text(
                       'First Name',
                       style: TextStyle(
@@ -312,6 +429,10 @@ class  ID_Reg2State extends State< ID_Reg2> {
                             border: OutlineInputBorder(
                                 borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
+                    ),
+
+                    SizedBox(
+                      height: 5,
                     ),
                     Text(
                       'Middle Name',
@@ -362,53 +483,8 @@ class  ID_Reg2State extends State< ID_Reg2> {
 
                       ),
                     ),
-                    Text(
-                      'Surname',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black87),
-                    ),
                     SizedBox(
                       height: 5,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: TextFormField(
-                        //----------------------Last Name txtField-----------------------------//
-                        controller: lastname,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Surname Required";
-                          }
-                          // else if (!numReg.hasMatch(value)) {
-                          //   return "Invalid Last Name";
-                          // }
-                          // else if (!specialReg.hasMatch(value)) {
-                          //   return "Invalid Last Name";
-                          // }
-                          else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          TextSelection previousSelection =
-                              lastname.selection; //----------new
-                          lastname.text = value;
-                          lastname.selection =
-                              previousSelection; //--------------new
-                        },
-
-                        decoration: InputDecoration(
-
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
-                      ),
                     ),
 
                     Text(
@@ -432,12 +508,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           if (value!.isEmpty) {
                             return "Address Required";
                           }
-//                            else if(!numReg.hasMatch(value)){
-//                              return "Invalid Last Name";
-//                            }
-//                            else if(!specialReg.hasMatch(value)){
-//                              return "Invalid Character";
-//                            }
+//
                           else {
                             return null;
                           }
@@ -461,7 +532,58 @@ class  ID_Reg2State extends State< ID_Reg2> {
                                 borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
 
+                    Text(
+                      'Years of Residence',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        // maxLines: 1,
+
+                        //----------------------Years of Residence txtField-----------------------------//
+                        controller: yearsodresidence,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Address Required";
+                          }
+//
+                          else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              yearsodresidence.selection; //----------new
+                          yearsodresidence.text = value;
+                          yearsodresidence.selection =
+                              previousSelection; //--------------new
+                        },
+
+                        decoration: InputDecoration(
+
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
 
                     Text(
                       'Birthplace',
@@ -477,7 +599,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         //----------------------Birthplace txtField-----------------------------//
-                        controller: email,
+                        controller: birthplace,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Birthday Required";
@@ -494,9 +616,9 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              email.selection; //----------new
-                          email.text = value;
-                          email.selection = previousSelection; //--------------new
+                              birthplace.selection; //----------new
+                          birthplace.text = value;
+                          birthplace.selection = previousSelection; //--------------new
                         },
 
                         decoration: InputDecoration(
@@ -509,9 +631,11 @@ class  ID_Reg2State extends State< ID_Reg2> {
                                 borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
+
                     SizedBox(
                       height: 5,
                     ),
+
                     Text(
                       'Date of Birth',
                       style: TextStyle(
@@ -555,8 +679,12 @@ class  ID_Reg2State extends State< ID_Reg2> {
                                 borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
                     Text(
-                      'Age',
+                      'Sex',//----------Sex---------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -566,43 +694,40 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       height: 5,
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 200,bottom: 20),
-                      child: TextFormField(
-                        //----------------------Age txtField-----------------------------//
-                        controller: age,
-                        validator: (value) {
-
-                          if (value!.length <1) {
-                            return "Invalid age";
-                          }
-
-                          else if(value.isEmpty){
-                            return "Age required";
-                          }
-                          return null;
+                      height:80,
+                      margin: EdgeInsets.only(right:40),
+                      child: DropdownButtonFormField(
+                        hint: Text('Select Sex',
+                          style: TextStyle(
+                              fontSize: 15
+                          ) ,),
+                        value: selectsex.text.isEmpty ? null :selectsex.text,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectsex.text = newValue!;
+                          });
                         },
-                        // obscureText: true,
-                        onChanged: (value) {
-                          TextSelection previousSelection =
-                              age.selection; //----------new
-                          age.text = value;
-                          age.selection =
-                              previousSelection; //--------------new},
+                        validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'Sex required';
+                          }
+                          else {
+                            return null;
+                          }
                         },
+                        items: sex.map((apptype) {
+                          return DropdownMenuItem(
+                            child: Text(apptype),
+                            value: apptype,
+                          );
+                        }).toList(),
 
-                        decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
+
                     Text(
                       'Nationality',
                       style: TextStyle(
@@ -646,9 +771,550 @@ class  ID_Reg2State extends State< ID_Reg2> {
                                 borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
+                    SizedBox(
+                      height: 5,
+                    ),
 
 
-                    ],
+                    Text(
+                      'Age',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 200,bottom: 20),
+                      child: TextFormField(
+                        //----------------------Age txtField-----------------------------//
+                        controller: age,
+                        validator: (value) {
+
+                          if (value!.length <1||value!.length > 100) {
+                            return "Invalid age";
+                          }
+                          else if(value.isEmpty){
+                            return "Age required";
+                          }
+                          return null;
+                        },
+                        // obscureText: true,
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              age.selection; //----------new
+                          age.text = value;
+                          age.selection =
+                              previousSelection; //--------------new},
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Barangay',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Barangay----------------------------//
+                        controller: brgy,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Barangay Required";
+                          }
+
+                          else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              brgy.selection; //----------new
+                          brgy.text = value;
+                          brgy.selection =
+                              previousSelection; //--------------new
+//
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+
+                    Text(
+                      'Zone',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Zone----------------------------//
+                        controller: zone,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Zone Required";
+                          }
+
+                          else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              zone.selection; //----------new
+                          zone.text = value;
+                          zone.selection =
+                              previousSelection; //--------------new
+//
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'District',//----------District---------//
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      height:100,
+                      margin: EdgeInsets.only(right:100),
+                      child: DropdownButtonFormField(
+                        hint: Text('Select District',
+                          style: TextStyle(
+                              fontSize: 15
+                          ) ,),
+                        value: selectdistrict.text.isEmpty ? null : selectdistrict.text,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectdistrict.text = newValue!;
+                          });
+                        },
+                        validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'District required';
+                          }
+                          else {
+                            return null;
+                          }
+                        },
+                        items: district.map((dist) {
+                          return DropdownMenuItem(
+                            child: Text(dist),
+                            value: dist,
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Civil Status',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Civil Status----------------------------//
+                        controller: status,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Civil Status Required";
+                          }
+
+                          else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              status.selection; //----------new
+                          status.text = value;
+                          status.selection =
+                              previousSelection; //--------------new
+//
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Phone Number',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Phone Number----------------------------//
+                        keyboardType: TextInputType.number,
+                        controller: phonenum,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Phone Number Required";
+                          }
+                          if (value.length >11 || value.length <11) {
+                            return "Invalid Phone Number";
+                          }
+
+                          else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              phonenum.selection;
+                          phonenum.text = value;
+                          phonenum.selection =
+                              previousSelection;
+//
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Monthly Pension',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Monthly Pension----------------------------//
+                        keyboardType: TextInputType.number,
+                        controller: pension,
+                        validator: (value) {
+                          // if (value == null || value.isEmpty) {
+                          //   return "Monthly Required";
+                          // }
+                          // if (value.length >11 || value.length <11) {
+                          //   return "Invalid Phone Number";
+                          // }
+                          //
+                          // else {
+                          //   return null;
+                          // }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              pension.selection;
+                          pension.text = value;
+                          pension.selection =
+                              previousSelection;
+//
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Salary',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Salary----------------------------//
+                        keyboardType: TextInputType.number,
+                        controller: salary,
+                        validator: (value) {
+                          // if (value == null || value.isEmpty) {
+                          //   return "Monthly Required";
+                          // }
+                          // if (value.length >11 || value.length <11) {
+                          //   return "Invalid Phone Number";
+                          // }
+                          //
+                          // else {
+                          //   return null;
+                          // }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              salary.selection;
+                          salary.text = value;
+                          pension.selection =
+                              previousSelection;
+//
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+
+
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Present Work',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Present Work----------------------------//
+                        controller: work,
+                        validator: (value) {
+                          // if (value == null || value.isEmpty) {
+                          //   return "Monthly Required";
+                          // }
+                          // if (value.length >11 || value.length <11) {
+                          //   return "Invalid Phone Number";
+                          // }
+                          //
+                          // else {
+                          //   return null;
+                          // }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              work.selection;
+                          work.text = value;
+                          work.selection =
+                              previousSelection;
+//
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Valid ID Presented',//--------Valid ID Presented----------------------//
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Container(
+                      height:80,
+
+                      margin: EdgeInsets.only(right:40),
+                      child: DropdownButtonFormField(
+                        hint: Text('Select ID Presented',
+                          style: TextStyle(
+                              fontSize: 15
+                          ) ,), // Not necessary for Option 1
+                        value: selectid.text.isEmpty ? null :selectid.text,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectid.text = newValue!;
+                          });
+                        },
+                        validator: (value){
+                          if (value == null || value.isEmpty){
+                            return 'ID Required';
+                          }
+                          else {
+                            return null;
+                          }
+                        },
+                        items: applicationtype.map((id) {
+                          return DropdownMenuItem(
+                            child: Text(id),
+                            value: id,
+                          );
+                        }).toList(),
+
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+
+                    Text(
+                      'Email',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Email Address txtField-----------------------------//
+                        controller: email,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Email Required";
+                          }
+                          // else if (value.isEmpty ||
+                          //     !value.contains('@gmail.com')) {
+                          //   return "Invalid Email";
+                          // }
+                          else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')) {
+                            return "Invalid Email";
+                          }
+
+                          else {
+                            return null;
+                          }
+                        },
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              email.selection; //----------new
+                          email.text = value;
+                          email.selection = previousSelection; //--------------new
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+
+                  ],
                 ),
 
                 //===========================================I agree to blah blah blah===================//
@@ -761,15 +1427,30 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       ),
                     ),
                     onPressed: () {
-                      _createUser(
-                          firstname.text,
-                          middle.text,
-                          lastname.text,
-                          selectsex.text,
-                          address.text,
-                          email.text,
-                          age.text,
-                          );
+                      // _createUser(
+                      //     selectapptype.text,
+                      //     surname.text,
+                      //     firstname.text,
+                      // middle.text,
+                      // address.text,
+                      // yearsodresidence.text,
+                      // birthplace.text,
+                      // dateofbirth.text,
+                      // selectsex.text,
+                      // nationality.text,
+                      // age.text,
+                      // brgy.text,
+                      // zone.text,
+                      // selectdistrict.text,
+                      // selectid.text,
+                      // status.text,
+                      // phonenum.text
+                      // pension.text
+                      // salary.text
+                      // work.text
+                      // id.text
+                      // email.text,
+                      //     );
 
                     },
                   ),

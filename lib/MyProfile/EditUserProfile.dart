@@ -16,7 +16,7 @@ class _UserProfileState extends State<EditUserProfile> {
 
   TextEditingController _firstNameController = TextEditingController();
   TextEditingController _middleNameController = TextEditingController();
-  TextEditingController _lastNameController = TextEditingController();
+  TextEditingController _surnameController = TextEditingController();
   // TextEditingController _sexController = TextEditingController();
   List<String> sex = ['Male', 'Female'];
   late TextEditingController selectsex;
@@ -106,7 +106,7 @@ class _UserProfileState extends State<EditUserProfile> {
                   return Text('Unknown');
                 }
                 if (streamSnapshot.data != null) {//---------Last Name----------------//
-                  _lastNameController.text = streamSnapshot.data!['Last Name'];
+                  _surnameController.text = streamSnapshot.data!['Last Name'];
                 }
                 else {
                   return Text('Unknown');
@@ -136,7 +136,7 @@ class _UserProfileState extends State<EditUserProfile> {
 
                 // _firstNameController.text = streamSnapshot.data!['First Name'];
                 // _middleNameController.text = streamSnapshot.data!['Middle'];
-                // _lastNameController.text = streamSnapshot.data!['Last Name'];
+                // _surnameController.text = streamSnapshot.data!['Last Name'];
                 // _genderController.text = streamSnapshot.data!['Gender'];
                 // _addressController.text = streamSnapshot.data!['Address'];
                 // _emailController.text = streamSnapshot.data!['email'];
@@ -301,7 +301,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                 height: 10,
                               ),
 
-                              Text( //----------------------Lastname txtField-----------------------------//
+                              Text( //----------------------surname txtField-----------------------------//
                                 'Surname',
                                 style: TextStyle(
                                     fontSize: 15,
@@ -316,7 +316,7 @@ class _UserProfileState extends State<EditUserProfile> {
                               Container(
                                 margin: EdgeInsets.only(bottom: 20),
                                 child: TextFormField(
-                                  controller: _lastNameController,
+                                  controller: _surnameController,
                                   enabled: true,
                                   decoration: InputDecoration(
                                       prefixIcon: Icon(Icons.person),
@@ -509,7 +509,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                     await usersCollection.doc(uid).update({
                                       'First Name': _firstNameController.text,
                                       'Middle': _middleNameController.text,
-                                      'Last Name': _lastNameController.text,
+                                      'Last Name': _surnameController.text,
                                       'Sex': selectsex.text,
                                       'Address': _addressController.text,
                                       'email': _emailController.text,

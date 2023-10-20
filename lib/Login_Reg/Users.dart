@@ -1,7 +1,7 @@
 class Users{
     String? firstname;
     String? middle;
-    String? lastname;
+    String? surname;
     String? sex;
     String? address;
     String? email;
@@ -12,7 +12,7 @@ class Users{
   Users({
     required this.firstname,
     required this.middle,
-    required this.lastname,
+    required this.surname,
     required this.sex,
     required this.address,
     required this.email,
@@ -22,7 +22,7 @@ class Users{
    Users.fromJson(Map<String, dynamic>json){
     firstname = json['firstname'];
     middle = json['middlename'];
-    lastname = json['lastname'];
+    surname = json['surname'];
     sex =json['gender'];
     address = json['address'];
     email = json['email'];
@@ -34,7 +34,7 @@ class Users{
     return {
       "First Name":firstname,
       "Middle":middle,
-      "Last Name":lastname,
+      "Last Name":surname,
       "Sex": sex,
       "Address":address,
       "email":email,
