@@ -2,6 +2,9 @@ import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
 import 'package:flutter/material.dart';
 
+
+//-------------Splash screen to Homepage if the user is currently logged in--------------------//
+
 class SplashScreenToMainScreen extends StatefulWidget {
   @override
   _SplashScreenToMainScreenState createState() => _SplashScreenToMainScreenState();
