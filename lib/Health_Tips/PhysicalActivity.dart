@@ -38,7 +38,7 @@ class PhysicalActContent extends StatelessWidget {
           title: Container(
             margin: EdgeInsets.only(left:50,right:50),
             child: Image.asset(
-                'assets/images/elderly_squire_logo_classic_icon.png',
+                'assets/images/weights_new.png',
                 height: 40,
                 width: 125),
           ),
@@ -46,14 +46,14 @@ class PhysicalActContent extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 5390,
+            height: 5600,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
               elevation: 1,
               child: Column(
                 children: <Widget>[
-                  Container(//----------------Healthy Eating-----------------------------//
+                  Container(//----------------Physical Activity----------------------------//
                     margin: EdgeInsets.only(left: 20, top: 20),
                     child: Text(
                       "\nPhysical Activity\n",
@@ -376,7 +376,7 @@ class PhysicalActContent extends StatelessWidget {
                   ),
 
                   Container(
-                    margin: EdgeInsets.only(top:20,right:150),
+                    margin: EdgeInsets.only(left:15, top:20,right:145),
                     child: Text(
                       "Being good to yourself",
                       style: TextStyle(
@@ -418,7 +418,7 @@ class PhysicalActContent extends StatelessWidget {
                     child: Text(
                       "- Stay in touch with family, friends, or former coworkers to stay engaged and to keep your spirits up."
                           "- See your health care professional regularly and share any concerns. \n\n"
-                          "- Get enough sleep."
+                          "- Get enough sleep.\n\n"
                           "- Join a walking group or another social group.\n\n"
                           "- If you are retired, pursue a new hobby or volunteer to help keep you active and social.\n\n"
                           "- Surround yourself with people you enjoy.",
@@ -471,10 +471,7 @@ class PhysicalActContent extends StatelessWidget {
                     child: Text(
                       "- The dishes I always liked the most just don't taste the same as they used to.\n\n"
                           "- Now that I live alone, it's too much trouble to cook for one. \n\n"
-                          "- Get enough sleep.\n\n"
-                          "- Join a walking group or another social group.\n\n"
-                          "- If you are retired, pursue a new hobby or volunteer to help keep you active and social.\n\n"
-                          "- Surround yourself with people you enjoy.",
+                          "- I don't feel like going to the store because I might slip and fall.\n\n",
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: ('OpenSans'),
@@ -482,76 +479,69 @@ class PhysicalActContent extends StatelessWidget {
                     ),
                   ),
 
-                  Container(
-                    //-----------------------------------------------------------------------------------------------back Next
+                  Container(//------------------Back Next (New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
 
-                    margin: EdgeInsets.only(top: 50,left:50, right: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 15,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthTipsMenu()),
-                            );
-                          },
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.blue,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Next",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PhysicalActContentp2()),
-                            );
-                          },
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Next",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
                         ),
-                      ],
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> PhysicalActContentp2()));
+                      },
+                    ),
+                  ),
+
+                  SizedBox(height: 17),
+
+                  Container(//------------------Back Next------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.redAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthTipsMenu()));
+                      },
                     ),
                   ),
                 ],
@@ -646,7 +636,11 @@ class PhysicalActContentp2 extends StatelessWidget {
                     child: Text(
                       "- find it hard to chew or swallow or have trouble with your dentures\n\n"
                           "- think your medicines make food taste bad or affect your appetite \n\n"
-                          "- think you may need a daily vitamin\n\n",
+                          "- think you may need a daily vitamin\n\n"
+                          "- have less interest in eating after the death of a loved one or other life event\n\n"
+                          "- have fears about being active or going outdoors\n\n"
+                          "- have limited funds to shop for food\n\n"
+                      ,
                       style: TextStyle(
                         fontSize: 15,
                         fontFamily: ('OpenSans'),
@@ -655,43 +649,38 @@ class PhysicalActContentp2 extends StatelessWidget {
                   ),
 
                   //-----------------------------------------------------------------------------------------------back Next
-                  Container(
-                    margin: EdgeInsets.only(top: 50,left:50, right: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 15,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PhysicalActContent()),
-                            );
-                          },
+
+
+                  SizedBox(height: 17),
+                  Container(//------------------Back Next------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.redAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                      ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> PhysicalActContent()));
+                      },
                     ),
                   ),
 

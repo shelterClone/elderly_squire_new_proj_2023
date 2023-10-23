@@ -38,7 +38,7 @@ class HealthWeightContent extends StatelessWidget {
           title: Container(
             margin: EdgeInsets.only(left:50,right:50),
             child: Image.asset(
-                'assets/images/elderly_squire_logo_classic_icon.png',
+                'assets/images/weight-scale.png',
                 height: 40,
                 width: 125),
           ),
@@ -46,7 +46,8 @@ class HealthWeightContent extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 2445,
+            // height: 2445,
+            height: 2500,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
@@ -221,48 +222,82 @@ class HealthWeightContent extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    //-----------------------------------------------------------------------------------------------back Next
 
-                    margin: EdgeInsets.only(top: 5,left:50, right: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
+                  // Container(
+                  //   //-----------------------------------------------------------------------------------------------back Next
+                  //
+                  //   margin: EdgeInsets.only(top: 5,left:50, right: 50),
+                  //   child: Column(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //     children: <Widget>[
+                  //
+                  //       ElevatedButton(
+                  //         style: ElevatedButton.styleFrom(
+                  //           primary: Colors.redAccent,
+                  //           onPrimary: Colors.white,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(10.0),
+                  //           ),
+                  //         ),
+                  //         child: Row(
+                  //           children: <Widget>[
+                  //             Icon(
+                  //               Icons.arrow_back_ios,
+                  //               size: 15,
+                  //             ),
+                  //             Text(
+                  //               "Back",
+                  //               style: TextStyle(
+                  //                   fontSize: 15,
+                  //                   fontFamily: ('OpenSans'),
+                  //                   fontWeight: FontWeight.bold),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         onPressed: () {
+                  //           Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //                 builder: (context) => HealthTipsMenu()),
+                  //           );
+                  //         },
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
 
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 15,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthTipsMenu()),
-                            );
-                          },
+                  Container(//------------------Back (New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.redAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                      ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthTipsMenu()));
+                      },
                     ),
                   ),
+
 
                 ],
               ),

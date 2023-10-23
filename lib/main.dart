@@ -148,7 +148,6 @@ class HomeScreen extends StatelessWidget {
 
               Column(
                 children: <Widget>[
-                  // the login button
                   Container(//---------------------------------------------Login--------------------------//
                     height: 60,
                     width: 330,

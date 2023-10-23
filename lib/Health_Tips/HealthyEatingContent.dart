@@ -36,7 +36,7 @@ class HealthyEatingContent extends StatelessWidget {
           title: Container(
             margin: EdgeInsets.only(left:50,right:50),
             child: Image.asset(
-                'assets/images/elderly_squire_logo_classic_icon.png',
+                'assets/images/diet.png',
                 height: 40,
                 width: 125),
           ),
@@ -45,7 +45,7 @@ class HealthyEatingContent extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Container(
             // height: 5200,
-            height: 5300,
+            height: 5400,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
@@ -71,7 +71,7 @@ class HealthyEatingContent extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                    margin: EdgeInsets.only(left: 20,right: 20,top: 20, bottom: 20),
                     child: Text(
                       "What kinds of foods and drinks do I need to consume as I age?",
                       style: TextStyle(
@@ -176,6 +176,7 @@ class HealthyEatingContent extends StatelessWidget {
                       ),
                     ),
                   ),
+
                   Container(
                     margin: EdgeInsets.only(
                         left: 20, top: 20, bottom: 20, right: 20),
@@ -438,80 +439,183 @@ class HealthyEatingContent extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    //-----------------------------------------------------------------------------------------------back Next
 
-                    margin: EdgeInsets.only(top: 5,left:50, right: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
 
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 15,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthTipsMenu()),
-                            );
-                          },
+
+                  // Container(
+                  //   //-----------------------------------------------------------------------------------------------back Next
+                  //
+                  //   margin: EdgeInsets.only(top: 5,left:50, right: 50),
+                  //   child: Column(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //     children: <Widget>[
+                  //
+                  //       ElevatedButton(
+                  //         style: ElevatedButton.styleFrom(
+                  //           primary: Colors.redAccent,
+                  //           onPrimary: Colors.white,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(10.0),
+                  //           ),
+                  //         ),
+                  //         child: Row(
+                  //           children: <Widget>[
+                  //             Icon(
+                  //               Icons.arrow_back_ios,
+                  //               size: 15,
+                  //             ),
+                  //             Text(
+                  //               "Back",
+                  //               style: TextStyle(
+                  //                   fontSize: 15,
+                  //                   fontFamily: ('OpenSans'),
+                  //                   fontWeight: FontWeight.bold),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         onPressed: () {
+                  //           Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //                 builder: (context) => HealthTipsMenu()),
+                  //           );
+                  //         },
+                  //       ),
+                  //       ElevatedButton(
+                  //         style: ElevatedButton.styleFrom(
+                  //           primary: Colors.blue,
+                  //           onPrimary: Colors.white,
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(10.0),
+                  //           ),
+                  //         ),
+                  //         child: Row(
+                  //           children: [
+                  //             Text(
+                  //               "Next",
+                  //               style: TextStyle(
+                  //                   fontSize: 15,
+                  //                   fontFamily: ('OpenSans'),
+                  //                   fontWeight: FontWeight.bold),
+                  //             ),
+                  //             Icon(
+                  //               Icons.arrow_forward_ios,
+                  //               size: 15,
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         onPressed: () {
+                  //           Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //                 builder: (context) => HealthyEatingContentP2()),
+                  //           );
+                  //         },
+                  //       ),
+                  //
+                  //     ],
+                  //   ),
+                  // ),
+
+//                   Container(//------------------Back Next------------------------//
+//                     height: 60,
+//                     width: 230,
+//                     // height: 50,
+//                     // width: 280,
+//
+//                     // margin: EdgeInsets.only(bottom: 15),
+//                     child: ElevatedButton(
+//                       style: ElevatedButton.styleFrom(
+//                         elevation: 2,
+//                         primary: Colors.redAccent,
+//                         onPrimary: Colors.white,
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(10.0),
+//                         ),
+//                       ),
+//                       child: Center(
+//                         child: Text(
+//                           "Login",
+//                           style: TextStyle(
+//                               fontSize: 18,
+//                               fontFamily: ('OpenSans'),
+//                               fontWeight: FontWeight.w600),
+//                         ),
+//                       ),
+//                       onPressed: (){
+// //                        _UserLogin(myEmail.text, password.text);
+//                         Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthTipsMenu()));
+//                       },
+//                     ),
+//                   ),
+
+                SizedBox(height: 30),
+                  Container(//------------------Next (New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.blue,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Next",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthyEatingContentP2()),
-                            );
-                          },
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Next",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
                         ),
-
-                      ],
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthyEatingContentP2()));
+                      },
                     ),
                   ),
+
+                  SizedBox(height: 17),
+
+                  Container(//------------------Back (New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.redAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthTipsMenu()));
+                      },
+                    ),
+                  ),
+
 
 
 
@@ -573,7 +677,7 @@ class HealthyEatingContentP2 extends StatelessWidget {
           title: Container(
             margin: EdgeInsets.only(left:50,right:50),
             child: Image.asset(
-                'assets/images/elderly_squire_logo_classic_icon.png',
+                'assets/images/diet.png',
                 height: 40,
                 width: 125),
           ),
@@ -581,7 +685,8 @@ class HealthyEatingContentP2 extends StatelessWidget {
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Container(
-            height: 5500,
+            // height: 6500,
+            height: 5530,
             width: 1000,
             child: Card(
               margin: EdgeInsets.all(20),
@@ -1061,86 +1166,77 @@ class HealthyEatingContentP2 extends StatelessWidget {
                       ),
                     ),
                   ),
+                  SizedBox(height: 30),
 
+                  Container(//------------------Back Next (New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
 
-
-
-
-
-
-                  Container(
-                    //-----------------------------------------------------------------------------------------------back Next
-
-                    margin: EdgeInsets.only(top: 50,left:50, right: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 15,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthyEatingContent()),
-                            );
-                          },
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.blue,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Next",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthyEatingContentP3()),
-                            );
-                          },
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Next",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
                         ),
-
-                      ],
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthyEatingContentP3()));
+                      },
                     ),
                   ),
+
+                  SizedBox(height: 17),
+
+                  Container(//------------------Back Next------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.redAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthyEatingContent()));
+                      },
+                    ),
+                  ),
+
+
+
+
 
 
 
@@ -1181,7 +1277,7 @@ class HealthyEatingContentP3  extends StatelessWidget {
           title: Container(
             margin: EdgeInsets.only(left:50,right:50),
             child: Image.asset(
-                'assets/images/elderly_squire_logo_classic_icon.png',
+                'assets/images/diet.png',
                 height: 40,
                 width: 125),
           ),
@@ -1684,78 +1780,71 @@ class HealthyEatingContentP3  extends StatelessWidget {
                     ),
                   ),
 
+                  SizedBox(height: 30),
 
-                  Container(
-                    //-----------------------------------------------------------------------------------------------back Next
+                  Container(//------------------Back Next (New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
 
-                    margin: EdgeInsets.only(top: 50,left:50, right: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 15,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthyEatingContentP2()),
-                            );
-                          },
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.blue,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: [
-                              Text(
-                                "Next",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Icon(
-                                Icons.arrow_forward_ios,
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthyEatingContentP4()),
-                            );
-                          },
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Next",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
                         ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthyEatingContentP4()));
+                      },
+                    ),
+                  ),
 
-                      ],
+                  SizedBox(height: 17),
+
+                  Container(//------------------Back Next(New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
+
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.redAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthyEatingContentP2()));
+                      },
                     ),
                   ),
 
@@ -1797,7 +1886,7 @@ class HealthyEatingContentP4  extends StatelessWidget {
           title: Container(
             margin: EdgeInsets.only(left:50,right:50),
             child: Image.asset(
-                'assets/images/elderly_squire_logo_classic_icon.png',
+                'assets/images/diet.png',
                 height: 40,
                 width: 125),
           ),
@@ -2216,74 +2305,45 @@ class HealthyEatingContentP4  extends StatelessWidget {
                     ),
                   ),
 
+                  SizedBox(height: 17),
 
+                  Container(//------------------Back (New)------------------------//
+                    height: 55,
+                    width: 250,
+                    // height: 50,
+                    // width: 280,
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                  Container(
-                    //-----------------------------------------------------------------------------------------------back Next
-
-                    margin: EdgeInsets.only(top: 50,left:50, right: 50),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.redAccent,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(
-                                Icons.arrow_back_ios,
-                                size: 15,
-                              ),
-                              Text(
-                                "Back",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontFamily: ('OpenSans'),
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HealthyEatingContentP3()),
-                            );
-                          },
+                    // margin: EdgeInsets.only(bottom: 15),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 2,
+                        primary: Colors.redAccent,
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
                         ),
-
-
-                      ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: ('OpenSans'),
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      onPressed: (){
+//                        _UserLogin(myEmail.text, password.text);
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> HealthyEatingContentP3()));
+                      },
                     ),
                   ),
+
+
+
+
+
+
 
 
 
