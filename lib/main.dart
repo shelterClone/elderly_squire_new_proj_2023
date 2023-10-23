@@ -55,7 +55,10 @@ class _MyAppState extends State<MyApp> {
     //
     //    home: SplashScreen(),
     //  ),);
-    return MultiProvider(providers: [
+    return MultiProvider(
+      providers: [
+        Provider<GlobalBloc>.value
+          (value: globalBloc),
       Provider<AuthenticationProvider>(
         create: (_) => AuthenticationProvider(FirebaseAuth.instance),
       ),
