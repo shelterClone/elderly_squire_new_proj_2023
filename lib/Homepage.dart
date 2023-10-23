@@ -14,11 +14,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
+
+
+
+
   @override
   _HomepageState createState() => _HomepageState();
 }
 
 class _HomepageState extends State<Homepage> {
+
   final FirebaseAuth _auth = FirebaseAuth.instance;
   User? _user = FirebaseAuth.instance.currentUser;
 
@@ -27,6 +32,16 @@ class _HomepageState extends State<Homepage> {
 
   User? _displayemail;
   User? _displayfirstName;
+
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+          (route) => false,
+    );
+
+  }
 
   @override
   void initState() {
@@ -234,16 +249,14 @@ class _HomepageState extends State<Homepage> {
                                         ),
                                        TextButton(
                                           child: Text('Logout'),
-                                          onPressed: () {
-                                            // Perform the logout action here.
-                                            // Clear user session or credentials.
+                                          onPressed: () async{
+                                                logout();
+                                            // Navigator.pushAndRemoveUntil(
+                                            //   context,
+                                            //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                                            //       (route) => false,
+                                            // );
 
-                                            // After logging out, navigate to the HomeScreen.
-                                            Navigator.pushAndRemoveUntil(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => HomeScreen()),
-                                                  (route) => false,
-                                            );
                                           },
                                         ),
                                       ],
@@ -946,3 +959,5 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
+
+
