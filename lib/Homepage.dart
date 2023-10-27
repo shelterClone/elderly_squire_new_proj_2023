@@ -35,10 +35,11 @@ class _HomepageState extends State<Homepage> {
 
   void logout() async {
     await FirebaseAuth.instance.signOut();
-    Navigator.pushAndRemoveUntil(
+    Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => HomeScreen()),
-          (route) => false,
+          // (route) => false,
+
     );
 
   }
@@ -250,7 +251,9 @@ class _HomepageState extends State<Homepage> {
                                        TextButton(
                                           child: Text('Logout'),
                                           onPressed: () async{
-                                                logout();
+                                            Navigator.of(context).pop();
+                                            logout();
+
                                             // Navigator.pushAndRemoveUntil(
                                             //   context,
                                             //   MaterialPageRoute(builder: (context) => HomeScreen()),

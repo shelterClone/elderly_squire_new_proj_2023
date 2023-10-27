@@ -56,6 +56,7 @@ dependencies:
   flutter_map: ^2.2.0
   flutter_tawk: ^0.1.0 #chat support
   flutter_lints: ^2.0.0 #chat support
+
 #  timezone: ^0.8.0
 
 #  google_sign_in: ^5.2.1
@@ -162,6 +163,7 @@ flutter:
    - assets/images/health_consult.png
    - assets/images/fb_logo.png
    - assets/images/google_logo.png
+   - assets/images/check_icon.png
 
 
 

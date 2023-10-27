@@ -14,10 +14,10 @@ class _SplashScreenToHomepageState extends State<SplashScreenToHomepage> {
   @override
   void initState() {
     super.initState();
-    navigateToMainScreen();
+    navigateToHomepage();
   }
 
-  void navigateToMainScreen() {
+  void navigateToHomepage() {
     Future.delayed(Duration(seconds: 3), () {
 
       Navigator.pushReplacement(

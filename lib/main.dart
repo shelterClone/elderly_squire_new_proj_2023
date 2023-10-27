@@ -9,21 +9,30 @@ import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Register.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/authenticate.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/authentication.dart';
+import 'package:elderly_squire_2023_remastered_v2/OnBoarding%20page/authenticateOnboard.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todo_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Medicine Reminder/global_bloc.dart';
+import 'package:flutter/services.dart';
+
+int? initScreen;
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
   Provider.debugCheckInvalidValueType = null;
-//  final sharedPreferences = await SharedPreferences.getInstance();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  initScreen = await prefs.getInt("initScreen");
+  await prefs.setInt("initScreen", 1);
+  print('initScreen ${initScreen}');
 
   runApp(MyApp());
 }
@@ -51,7 +60,7 @@ class _MyAppState extends State<MyApp> {
     // return Provider<GlobalBloc>.value(
     // value: globalBloc,
     //  child: MaterialApp(
-    //    debugShowCheckedModeBanner: false,
+
     //
     //    home: SplashScreen(),
     //  ),);
@@ -65,14 +74,24 @@ class _MyAppState extends State<MyApp> {
       StreamProvider(
         create: (context) => context.read<AuthenticationProvider>().authState,
         initialData: null,
-      )
+      ),
     ],
     child: MaterialApp(
-      home: Authenticate(),
-      // home: SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      initialRoute:
+      initScreen == 0 || initScreen == null ?
+      "first" : "/",
+      routes: {
+        '/': (context) => Authenticate(
+        ),
+        "first": (context) => AuthenticateOnboard(),
 
-    )
-      ,);
+
+      },
+      // home: Authenticate(),
+      // home: SplashScreen(),
+    ),
+    );
   }
 }
 
@@ -87,7 +106,6 @@ class HomeScreen extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
           child: Column(
-            // even space distribution
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
