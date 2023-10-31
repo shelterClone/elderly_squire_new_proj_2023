@@ -10,7 +10,8 @@ class OnBoard {
 
 final List<OnBoard> demoData = [
   OnBoard(
-    image: "assets/images/elderly_squire_logo_classic_icon.png",
+    // image: "assets/images/elderly_squire_logo_classic_icon.png",
+    image: "assets/images/book.png",
     title: "Getting Started",
     description: "Elderly squire is a mobile application intended mostly for Senior Citizens. "
         "With its awesome features it guarantees the reliability that you ever needed."
@@ -32,7 +33,7 @@ final List<OnBoard> demoData = [
     image: "assets/images/todolist.png",
     title: "To Do List",
     description:
-    "You can now make your own list of To Dos, to reminder yourself and set your priorities",
+    "You can now make your own list of To Dos, to reminder yourself and set your priorities.",
   ),
 
   OnBoard(

@@ -1,6 +1,6 @@
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Uploader2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/ImageUploader.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/pdf_uploader_screen.dart';
+// import 'package:elderly_squire_2023_remastered_v2/Login_Reg/pdf_uploader_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import'package:intl/intl.dart';

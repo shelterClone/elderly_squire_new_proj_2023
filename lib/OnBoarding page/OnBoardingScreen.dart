@@ -160,8 +160,8 @@ class OnBoardContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // SizedBox(height:200),
-        SizedBox(height:140),
+        SizedBox(height:200),
+        // SizedBox(height:140),
         Container(
           height: 110,
           width: 110,

@@ -1,4 +1,5 @@
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
+import 'package:elderly_squire_2023_remastered_v2/Login_Reg/RegSuccess.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/SelectGender.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Users.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/db_service.dart';
@@ -77,32 +78,35 @@ class RegistrationPageState extends State<RegistrationPage> {
         )
         );
         print("User: $userCredential");
-        return showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Success"),
-                content: SingleChildScrollView(
-                    child: ListBody(
-                      children: <Widget>[
-                        Text("You are now offically registered!"),
-                      ],
-                    )),
-                actions: <Widget>[
-                  TextButton(
-                    child: Text("Close"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Homepage()),
-                      );
-                    },
-                  )
-                ],
-              );
-            });
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> RegSuccess()));
+
+
+        // return showDialog(
+        //     context: context,
+        //     barrierDismissible: false,
+        //     builder: (BuildContext context) {
+        //       return AlertDialog(
+        //         title: Text("Success"),
+        //         content: SingleChildScrollView(
+        //             child: ListBody(
+        //               children: <Widget>[
+        //                 Text("You are now offically registered!"),
+        //               ],
+        //             )),
+        //         actions: <Widget>[
+        //           TextButton(
+        //             child: Text("Close"),
+        //             onPressed: () {
+        //               Navigator.of(context).pop();
+        //               Navigator.push(
+        //                 context,
+        //                 MaterialPageRoute(builder: (context) => Homepage()),
+        //               );
+        //             },
+        //           )
+        //         ],
+        //       );
+        //     });
       } on FirebaseAuthException catch (e) {
         // print("Error: $e");
 

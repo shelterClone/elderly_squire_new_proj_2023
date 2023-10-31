@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/MyProfile/ChangesSaved.dart';
 import 'package:elderly_squire_2023_remastered_v2/MyProfile/UserProfile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -516,32 +517,34 @@ class _UserProfileState extends State<EditUserProfile> {
                                     }
 
                                     );
-                                    return showDialog(
-                                        context: context,
-                                        barrierDismissible: false,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text("Success"),
-                                            content: SingleChildScrollView(
-                                                child: ListBody(
-                                                  children: <Widget>[
-                                                    Text("Save successfully"),
-                                                  ],
-                                                )),
-                                            actions: <Widget>[
-                                              TextButton(
-                                                child: Text("Close"),
-                                                onPressed: () {
-                                                  // Navigator.of(context).pop();
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(builder: (context) => UserProfile()),
-                                                  );
-                                                },
-                                              )
-                                            ],
-                                          );
-                                        });
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ChangesSaved()));
+
+                                    // return showDialog(
+                                    //     context: context,
+                                    //     barrierDismissible: false,
+                                    //     builder: (BuildContext context) {
+                                    //       return AlertDialog(
+                                    //         title: Text("Success"),
+                                    //         content: SingleChildScrollView(
+                                    //             child: ListBody(
+                                    //               children: <Widget>[
+                                    //                 Text("Save successfully"),
+                                    //               ],
+                                    //             )),
+                                    //         actions: <Widget>[
+                                    //           TextButton(
+                                    //             child: Text("Close"),
+                                    //             onPressed: () {
+                                    //               // Navigator.of(context).pop();
+                                    //               Navigator.push(
+                                    //                 context,
+                                    //                 MaterialPageRoute(builder: (context) => UserProfile()),
+                                    //               );
+                                    //             },
+                                    //           )
+                                    //         ],
+                                    //       );
+                                    //     });
                                   }
 
                                 ),
