@@ -11,9 +11,9 @@
 
     <application
 
-        android:label="elderly_squire_2023_remastered_v2"
+        android:label="Elderly Squire"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
