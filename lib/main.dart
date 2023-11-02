@@ -263,59 +263,59 @@ class HomeScreen extends StatelessWidget {
 
                   //----------------------------------------OR--------------------------//
 
-                  Center(
-                    child: Row(children: <Widget>[
-                      Expanded(
-                          child: Container(
-                        margin: EdgeInsets.only(left: 30, right: 10),
-                        child: Divider(
-                          color: Colors.black54,
-                        ),
-                      )),
-                      Text(
-                        "or",
-                        style: TextStyle(
-                          color: Colors.black54,
-                        ),
-                      ),
-                      Expanded(
-                          child: Container(
-                        margin: EdgeInsets.only(left: 10, right: 30),
-                        child: Divider(
-                          color: Colors.black54,
-                        ),
-                      )),
-                    ]),
-                  ),
-
-                  SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 13),
-                        child: GestureDetector(
-                          child: Image.asset(
-                            'assets/images/google_logo.png',
-                            height: 40,
-                            width: 40,
-                          ),
-                          onTap: () {
-                            // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
-                            // signInWithGoogle();
-                          },
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 13),
-                        child: Image.asset(
-                          'assets/images/fb_logo.png',
-                          height: 40,
-                          width: 40,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Center(
+                  //   child: Row(children: <Widget>[
+                  //     Expanded(
+                  //         child: Container(
+                  //       margin: EdgeInsets.only(left: 30, right: 10),
+                  //       child: Divider(
+                  //         color: Colors.black54,
+                  //       ),
+                  //     )),
+                  //     Text(
+                  //       "or",
+                  //       style: TextStyle(
+                  //         color: Colors.black54,
+                  //       ),
+                  //     ),
+                  //     Expanded(
+                  //         child: Container(
+                  //       margin: EdgeInsets.only(left: 10, right: 30),
+                  //       child: Divider(
+                  //         color: Colors.black54,
+                  //       ),
+                  //     )),
+                  //   ]),
+                  // ),
+                  //
+                  // SizedBox(height: 20),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Container(
+                  //       padding: EdgeInsets.symmetric(horizontal: 13),
+                  //       child: GestureDetector(
+                  //         child: Image.asset(
+                  //           'assets/images/google_logo.png',
+                  //           height: 40,
+                  //           width: 40,
+                  //         ),
+                  //         onTap: () {
+                  //           // Navigator.push(context, MaterialPageRoute(builder: (context)=> SignInPage()));
+                  //           // signInWithGoogle();
+                  //         },
+                  //       ),
+                  //     ),
+                  //     Container(
+                  //       padding: EdgeInsets.symmetric(horizontal: 13),
+                  //       child: Image.asset(
+                  //         'assets/images/fb_logo.png',
+                  //         height: 40,
+                  //         width: 40,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
 
                   Container(
                     margin: EdgeInsets.only(top: 35),
