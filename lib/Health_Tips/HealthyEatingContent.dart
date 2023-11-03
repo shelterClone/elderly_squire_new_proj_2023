@@ -879,9 +879,9 @@ class HealthyEatingContentP2 extends StatelessWidget {
                     margin: EdgeInsets.only(
                         left: 20, top: 20, bottom: 20, right: 20),
                     child: Text(
-                      "If your favorite recipe calls for frying fish or breaded chicken, try healthier"
+                      "If your favorite newslist calls for frying fish or breaded chicken, try healthier"
                           " variations by baking or grilling. Maybe even try dry beans in place of meats."
-                          " Ask friends and search the internet and magazines for recipes with fewer"
+                          " Ask friends and search the internet and magazines for newslist with fewer"
                           " calories ― you might be surprised to find you have a new favorite dish!",
                       style: TextStyle(
                         fontSize: 15,
@@ -941,7 +941,7 @@ class HealthyEatingContentP2 extends StatelessWidget {
                       "- Eat them less often. If you normally eat these foods every day, cut back to once a week or once a month.\n\n"
                       "- Eat smaller amounts. If your favorite higher-calorie food is a chocolate bar, have a smaller size or only half a bar.\n\n"
                       "- Try a lower-calorie version. Use lower-calorie ingredients or prepare food differently. "
-                      "For example, if your macaroni and cheese recipe includes whole milk, butter,"
+                      "For example, if your macaroni and cheese newslist includes whole milk, butter,"
                       " and full-fat cheese, try remaking it with non-fat milk, less butter, "
                       "low-fat cheese, fresh spinach and tomatoes. Just remember to not increase"
                       " your portion size.\n\n",
@@ -1738,7 +1738,7 @@ class HealthyEatingContentP3  extends StatelessWidget {
                       "- Many casseroles and meat sauces use cream soups as a base. Use a low-fat cream soup.\n\n"
                         "Substitute a low-fat cheese in casseroles and vegetable sauces. When using sharply "
                           "flavored cheese, such as cheddar and parmesan, you can usually reduce the amount in "
-                          "a recipe to save calories without sacrificing flavor.\n\n"
+                          "a newslist to save calories without sacrificing flavor.\n\n"
                     "- Try a non-stick cooking spray or a small amount of cooking oil for sautéing instead of "
                           "frying with solid fat.\n\n"
                     "- If you’re using ground beef for tacos or meat sauce for spaghetti, look for a lower-fat "
@@ -1752,9 +1752,9 @@ class HealthyEatingContentP3  extends StatelessWidget {
                           "cheese sauces as these ingredients can add calories. You can steam these"
                           " vegetables quickly in the microwave.\n\n"
                     "- In some soups and entrees, you may also be able to add dry beans to extend the"
-                          " recipe and improve the nutritional value. This is easy to do in vegetable"
+                          " newslist and improve the nutritional value. This is easy to do in vegetable"
                           "-based soups and chili. You can just add a cup of canned white beans, "
-                          "kidney beans, or pinto beans to the recipe. As another example, if you are"
+                          "kidney beans, or pinto beans to the newslist. As another example, if you are"
                           " making enchiladas, rinse a can of black beans and add these to the ground meat.",
                       style: TextStyle(
                         fontSize: 15,

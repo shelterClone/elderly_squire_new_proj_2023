@@ -1,4 +1,5 @@
 import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/News/NewsHome.dart';
 import 'package:flutter/material.dart';
 
 
@@ -22,7 +23,7 @@ class _SplashScreenToHomepageState extends State<SplashScreenToHomepage> {
 
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => NewsHome()),
       );
     });
   }
