@@ -20,7 +20,8 @@ class _UserProfileState extends State<EditUserProfile> {
   TextEditingController _surnameController = TextEditingController();
   // TextEditingController _sexController = TextEditingController();
   List<String> sex = ['Male', 'Female'];
-  late TextEditingController selectsex;
+  TextEditingController selectsex = TextEditingController();
+  //---late sexcontroller
   TextEditingController _addressController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
 
@@ -41,7 +42,8 @@ class _UserProfileState extends State<EditUserProfile> {
   // get email => null;
 
   void initState() {
-    selectsex = TextEditingController();
+
+    // selectsex = TextEditingController();
     _getUserInfo();
 
     super.initState();
@@ -112,6 +114,7 @@ class _UserProfileState extends State<EditUserProfile> {
                 else {
                   return Text('Unknown');
                 }
+
 
 
                 // if (streamSnapshot.data != null) {//---------Sex----------------//

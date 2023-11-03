@@ -1,4 +1,5 @@
 import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/MyProfile/UserProfile.dart';
 import'package:flutter/material.dart';
 
 class ChangesSaved extends StatelessWidget {
@@ -70,7 +71,7 @@ class ChangesSaved extends StatelessWidget {
                       ),
                     ),
                     onPressed: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Homepage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> UserProfile()));
 
                     },
 
