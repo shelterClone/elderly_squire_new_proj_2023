@@ -325,7 +325,8 @@ class _NewsHomeState extends State<NewsHome> {
                             style: TextStyle(
                               // fontWeight: FontWeight.w600,
                               fontSize: 23,
-                              fontFamily: ('OpenSans'),
+                              // fontFamily: ('OpenSans'),
+                              fontFamily: ('BebasNeue'),
                             ),
                           ),
                         ),

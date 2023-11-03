@@ -3,7 +3,7 @@ import 'package:elderly_squire_2023_remastered_v2/main.dart';
 import 'package:flutter/material.dart';
 
 
-//-------------Splash screen to Homepage if the user is currently logged in--------------------//
+//-------------Splash screen to Home Screen if the user is not signed in--------------------//
 
 class SplashScreenToMainScreen extends StatefulWidget {
   @override

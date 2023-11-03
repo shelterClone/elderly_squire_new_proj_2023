@@ -1,4 +1,5 @@
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
+import 'package:elderly_squire_2023_remastered_v2/News/NewsHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class LoginPage2 extends StatefulWidget {
               .signInWithEmailAndPassword(email: myEmail, password: password );
           print("User: $userCredential");
 
-          await Navigator.push(context, MaterialPageRoute(builder: (context)=>Homepage()
+          await Navigator.push(context, MaterialPageRoute(builder: (context)=>NewsHome()
           ),
           );
 
