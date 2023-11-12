@@ -1252,7 +1252,8 @@ class  ID_Reg2State extends State< ID_Reg2> {
                             return null;
                           }
                         },
-                        items: applicationtype.map((id) {
+                        // items: applicationtype.map((id) {
+                         items: id.map((id) {
                           return DropdownMenuItem(
                             child: Text(id),
                             value: id,
