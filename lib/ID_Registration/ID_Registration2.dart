@@ -2,12 +2,15 @@ import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/SelectGender.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Users.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/db_service.dart';
+import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/SelectGender.dart';
 import 'dart:core';
+import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel.dart';
+import 'package:elderly_squire_2023_remastered_v2/dbHelper/mongoDb.dart';
 
 class ID_Reg2 extends StatefulWidget {
   get user => null;
@@ -15,25 +18,25 @@ class ID_Reg2 extends StatefulWidget {
   // var user;
 
   @override
-  ID_Reg2State createState() =>  ID_Reg2State();
+  ID_Reg2State createState() => ID_Reg2State();
 }
 
-class  ID_Reg2State extends State< ID_Reg2> {
-
-
+class ID_Reg2State extends State<ID_Reg2> {
   RegExp numReg = RegExp(r".*[0-9].*");
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
   RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
 
-
-
-  List<String> applicationtype = ['New Senior(Voter)', 'New Senior(Non-Voter)', 'Old Senior'];
+  List<String> applicationtype = [
+    'New Senior(Voter)',
+    'New Senior(Non-Voter)',
+    'Old Senior'
+  ];
   late TextEditingController selectapptype;
 
   TextEditingController surname = TextEditingController();
 
   TextEditingController firstname = TextEditingController();
-  
+
   TextEditingController middle = TextEditingController();
 
   TextEditingController address = TextEditingController();
@@ -44,7 +47,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
 
   TextEditingController dateofbirth = TextEditingController();
 
-  List<String> sex = ['Male','Female'];
+  List<String> sex = ['Male', 'Female'];
   late TextEditingController selectsex;
 
   TextEditingController nationality = TextEditingController();
@@ -55,10 +58,17 @@ class  ID_Reg2State extends State< ID_Reg2> {
 
   TextEditingController zone = TextEditingController();
 
-  List<String> district = ['District 1','District 2','District 3','District 4','District 5','District 6'];
+  List<String> district = [
+    'District 1',
+    'District 2',
+    'District 3',
+    'District 4',
+    'District 5',
+    'District 6'
+  ];
   late TextEditingController selectdistrict;
 
-  TextEditingController status= TextEditingController();
+  TextEditingController status = TextEditingController();
 
   TextEditingController phonenum = TextEditingController();
 
@@ -68,7 +78,15 @@ class  ID_Reg2State extends State< ID_Reg2> {
 
   TextEditingController work = TextEditingController();
 
-  List<String> id = ['Passport ID','Voter\'s ID','SSS ID','Umid ID','Police Clearance','NBI Clearance','National ID'];
+  List<String> id = [
+    'Passport ID',
+    'Voter\'s ID',
+    'SSS ID',
+    'Umid ID',
+    'Police Clearance',
+    'NBI Clearance',
+    'National ID'
+  ];
   late TextEditingController selectid;
 
   TextEditingController email = TextEditingController();
@@ -79,8 +97,6 @@ class  ID_Reg2State extends State< ID_Reg2> {
   //
   // final _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
-
 
 //   Future<void> _createUser( //-----------------------Create User Firebase------------------------------//
 //       String firstname,
@@ -174,7 +190,6 @@ class  ID_Reg2State extends State< ID_Reg2> {
     work.text = '';
     selectid = TextEditingController();
     email.text = '';
-
 
     // contactnum.text = '';
 
@@ -274,7 +289,8 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         alignment: Alignment.centerLeft,
                         child: Text(
                           "Application form for Senior Citizen ID",
-                          style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                          style:
+                              TextStyle(fontSize: 15, color: Colors.grey[700]),
                         ),
                       ),
                     )
@@ -284,7 +300,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Type of Application',//------------------Type of Application-----------------------//
+                      'Type of Application', //------------------Type of Application-----------------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -293,26 +309,26 @@ class  ID_Reg2State extends State< ID_Reg2> {
                     SizedBox(
                       height: 5,
                     ),
-
                     Container(
-                      height:80,
-                      margin: EdgeInsets.only(right:40),
+                      height: 80,
+                      margin: EdgeInsets.only(right: 40),
                       child: DropdownButtonFormField(
-                        hint: Text('Select Application Type',
-                          style: TextStyle(
-                              fontSize: 15
-                          ) ,), // Not necessary for Option 1
-                        value: selectapptype.text.isEmpty ? null :selectapptype.text,
+                        hint: Text(
+                          'Select Application Type',
+                          style: TextStyle(fontSize: 15),
+                        ), // Not necessary for Option 1
+                        value: selectapptype.text.isEmpty
+                            ? null
+                            : selectapptype.text,
                         onChanged: (String? newValue) {
                           setState(() {
                             selectapptype.text = newValue!;
                           });
                         },
-                        validator: (value){
-                          if (value == null || value.isEmpty){
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
                             return 'Type of Application required';
-                          }
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -322,13 +338,11 @@ class  ID_Reg2State extends State< ID_Reg2> {
                             value: apptype,
                           );
                         }).toList(),
-
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Surname',
                       style: TextStyle(
@@ -367,21 +381,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
-
                     Text(
                       'First Name',
                       style: TextStyle(
@@ -420,17 +432,16 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
-
                     SizedBox(
                       height: 5,
                     ),
@@ -472,21 +483,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
-
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Address',
                       style: TextStyle(
@@ -522,20 +531,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Years of Residence',
                       style: TextStyle(
@@ -571,20 +579,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Birthplace',
                       style: TextStyle(
@@ -609,7 +616,6 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           //   return "Invalid Email";
                           // }
 
-
                           else {
                             return null;
                           }
@@ -618,24 +624,24 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           TextSelection previousSelection =
                               birthplace.selection; //----------new
                           birthplace.text = value;
-                          birthplace.selection = previousSelection; //--------------new
+                          birthplace.selection =
+                              previousSelection; //--------------new
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
-
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Date of Birth',
                       style: TextStyle(
@@ -654,8 +660,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Date of Birth Required";
-                          }
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -670,21 +675,21 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
-                      'Sex',//----------Sex---------//
+                      'Sex', //----------Sex---------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -694,24 +699,23 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       height: 5,
                     ),
                     Container(
-                      height:80,
-                      margin: EdgeInsets.only(right:40),
+                      height: 80,
+                      margin: EdgeInsets.only(right: 40),
                       child: DropdownButtonFormField(
-                        hint: Text('Select Sex',
-                          style: TextStyle(
-                              fontSize: 15
-                          ) ,),
-                        value: selectsex.text.isEmpty ? null :selectsex.text,
+                        hint: Text(
+                          'Select Sex',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        value: selectsex.text.isEmpty ? null : selectsex.text,
                         onChanged: (String? newValue) {
                           setState(() {
                             selectsex.text = newValue!;
                           });
                         },
-                        validator: (value){
-                          if (value == null || value.isEmpty){
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
                             return 'Sex required';
-                          }
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -721,13 +725,11 @@ class  ID_Reg2State extends State< ID_Reg2> {
                             value: apptype,
                           );
                         }).toList(),
-
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Nationality',
                       style: TextStyle(
@@ -746,9 +748,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Nationality Required";
-                          }
-
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -762,20 +762,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
-
                     Text(
                       'Age',
                       style: TextStyle(
@@ -787,16 +786,14 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       height: 5,
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 200,bottom: 20),
+                      margin: EdgeInsets.only(right: 200, bottom: 20),
                       child: TextFormField(
                         //----------------------Age txtField-----------------------------//
                         controller: age,
                         validator: (value) {
-
-                          if (value!.length <1||value!.length > 100) {
+                          if (value!.length < 1 || value!.length > 100) {
                             return "Invalid age";
-                          }
-                          else if(value.isEmpty){
+                          } else if (value.isEmpty) {
                             return "Age required";
                           }
                           return null;
@@ -811,20 +808,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
-
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Barangay',
                       style: TextStyle(
@@ -843,9 +839,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Barangay Required";
-                          }
-
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -859,20 +853,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
-
                     Text(
                       'Zone',
                       style: TextStyle(
@@ -891,9 +884,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Zone Required";
-                          }
-
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -907,22 +898,21 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
-
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
-                      'District',//----------District---------//
+                      'District', //----------District---------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -932,24 +922,25 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       height: 5,
                     ),
                     Container(
-                      height:100,
-                      margin: EdgeInsets.only(right:100),
+                      height: 100,
+                      margin: EdgeInsets.only(right: 100),
                       child: DropdownButtonFormField(
-                        hint: Text('Select District',
-                          style: TextStyle(
-                              fontSize: 15
-                          ) ,),
-                        value: selectdistrict.text.isEmpty ? null : selectdistrict.text,
+                        hint: Text(
+                          'Select District',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        value: selectdistrict.text.isEmpty
+                            ? null
+                            : selectdistrict.text,
                         onChanged: (String? newValue) {
                           setState(() {
                             selectdistrict.text = newValue!;
                           });
                         },
-                        validator: (value){
-                          if (value == null || value.isEmpty){
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
                             return 'District required';
-                          }
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -964,7 +955,6 @@ class  ID_Reg2State extends State< ID_Reg2> {
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Civil Status',
                       style: TextStyle(
@@ -983,9 +973,7 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Civil Status Required";
-                          }
-
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -999,19 +987,19 @@ class  ID_Reg2State extends State< ID_Reg2> {
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Phone Number',
                       style: TextStyle(
@@ -1032,37 +1020,33 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           if (value == null || value.isEmpty) {
                             return "Phone Number Required";
                           }
-                          if (value.length >11 || value.length <11) {
+                          if (value.length > 11 || value.length < 11) {
                             return "Invalid Phone Number";
-                          }
-
-                          else {
+                          } else {
                             return null;
                           }
                         },
                         onChanged: (value) {
-                          TextSelection previousSelection =
-                              phonenum.selection;
+                          TextSelection previousSelection = phonenum.selection;
                           phonenum.text = value;
-                          phonenum.selection =
-                              previousSelection;
+                          phonenum.selection = previousSelection;
 //
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Monthly Pension',
                       style: TextStyle(
@@ -1092,29 +1076,26 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           // }
                         },
                         onChanged: (value) {
-                          TextSelection previousSelection =
-                              pension.selection;
+                          TextSelection previousSelection = pension.selection;
                           pension.text = value;
-                          pension.selection =
-                              previousSelection;
+                          pension.selection = previousSelection;
 //
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
-
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Salary',
                       style: TextStyle(
@@ -1144,30 +1125,26 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           // }
                         },
                         onChanged: (value) {
-                          TextSelection previousSelection =
-                              salary.selection;
+                          TextSelection previousSelection = salary.selection;
                           salary.text = value;
-                          pension.selection =
-                              previousSelection;
+                          salary.selection = previousSelection;
 //
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
-
-
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Present Work',
                       style: TextStyle(
@@ -1196,30 +1173,28 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           // }
                         },
                         onChanged: (value) {
-                          TextSelection previousSelection =
-                              work.selection;
+                          TextSelection previousSelection = work.selection;
                           work.text = value;
-                          work.selection =
-                              previousSelection;
+                          work.selection = previousSelection;
 //
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
-                      'Valid ID Presented',//--------Valid ID Presented----------------------//
+                      'Valid ID Presented', //--------Valid ID Presented----------------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -1228,44 +1203,39 @@ class  ID_Reg2State extends State< ID_Reg2> {
                     SizedBox(
                       height: 5,
                     ),
-
                     Container(
-                      height:80,
-
-                      margin: EdgeInsets.only(right:40),
+                      height: 80,
+                      margin: EdgeInsets.only(right: 40),
                       child: DropdownButtonFormField(
-                        hint: Text('Select ID Presented',
-                          style: TextStyle(
-                              fontSize: 15
-                          ) ,), // Not necessary for Option 1
-                        value: selectid.text.isEmpty ? null :selectid.text,
+                        hint: Text(
+                          'Select ID Presented',
+                          style: TextStyle(fontSize: 15),
+                        ), // Not necessary for Option 1
+                        value: selectid.text.isEmpty ? null : selectid.text,
                         onChanged: (String? newValue) {
                           setState(() {
                             selectid.text = newValue!;
                           });
                         },
-                        validator: (value){
-                          if (value == null || value.isEmpty){
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
                             return 'ID Required';
-                          }
-                          else {
+                          } else {
                             return null;
                           }
                         },
                         // items: applicationtype.map((id) {
-                         items: id.map((id) {
+                        items: id.map((id) {
                           return DropdownMenuItem(
                             child: Text(id),
                             value: id,
                           );
                         }).toList(),
-
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
-
                     Text(
                       'Email',
                       style: TextStyle(
@@ -1289,11 +1259,12 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           //     !value.contains('@gmail.com')) {
                           //   return "Invalid Email";
                           // }
-                          else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')) {
+                          else if (value.isEmpty ||
+                              !value.contains('@') ||
+                              !value.contains('.') ||
+                              !value.contains('.com')) {
                             return "Invalid Email";
-                          }
-
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -1301,20 +1272,21 @@ class  ID_Reg2State extends State< ID_Reg2> {
                           TextSelection previousSelection =
                               email.selection; //----------new
                           email.text = value;
-                          email.selection = previousSelection; //--------------new
+                          email.selection =
+                              previousSelection; //--------------new
                         },
 
                         decoration: InputDecoration(
-                            contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.blueGrey),
                             ),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.blueGrey))),
+                                borderSide:
+                                    BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
-
                   ],
                 ),
 
@@ -1334,54 +1306,44 @@ class  ID_Reg2State extends State< ID_Reg2> {
                 //   ],
                 // ),
 
-
-
                 FormField<bool>(
                   builder: (state) {
                     return Column(
                       children: <Widget>[
                         Container(
-                          margin:EdgeInsets.only(top:20)
-                          ,                              child: Row(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(right:10),
-                              child: Checkbox(
-                                  value: ischecked,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      ischecked = value!;
-                                      state.didChange(value);
-                                    });
-                                  }),
-                            ),
+                          margin: EdgeInsets.only(top: 20),
+                          child: Row(
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsets.only(right: 10),
+                                child: Checkbox(
+                                    value: ischecked,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        ischecked = value!;
+                                        state.didChange(value);
+                                      });
+                                    }),
+                              ),
+                              Row(
+                                children: [
+                                  Text('I agree to the'),
+                                  TextButton(
+                                    child: Text('Privacy Policy',
+                                        style: TextStyle(
+                                            // fontStyle: FontStyle.normal,
 
-                            Row(
-                              children: [
-                                Text('I agree to the'),
-                                TextButton(
-                                  child: Text('Privacy Policy',
-                                      style: TextStyle(
-                                        // fontStyle: FontStyle.normal,
-
-                                      )),
-                                  onPressed: (){
-                                    // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
-                                    PrivacyPolicyDialog(context);
-
-
-
-                                  },
-                                ),
-
-
-                              ],
-                            ),
-                          ],
+                                            )),
+                                    onPressed: () {
+                                      // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
+                                      PrivacyPolicyDialog(context);
+                                    },
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        ),
-
-
                         Text(
                           state.errorText ?? '',
                           style: TextStyle(
@@ -1391,7 +1353,6 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       ],
                     );
                   },
-
                   validator: (value) {
                     if (!ischecked) {
                       return 'You need to accept Privacy Policy';
@@ -1400,10 +1361,6 @@ class  ID_Reg2State extends State< ID_Reg2> {
                     }
                   },
                 ),
-
-
-
-
 
                 Container(
                   height: 60,
@@ -1452,7 +1409,28 @@ class  ID_Reg2State extends State< ID_Reg2> {
                       // id.text
                       // email.text,
                       //     );
-
+                      _insertData(
+                          selectapptype.text,
+                          surname.text,
+                          firstname.text,
+                          middle.text,
+                          address.text,
+                          yearsodresidence.text,
+                          birthplace.text,
+                          dateofbirth.text,
+                          selectsex.text,
+                          nationality.text,
+                          age.text,
+                          brgy.text,
+                          zone.text,
+                          selectdistrict.text,
+                          selectid.text,
+                          status.text,
+                          phonenum.text,
+                          pension.text,
+                          salary.text,
+                          work.text,
+                          email.text);
                     },
                   ),
                 ),
@@ -1476,12 +1454,60 @@ class  ID_Reg2State extends State< ID_Reg2> {
               ],
             ),
           ),
-
-
-
-
         ),
       ),
     );
   }
+
+  Future<void> _insertData(
+      String selectapptype,
+      String surname,
+      String firstname,
+      String middle,
+      String address,
+      String yearsofresidence,
+      String birthplace,
+      String dateofbirth,
+      String selectsex,
+      String nationality,
+      String age,
+      String brgy,
+      String zone,
+      String selectdistrict,
+      String selectid,
+      String status,
+      String phonenum,
+      String pension,
+      String salary,
+      String work,
+      String email) async {
+    final data = MongoDbModel(
+        selectapptype: selectapptype,
+        surname: surname,
+        firstname: firstname,
+        middle: middle,
+        address: address,
+        yearsofresidence: yearsofresidence,
+        birthplace: birthplace,
+        dateofbirth: dateofbirth,
+        selectsex: selectsex,
+        nationality: nationality,
+        age: age,
+        brgy: brgy,
+        zone: zone,
+        selectdistrict: selectdistrict,
+        selectid: selectid,
+        status: status,
+        phonenum: phonenum,
+        pension: pension,
+        salary: salary,
+        work: work,
+        email: email);
+
+    var result = await MongoDatabase.insert(data);
+
+
+
+  }
 }
+

@@ -20,14 +20,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Medicine Reminder/global_bloc.dart';
 import 'package:flutter/services.dart';
+import'package:elderly_squire_2023_remastered_v2/dbHelper/mongoDb.dart';
+import'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel.dart';
 
 int? initScreen;
 
 Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp();
+  MongoDatabase.connect();
   Provider.debugCheckInvalidValueType = null;
   SharedPreferences prefs = await SharedPreferences.getInstance();
   initScreen = await prefs.getInt("initScreen");

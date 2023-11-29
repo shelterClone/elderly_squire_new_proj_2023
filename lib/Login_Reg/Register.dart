@@ -78,7 +78,9 @@ class RegistrationPageState extends State<RegistrationPage> {
         )
         );
         print("User: $userCredential");
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> RegSuccess()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> RegSuccess()
+        )
+        );
 
 
         // return showDialog(

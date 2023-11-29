@@ -61,6 +61,8 @@ dependencies:
 #  timezone: ^0.8.0
 
   google_sign_in: ^5.2.1
+  mongo_dart: ^0.9.3
+#  mongo_dart: ^0.9.3
 #  flutter_facebook_auth: ^3.5.0
 ##  editable_image: ^2.0.0 #profile pic image uploader
 #  flutter_timezone:
