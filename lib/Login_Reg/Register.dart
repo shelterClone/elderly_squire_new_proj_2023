@@ -40,6 +40,8 @@ class RegistrationPageState extends State<RegistrationPage> {
   // TextEditingController contactnum = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   bool isPasswordHidden = true;
+  String emailError = '';
+  String passwordError = '';
 
 
   User? _user = FirebaseAuth.instance.currentUser;
@@ -73,6 +75,7 @@ class RegistrationPageState extends State<RegistrationPage> {
           sex: sex,
           address: address,
           email: user?.email,
+          password: password
           // contact_number: contact_number,
 
         )
@@ -109,12 +112,29 @@ class RegistrationPageState extends State<RegistrationPage> {
         //         ],
         //       );
         //     });
-      } on FirebaseAuthException catch (e) {
+      }
+      on FirebaseAuthException catch (e) {
         // print("Error: $e");
+        if (e.code == 'email-already-in-use') {
+          setState(() {
+            emailError = 'Email address already exist.';
+            passwordError = '';
+          });
+        }
+        else if (e.code == 'invalid-email') {
+          setState(() {
+            emailError = 'Invalid Email format';
+            passwordError = '';
+          });
+        }
 
-
-      } catch (e) {
-        print("Error: $e");
+      }
+      catch (e) {
+        // print("Error: $e");
+        setState(() {
+          emailError = '';
+          passwordError = 'An error occurred: $e';
+        });
       }
 //    }
     }
@@ -508,6 +528,7 @@ class RegistrationPageState extends State<RegistrationPage> {
                         },
 
                         decoration: InputDecoration(
+                            errorText: emailError.isNotEmpty ? emailError : null,
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(

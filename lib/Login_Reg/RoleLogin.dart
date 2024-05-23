@@ -1,72 +1,81 @@
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
+import 'package:elderly_squire_2023_remastered_v2/Login_Reg/AdminHomepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/News/NewsHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class LoginPage2 extends StatefulWidget {
+class RoleLoginPage extends StatefulWidget {
 
   @override
-  LoginState2 createState() => LoginState2();
+  RoleLoginPageState createState() => RoleLoginPageState();
 }
 
-  class LoginState2 extends State<LoginPage2>{
+class RoleLoginPageState extends State<RoleLoginPage>{
 
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    TextEditingController myEmail = TextEditingController() ;
-    TextEditingController password = TextEditingController();
-    bool isPasswordHidden = true;
-    String emailError = '';
-    String passwordError = '';
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  TextEditingController myEmail = TextEditingController() ;
+  TextEditingController password = TextEditingController();
+  String adminEmail = 'adminosca@gmail.com';
+  bool isPasswordHidden = true;
+  String emailError = '';
+  String passwordError = '';
 
-    final GlobalKey <FormState> formkey = GlobalKey<FormState>();
+  final GlobalKey <FormState> formkey = GlobalKey<FormState>();
 
-    Future<void> _UserLogin(String myEmail, String password) async {
-      if (validate()) {
-        try {
-          UserCredential userCredential = await FirebaseAuth.instance
-           .signInWithEmailAndPassword(email: myEmail, password: password);
-          print("User: $userCredential");
+  Future<void> _UserLogin(String myEmail, String password) async {
+    if (validate()) {
+      try {
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(email: myEmail, password: password);
+        print("User: $userCredential");
 
-          await Navigator.push(context, MaterialPageRoute(builder: (context)=>Homepage()
-          ),
+        if(userCredential.user != null && userCredential.user!.email == adminEmail){
+          await Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => AdminHomepage()),
           );
-        } on FirebaseAuthException catch (e)
-        {
-          if (e.code == 'user-not-found') {
-            setState(() {
-              emailError = 'Email address does not exist.';
-              passwordError = '';
-            });
-          } else if (e.code == 'wrong-password') {
-            setState(() {
-              passwordError = 'Incorrect Password.';
-              emailError = '';
-            });
-          }
         }
-        catch (e) {
+        await Navigator.push(context, MaterialPageRoute(builder: (context)=>Homepage()
+        ),
+        );
+      }
+      on FirebaseAuthException catch (e)
+      {
+        if (e.code == 'user-not-found') {
           setState(() {
+            emailError = 'Email address does not exist.';
+            passwordError = '';
+          });
+        } else if (e.code == 'wrong-password') {
+          setState(() {
+            passwordError = 'Incorrect Password.';
             emailError = '';
-            passwordError = 'An error occurred: $e';
           });
         }
       }
+      catch (e) {
+        setState(() {
+          emailError = '';
+          passwordError = 'An error occurred: $e';
+        });
+      }
+    }
+  }
+
+  bool validate(){
+    final form = formkey.currentState;
+    form!.save();
+    if(form.validate()){
+      form.save();
+      return true;
+    }
+    else{
+      return false;
     }
 
-    bool validate(){
-      final form = formkey.currentState;
-      form!.save();
-      if(form.validate()){
-        form.save();
-        return true;
-      }
-      else{
-        return false;
-      }
-
-    }
+  }
 
 
 
@@ -110,8 +119,8 @@ class LoginPage2 extends StatefulWidget {
                     Container(
                         margin:EdgeInsets.only(bottom:10),
                         child: Image.asset(
-                            'assets/images/nursing.jpg',
-                            height:200,
+                          'assets/images/nursing.jpg',
+                          height:200,
                         )
                     ),
                     Container(
@@ -268,7 +277,7 @@ class LoginPage2 extends StatefulWidget {
                       ),
                     ),
                     onPressed: (){
-                         _UserLogin(myEmail.text, password.text);
+                      _UserLogin(myEmail.text, password.text);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=> Homepage()));
 
                     },

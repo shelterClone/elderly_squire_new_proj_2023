@@ -59,13 +59,19 @@ dependencies:
 #  google_sign_in: ^6.1.5
 
 #  timezone: ^0.8.0
+#
+#  google_sign_in: ^5.2.1
+  mongo_dart: ^0.10.0
+#  mongo_dart: ^0.9.3
 
-  google_sign_in: ^5.2.1
-  mongo_dart: ^0.9.3
 #  mongo_dart: ^0.9.3
 #  flutter_facebook_auth: ^3.5.0
 ##  editable_image: ^2.0.0 #profile pic image uploader
 #  flutter_timezone:
+  cloudinary_url_gen: ^1.5.0
+  cloudinary_flutter: ^1.0.0
+  cloudinary_public: ^0.23.1
+
 
 dev_dependencies:
   flutter_test:
@@ -74,8 +80,7 @@ dev_dependencies:
 
   image_picker: ^0.8.4
 #  flutter_pdfview: ^1.0.0 #pdf uploader
-#  file_picker: ^4.0.0 #pdf uploader
-  file_picker: ^5.5.0
+  file_picker: ^4.0.0 #pdf uploader
 #  dio: ^4.0.0 #pdf uploader
   flutter_launcher_icons: "^0.13.1"
 
@@ -111,8 +116,11 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/background.png
+   - assets/images/admin.png
+   - assets/images/manage.png
+   - assets/admin2.png
    - assets/welcome.png
+   - assets/images/benefits.png
    - assets/images/elderly_home.png
    - assets/images/elderly_squire_logo_classic_icon.png
    - assets/images/elderly_squire_logo_2023.png
@@ -178,6 +186,7 @@ flutter:
    - assets/images/manila_zoo.jpg
    - assets/images/honey_undas.jpg
    - assets/images/honey_undas2.jpg
+   - assets/images/calendar.png
 
 
 

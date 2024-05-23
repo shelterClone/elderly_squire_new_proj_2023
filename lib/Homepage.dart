@@ -1,15 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/AboutUs.dart';
-import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
+import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsUser.dart';
 import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration.dart';
 import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration2.dart';
+import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration3.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';
+import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine/MedicineMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/MyProfile/UserProfile.dart';
 import 'package:elderly_squire_2023_remastered_v2/News/NewsHome.dart';
+import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todos.dart';
 import 'package:elderly_squire_2023_remastered_v2/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -183,11 +186,28 @@ class _HomepageState extends State<Homepage> {
                                           builder: (context) => Homepage()),
                                     );
                                   }),
-                              ListTile(
+                              // ListTile(
+                              //     leading:
+                              //         Icon(Icons.newspaper, color: Colors.white),
+                              //     title: Text(
+                              //       'News',
+                              //       style: TextStyle(
+                              //         color: Colors.white,
+                              //       ),
+                              //     ),
+                              //     onTap: () {
+                              //       Navigator.push(
+                              //         context,
+                              //         MaterialPageRoute(
+                              //             builder: (context) => NewsHome()),
+                              //       );
+                              //     }),
+
+                              ListTile(//------------------------------Medicine Reminder-------------------------//
                                   leading:
-                                      Icon(Icons.newspaper, color: Colors.white),
+                                  Icon(Icons.medication, color: Colors.white),
                                   title: Text(
-                                    'News',
+                                    'Medicine Reminder',
                                     style: TextStyle(
                                       color: Colors.white,
                                     ),
@@ -196,7 +216,41 @@ class _HomepageState extends State<Homepage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => NewsHome()),
+                                          builder: (context) => ReminderHome()),
+                                    );
+                                  }),
+
+                              ListTile(//------------------------------To Do List------------------------//
+                                  leading:
+                                  Icon(Icons.today_outlined, color: Colors.white),
+                                  title: Text(
+                                    'To Do List',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TodoLanding()),
+                                    );
+                                  }),
+
+                              ListTile(//------------------------------Chat Support------------------------//
+                                  leading:
+                                  Icon(Icons.chat, color: Colors.white),
+                                  title: Text(
+                                    'Chat Support',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SupportPage()),
                                     );
                                   }),
 
@@ -343,7 +397,8 @@ class _HomepageState extends State<Homepage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ID_Reg2()),
+                                          // builder: (context) => ID_Reg2()),
+                                        builder: (context) => RegistrationForm()),
                                     );
                                   },
                                   child: Image.asset('assets/images/ID.png',
@@ -361,7 +416,7 @@ class _HomepageState extends State<Homepage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ID_Reg2()),
+                                            builder: (context) => RegistrationForm()),
                                       );
                                     },
                                     child: Text(
@@ -383,7 +438,7 @@ class _HomepageState extends State<Homepage> {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => ID_Reg2()),
+                                            builder: (context) => RegistrationForm()),
                                       );
                                     },
                                     child: Text(
@@ -600,10 +655,11 @@ class _HomepageState extends State<Homepage> {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => BenefitsMenu()),
+                                          builder: (context) => BenefitsUserPage()),
                                     );
                                   },
-                                  child: Image.asset(
+                                  child:
+                                  Image.asset(
                                       'assets/images/scardbene.png',
                                       height: 75,
                                       width: 90),
@@ -621,7 +677,7 @@ class _HomepageState extends State<Homepage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                BenefitsMenu()),
+                                                BenefitsUserPage()),
                                       );
                                     },
                                     child: Text(
@@ -643,7 +699,7 @@ class _HomepageState extends State<Homepage> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                BenefitsMenu()),
+                                                BenefitsUserPage()),
                                       );
                                     },
                                     child: Text(

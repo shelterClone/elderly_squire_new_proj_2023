@@ -5,6 +5,7 @@ class Users{
     String? sex;
     String? address;
     String? email;
+    String? password;
     // String? contact_number;
     String? uid;
 
@@ -16,6 +17,8 @@ class Users{
     required this.sex,
     required this.address,
     required this.email,
+    required this.password,
+
     // required this.contact_number,
     required this.uid});
 
@@ -26,6 +29,7 @@ class Users{
     sex =json['gender'];
     address = json['address'];
     email = json['email'];
+    password = json['password'];
     // contact_number = json['contactnum'];
     uid = json['uid'];
   }
@@ -38,6 +42,7 @@ class Users{
       "Sex": sex,
       "Address":address,
       "email":email,
+      "password":password,
       // "contact number":contact_number,
       "uid":uid,
     };

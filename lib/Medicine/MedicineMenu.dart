@@ -212,6 +212,94 @@ class MedicineMenu extends StatelessWidget {
               ),
             ),
 
+            GestureDetector(
+              child: Container(
+                height: 120,
+                child: Card(
+                  color: Colors.teal[400],
+                  // color: Colors.blueGrey[900],
+                  //------------------------------Calendar-------------------------------//
+                  margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                          margin: EdgeInsets.only(left: 30,bottom:10,top:8),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => TodoLanding()),
+                              );
+                            },
+                            child: Image.asset('assets/images/calendar.png',
+                                height: 75, width: 90
+
+                            ),
+                          )),
+                      Container(
+                        margin: EdgeInsets.only(left:15,top:29),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // margin: EdgeInsets.only(left: 25),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TodoLanding()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Calendar',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: ('BebasNeue'),
+                                      fontSize: 25,
+
+//                                  fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                )),
+                            Container(
+                              // margin: EdgeInsets.only(left: 25),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TodoLanding()),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Creates scheduled events through\ncalendar.',
+                                    style: TextStyle(
+
+                                      color: Colors.white,
+                                      fontFamily: ('OpenSans'),
+                                      fontSize: 10,
+
+
+//                                  fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                ))
+
+                          ],
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
 
           ]
       )

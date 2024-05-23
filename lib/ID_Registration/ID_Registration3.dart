@@ -1,52 +1,58 @@
-import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/SelectGender.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Users.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/db_service.dart';
+import 'dart:convert';
+import 'dart:io';
+import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/ID_Registration/IDReg_Success_Screen.dart';
 import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel.dart';
 import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel2.dart';
-import 'package:elderly_squire_2023_remastered_v2/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/SelectGender.dart';
-import 'dart:core';
-import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel.dart';
 import 'package:elderly_squire_2023_remastered_v2/dbHelper/mongoDb.dart';
+import 'package:elderly_squire_2023_remastered_v2/dbHelper/mongoDb2.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class ID_Reg2 extends StatefulWidget {
-  get user => null;
+import '../Login_Reg/RegSuccess.dart';
 
-  // var user;
-
+class RegistrationForm extends StatefulWidget {
   @override
-  ID_Reg2State createState() => ID_Reg2State();
+  _RegistrationFormState createState() => _RegistrationFormState();
 }
 
-class ID_Reg2State extends State<ID_Reg2> {
+class _RegistrationFormState extends State<RegistrationForm> {
+  // final cloudinary = CloudinaryPublic('dqs4lb8kt', 'cuuz8bg0', cache: false);
+  final cloudinary = CloudinaryPublic('dtdtiuwxl', 'azfvz29n', cache: false);
+  File? pdffile;
+  String? url;
+  String? public_id;
+
   RegExp numReg = RegExp(r".*[0-9].*");
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
   RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
 
   List<String> applicationtype = [
-    'New Senior(Voter)',
-    'New Senior(Non-Voter)',
-    'Old Senior'
+    'Voter',
+    'Non-Voter',
   ];
+
   late TextEditingController selectapptype;
 
   TextEditingController surname = TextEditingController();
 
   TextEditingController firstname = TextEditingController();
 
-  TextEditingController middle = TextEditingController();
+  TextEditingController middlename = TextEditingController();
+
+  TextEditingController suffix = TextEditingController();
 
   TextEditingController address = TextEditingController();
 
-  TextEditingController yearsodresidence = TextEditingController();
+  TextEditingController yearsofdresidence = TextEditingController();
 
   TextEditingController birthplace = TextEditingController();
 
-  TextEditingController dateofbirth = TextEditingController();
+  TextEditingController DateofBirth = TextEditingController();
 
   List<String> sex = ['Male', 'Female'];
   late TextEditingController selectsex;
@@ -59,25 +65,28 @@ class ID_Reg2State extends State<ID_Reg2> {
 
   TextEditingController zone = TextEditingController();
 
-  List<String> district = [
-    'District 1',
-    'District 2',
-    'District 3',
-    'District 4',
-    'District 5',
-    'District 6'
-  ];
+  List<String> district = ['1', '2', '3', '4', '5', '6'];
   late TextEditingController selectdistrict;
 
-  TextEditingController status = TextEditingController();
+  List<String> civilstatus = [
+    'Single',
+    'Married',
+    'Widowed',
+    'Legal Separated',
+  ];
 
-  TextEditingController phonenum = TextEditingController();
+  late TextEditingController selectcivilstatus;
 
-  TextEditingController pension = TextEditingController();
+  List<String> status = [
+    'Active',
+    'Bedridden',
+    'Physical Incapacity',
+    'Mental Incapacity',
+  ];
 
-  TextEditingController salary = TextEditingController();
+  late TextEditingController selectstatus;
 
-  TextEditingController work = TextEditingController();
+  TextEditingController MobilePhone = TextEditingController();
 
   List<String> id = [
     'Passport ID',
@@ -86,115 +95,89 @@ class ID_Reg2State extends State<ID_Reg2> {
     'Umid ID',
     'Police Clearance',
     'NBI Clearance',
-    'National ID'
+    'National ID',
+    'Birth Certificate',
+    'Barangay Certificate',
   ];
-  late TextEditingController selectid;
+  late TextEditingController selectidpresented;
 
-  TextEditingController email = TextEditingController();
+  TextEditingController idproof = TextEditingController();
+
+  Future<void> selectPDF() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['pdf'],
+      );
+      if (result != null) {
+        setState(() {
+          pdffile = File(result.files.single.path!);
+          _uploadPDF();
+        });
+      }
+    } catch (e) {
+      print("Unsupported operation" + e.toString());
+    }
+  }
+
+  Future<void> _uploadPDF() async {
+    if (pdffile != null) {
+      try {
+        String fileName = pdffile!.path.split('/').last;
+        public_id = fileName.split('.').first;
+        CloudinaryResponse response = await cloudinary.uploadFile(
+          CloudinaryFile.fromFile(pdffile!.path,
+              resourceType: CloudinaryResourceType.Image,
+              folder: 'pdf_files',
+              publicId: public_id),
+        );
+        setState(() {
+          url = response.secureUrl;
+          public_id = response.publicId;
+        });
+        // print("Upload Successful:");
+        print("Upload Successful Url: ${response.secureUrl}");
+        print("Upload Successful Public ID: ${response.publicId}");
+      } catch (e) {
+        // Handle upload failure
+        print("Upload Failed: $e");
+      }
+    } else {
+      // Handle no file selected
+      print("No PDF file selected");
+    }
+  }
 
   bool ischecked = false;
 
-  // User? _user = FirebaseAuth.instance.currentUser;
-  //
-  // final _auth = FirebaseAuth.instance;
+  // final _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  get suffix => null;
-
-//   Future<void> _createUser( //-----------------------Create User Firebase------------------------------//
-//       String firstname,
-//       String middle,
-//       String surname,
-//       String sex,
-//       String address,
-//       String email,
-//       String password,) async {
-//     if (validateReg()) {
-//       try {
-//         print("Email: $email Password: $password");
-//         UserCredential userCredential = await FirebaseAuth.instance
-//             .createUserWithEmailAndPassword(
-//             email: email.characters.toString().trim(), password: password);
-//         // email: email, password: password);
-//
-//         await DBServices().saveUser(Users(
-//           uid: user?.uid,
-//           firstname: firstname,
-//           middle: middle,
-//           surname: surname,
-//           sex: sex,
-//           address: address,
-//           email: user?.email,
-//
-//           // contact_number: contact_number,
-//
-//         )
-//         );
-//         print("User: $userCredential");
-//         return showDialog(
-//             context: context,
-//             barrierDismissible: false,
-//             builder: (BuildContext context) {
-//               return AlertDialog(
-//                 title: Text("Success"),
-//                 content: SingleChildScrollView(
-//                     child: ListBody(
-//                       children: <Widget>[
-//                         Text("You are now offically registered!"),
-//                       ],
-//                     )),
-//                 actions: <Widget>[
-//                   TextButton(
-//                     child: Text("Close"),
-//                     onPressed: () {
-//                       Navigator.of(context).pop();
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => Homepage()),
-//                       );
-//                     },
-//                   )
-//                 ],
-//               );
-//             });
-//       } on FirebaseAuthException catch (e) {
-//         // print("Error: $e");
-//
-//
-//       } catch (e) {
-//         print("Error: $e");
-//       }
-// //    }
-//     }
-//   }
-
-  // User? get user => FirebaseAuth.instance.currentUser;
-
+  @override
   void initState() {
     selectapptype = TextEditingController();
     surname.text = '';
     firstname.text = '';
-    middle.text = '';
+    middlename.text = '';
+    suffix.text = '';
     address.text = '';
-    yearsodresidence.text = '';
+    yearsofdresidence.text = '';
     birthplace.text = '';
-    dateofbirth.text = '';
+    // DateofBirth.toIso8601String();
+    DateofBirth.text = '';
     selectsex = TextEditingController();
     nationality.text = '';
     age.text = '';
     brgy.text = '';
     zone.text = '';
     selectdistrict = TextEditingController();
-    selectid = TextEditingController();
-    status.text = '';
-    phonenum.text = '';
-    pension.text = '';
-    salary.text = '';
-    work.text = '';
-    selectid = TextEditingController();
-    email.text = '';
-
-    // contactnum.text = '';
+    selectcivilstatus = TextEditingController();
+    selectstatus = TextEditingController();
+    MobilePhone.text = '';
+    selectidpresented = TextEditingController();
+    idproof.text = '';
+    url = '';
+    public_id = '';
 
     super.initState();
   }
@@ -210,27 +193,28 @@ class ID_Reg2State extends State<ID_Reg2> {
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     void dispose() {
-      selectapptype.dispose();
-      surname.dispose();
-      firstname.dispose();
-      middle.dispose();
-      address.dispose();
-      yearsodresidence.dispose();
-      birthplace.dispose();
-      dateofbirth.dispose();
-      selectsex.dispose();
-      nationality.dispose();
-      age.dispose();
-      brgy.dispose();
-      zone.dispose();
-      selectdistrict.dispose();
-      selectid.dispose();
-      status.dispose();
-      email.dispose();
-
+      selectapptype.text = '';
+      surname.text = '';
+      firstname.text = '';
+      middlename.text = '';
+      suffix.text = '';
+      address.text = '';
+      yearsofdresidence.text = '';
+      birthplace.text = '';
+      // DateofBirth.toIso8601String();
+      DateofBirth.text = '';
+      selectsex.text = '';
+      nationality.text = '';
+      age.text = '';
+      brgy.text = '';
+      zone.text = '';
+      selectdistrict.text = '';
+      selectcivilstatus.text = '';
+      selectstatus.text = '';
+      MobilePhone.text = '';
+      selectidpresented.text = '';
       super.dispose();
     }
 
@@ -241,17 +225,15 @@ class ID_Reg2State extends State<ID_Reg2> {
         elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Homepage()),
-            );
-          },
           icon: Icon(
             Icons.arrow_back_ios,
             size: 20,
             color: Colors.black,
           ),
+          onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => Homepage()));
+          },
         ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
@@ -259,9 +241,8 @@ class ID_Reg2State extends State<ID_Reg2> {
         scrollDirection: Axis.vertical,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 40),
-          // height: MediaQuery.of(context).size.height + 500,
-          // height: MediaQuery.of(context).size.height + 700, //-----original
-          height: MediaQuery.of(context).size.height + 2050,
+          height: MediaQuery.of(context).size.height + 2350,
+          // .height + 2550,
           width: double.infinity,
           child: Form(
             key: formkey,
@@ -293,7 +274,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                         child: Text(
                           "Application form for Senior Citizen ID",
                           style:
-                              TextStyle(fontSize: 15, color: Colors.grey[700]),
+                          TextStyle(fontSize: 15, color: Colors.grey[700]),
                         ),
                       ),
                     )
@@ -303,7 +284,8 @@ class ID_Reg2State extends State<ID_Reg2> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Type of Application', //------------------Type of Application-----------------------//
+                      'Type of Application',
+                      //------------------Type of Application-----------------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -319,7 +301,8 @@ class ID_Reg2State extends State<ID_Reg2> {
                         hint: Text(
                           'Select Application Type',
                           style: TextStyle(fontSize: 15),
-                        ), // Not necessary for Option 1
+                        ),
+                        // Not necessary for Option 1
                         value: selectapptype.text.isEmpty
                             ? null
                             : selectapptype.text,
@@ -364,14 +347,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Surname Required";
-                          }
-                          // else if (!numReg.hasMatch(value)) {
-                          //   return "Invalid Last Name";
-                          // }
-                          // else if (!specialReg.hasMatch(value)) {
-                          //   return "Invalid Last Name";
-                          // }
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -391,7 +367,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -415,13 +391,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "First Name Required";
-                          }
-                          // else if (!numReg.hasMatch(value)) {
-                          //   return ("Invalid First Name");
-                          // } else if (!specialReg.hasMatch(value)) {
-                          //   return ("Invalid First Name");
-                          // }
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -442,7 +412,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -462,26 +432,19 @@ class ID_Reg2State extends State<ID_Reg2> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         //----------------------Middle Name txtField-----------------------------//
-                        controller: middle,
+                        controller: middlename,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Middle Name Required";
-                          }
-                          // else if (!numReg.hasMatch(value)) {
-                          //   return "Invalid Middle Name";
-                          // }
-                          // else if (!specialReg.hasMatch(value)) {
-                          //   return "Invalid Middle Name";
-                          // }
-                          else {
+                          } else {
                             return null;
                           }
                         },
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              middle.selection; //----------new
-                          middle.text = value;
-                          middle.selection =
+                              middlename.selection; //----------new
+                          middlename.text = value;
+                          middlename.selection =
                               previousSelection; //--------------new
                         },
 
@@ -493,7 +456,44 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Suffix (Optional)',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Middle Name txtField-----------------------------//
+                        controller: suffix,
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              suffix.selection; //----------new
+                          suffix.text = value;
+                          suffix.selection =
+                              previousSelection; //--------------new
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -519,9 +519,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Address Required";
-                          }
-//
-                          else {
+                          } else {
                             return null;
                           }
                         },
@@ -541,7 +539,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -563,7 +561,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                         // maxLines: 1,
 
                         //----------------------Years of Residence txtField-----------------------------//
-                        controller: yearsodresidence,
+                        controller: yearsofdresidence,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Address Required";
@@ -575,9 +573,9 @@ class ID_Reg2State extends State<ID_Reg2> {
                         },
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              yearsodresidence.selection; //----------new
-                          yearsodresidence.text = value;
-                          yearsodresidence.selection =
+                              yearsofdresidence.selection; //----------new
+                          yearsofdresidence.text = value;
+                          yearsofdresidence.selection =
                               previousSelection; //--------------new
                         },
 
@@ -589,7 +587,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -612,14 +610,8 @@ class ID_Reg2State extends State<ID_Reg2> {
                         controller: birthplace,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Birthday Required";
-                          }
-                          // else if (value.isEmpty ||
-                          //     !value.contains('@gmail.com')) {
-                          //   return "Invalid Email";
-                          // }
-
-                          else {
+                            return "Birthplace Required";
+                          } else {
                             return null;
                           }
                         },
@@ -639,7 +631,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -659,7 +651,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
                         //----------------------Date of Birth txtField-----------------------------//
-                        controller: dateofbirth,
+                        controller: DateofBirth,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Date of Birth Required";
@@ -670,11 +662,10 @@ class ID_Reg2State extends State<ID_Reg2> {
 
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              dateofbirth.selection; //----------new
-                          dateofbirth.text = value;
-                          dateofbirth.selection =
+                              DateofBirth.selection; //----------new
+                          DateofBirth.text = value;
+                          DateofBirth.selection =
                               previousSelection; //--------------new
-//
                         },
 
                         decoration: InputDecoration(
@@ -685,7 +676,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -772,7 +763,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -818,7 +809,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -863,7 +854,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -908,7 +899,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -959,7 +950,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                       height: 5,
                     ),
                     Text(
-                      'Civil Status',
+                      'Civil Status', //------------------------Civil Status------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -969,39 +960,79 @@ class ID_Reg2State extends State<ID_Reg2> {
                       height: 5,
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: TextFormField(
-                        //----------------------Civil Status----------------------------//
-                        controller: status,
+                      height: 100,
+                      margin: EdgeInsets.only(right: 100),
+                      child: DropdownButtonFormField(
+                        hint: Text(
+                          'Select Civil Status',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        value: selectcivilstatus.text.isEmpty
+                            ? null
+                            : selectcivilstatus.text,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectcivilstatus.text = newValue!;
+                          });
+                        },
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Civil Status Required";
+                            return 'Civil Status required';
                           } else {
                             return null;
                           }
                         },
-                        onChanged: (value) {
-                          TextSelection previousSelection =
-                              status.selection; //----------new
-                          status.text = value;
-                          status.selection =
-                              previousSelection; //--------------new
-//
-                        },
-
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                        items: civilstatus.map((dist) {
+                          return DropdownMenuItem(
+                            child: Text(dist),
+                            value: dist,
+                          );
+                        }).toList(),
                       ),
                     ),
                     SizedBox(
                       height: 5,
+                    ),
+                    Text(
+                      'Status',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      height: 100,
+                      margin: EdgeInsets.only(right: 100),
+                      child: DropdownButtonFormField(
+                        hint: Text(
+                          'Select Status',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                        value: selectstatus.text.isEmpty
+                            ? null
+                            : selectstatus.text,
+                        onChanged: (String? newValue) {
+                          setState(() {
+                            selectstatus.text = newValue!;
+                          });
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Status required';
+                          } else {
+                            return null;
+                          }
+                        },
+                        items: status.map((dist) {
+                          return DropdownMenuItem(
+                            child: Text(dist),
+                            value: dist,
+                          );
+                        }).toList(),
+                      ),
                     ),
                     Text(
                       'Phone Number',
@@ -1018,21 +1049,23 @@ class ID_Reg2State extends State<ID_Reg2> {
                       child: TextFormField(
                         //----------------------Phone Number----------------------------//
                         keyboardType: TextInputType.number,
-                        controller: phonenum,
+                        controller: MobilePhone,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Phone Number Required";
                           }
-                          if (value.length > 11 || value.length < 11) {
+                          if (value.length > 10 || value.length < 10) {
                             return "Invalid Phone Number";
+                            // input placeholder format
                           } else {
                             return null;
                           }
                         },
                         onChanged: (value) {
-                          TextSelection previousSelection = phonenum.selection;
-                          phonenum.text = value;
-                          phonenum.selection = previousSelection;
+                          TextSelection previousSelection =
+                              MobilePhone.selection;
+                          MobilePhone.text = value;
+                          MobilePhone.selection = previousSelection;
 //
                         },
 
@@ -1044,160 +1077,15 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
-                      'Monthly Pension',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black87),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: TextFormField(
-                        //----------------------Monthly Pension----------------------------//
-                        keyboardType: TextInputType.number,
-                        controller: pension,
-                        validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return "Monthly Required";
-                          // }
-                          // if (value.length >11 || value.length <11) {
-                          //   return "Invalid Phone Number";
-                          // }
-                          //
-                          // else {
-                          //   return null;
-                          // }
-                        },
-                        onChanged: (value) {
-                          TextSelection previousSelection = pension.selection;
-                          pension.text = value;
-                          pension.selection = previousSelection;
-//
-                        },
-
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Salary',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black87),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: TextFormField(
-                        //----------------------Salary----------------------------//
-                        keyboardType: TextInputType.number,
-                        controller: salary,
-                        validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return "Monthly Required";
-                          // }
-                          // if (value.length >11 || value.length <11) {
-                          //   return "Invalid Phone Number";
-                          // }
-                          //
-                          // else {
-                          //   return null;
-                          // }
-                        },
-                        onChanged: (value) {
-                          TextSelection previousSelection = salary.selection;
-                          salary.text = value;
-                          salary.selection = previousSelection;
-//
-                        },
-
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Present Work',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black87),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: TextFormField(
-                        //----------------------Present Work----------------------------//
-                        controller: work,
-                        validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return "Monthly Required";
-                          // }
-                          // if (value.length >11 || value.length <11) {
-                          //   return "Invalid Phone Number";
-                          // }
-                          //
-                          // else {
-                          //   return null;
-                          // }
-                        },
-                        onChanged: (value) {
-                          TextSelection previousSelection = work.selection;
-                          work.text = value;
-                          work.selection = previousSelection;
-//
-                        },
-
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      'Valid ID Presented', //--------Valid ID Presented----------------------//
+                      'Proof of Valid ID Presented(Scanned/PDF)',
+                      //--------Valid ID Presented----------------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -1213,11 +1101,14 @@ class ID_Reg2State extends State<ID_Reg2> {
                         hint: Text(
                           'Select ID Presented',
                           style: TextStyle(fontSize: 15),
-                        ), // Not necessary for Option 1
-                        value: selectid.text.isEmpty ? null : selectid.text,
+                        ),
+                        // Not necessary for Option 1
+                        value: selectidpresented.text.isEmpty
+                            ? null
+                            : selectidpresented.text,
                         onChanged: (String? newValue) {
                           setState(() {
-                            selectid.text = newValue!;
+                            selectidpresented.text = newValue!;
                           });
                         },
                         validator: (value) {
@@ -1239,76 +1130,28 @@ class ID_Reg2State extends State<ID_Reg2> {
                     SizedBox(
                       height: 5,
                     ),
-                    Text(
-                      'Email',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.black87),
-                    ),
+                    pdffile == null
+                        ? Text('No PDF Selected')
+                        : Text('PDF Uploaded'),
+                    // : Text('Selected PDF: ${pdffile!.path}'),
                     SizedBox(
                       height: 5,
                     ),
                     Container(
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: TextFormField(
-                        //----------------------Email Address txtField-----------------------------//
-                        controller: email,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Email Required";
-                          }
-                          // else if (value.isEmpty ||
-                          //     !value.contains('@gmail.com')) {
-                          //   return "Invalid Email";
-                          // }
-                          else if (value.isEmpty ||
-                              !value.contains('@') ||
-                              !value.contains('.') ||
-                              !value.contains('.com')) {
-                            return "Invalid Email";
-                          } else {
-                            return null;
-                          }
-                        },
-                        onChanged: (value) {
-                          TextSelection previousSelection =
-                              email.selection; //----------new
-                          email.text = value;
-                          email.selection =
-                              previousSelection; //--------------new
-                        },
-
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                      child: ElevatedButton(
+                        //-------------------------------PDF Uploader--------------//
+                        onPressed: selectPDF,
+                        child: Text('Select PDF'),
                       ),
                     ),
+                    // ElevatedButton(
+                    //   onPressed: _uploadPDF,
+                    //   child: Text('Upload PDF to Cloudinary'),
+                    // ),
+                    // url == null ? Container() : Text('Uploaded PDF URL: $url ')
+                    // url == null ? Container() : Text('Uploaded PDF URL: $url ')
                   ],
                 ),
-
-                //===========================================I agree to blah blah blah===================//
-
-                // Row(
-                //   children: [
-                //     Checkbox(
-                //       value: ischecked,
-                //       onChanged: (value) {
-                //         setState(() {
-                //           ischecked = value!;
-                //         });
-                //       },
-                //     ),
-                //     Text('I agree to the Privacy Policy'),
-                //   ],
-                // ),
-
                 FormField<bool>(
                   builder: (state) {
                     return Column(
@@ -1332,15 +1175,9 @@ class ID_Reg2State extends State<ID_Reg2> {
                                 children: [
                                   Text('I agree to the'),
                                   TextButton(
+                                    onPressed: () {},
                                     child: Text('Privacy Policy',
-                                        style: TextStyle(
-                                            // fontStyle: FontStyle.normal,
-
-                                            )),
-                                    onPressed: () {
-                                      // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
-                                      PrivacyPolicyDialog(context);
-                                    },
+                                        style: TextStyle()),
                                   ),
                                 ],
                               ),
@@ -1350,7 +1187,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                         Text(
                           state.errorText ?? '',
                           style: TextStyle(
-                            color: Theme.of(context).errorColor,
+                            color: Theme.of(context).colorScheme.error,
                           ),
                         )
                       ],
@@ -1364,16 +1201,15 @@ class ID_Reg2State extends State<ID_Reg2> {
                     }
                   },
                 ),
-
                 Container(
                   height: 60,
                   width: 330,
                   margin: EdgeInsets.only(top: 20, bottom: 130),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.redAccent,
                       elevation: 2,
-                      primary: Colors.redAccent,
-                      onPrimary: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0),
                       ),
@@ -1388,72 +1224,79 @@ class ID_Reg2State extends State<ID_Reg2> {
                       ),
                     ),
                     onPressed: () {
-                      // _createUser(
-                      //     selectapptype.text,
-                      //     surname.text,
-                      //     firstname.text,
-                      // middle.text,
-                      // address.text,
-                      // yearsodresidence.text,
-                      // birthplace.text,
-                      // dateofbirth.text,
-                      // selectsex.text,
-                      // nationality.text,
-                      // age.text,
-                      // brgy.text,
-                      // zone.text,
-                      // selectdistrict.text,
-                      // selectid.text,
-                      // status.text,
-                      // phonenum.text
-                      // pension.text
-                      // salary.text
-                      // work.text
-                      // id.text
-                      // email.text,
-                      //     );
                       _insertData(
-                          selectapptype.text,
-                          surname.text,
-                          firstname.text,
-                          middle.text,
-                          address.text,
-                          yearsodresidence.text,
-                          birthplace.text,
-                          dateofbirth.text,
-                          selectsex.text,
-                          nationality.text,
-                          age.text,
-                          brgy.text,
-                          zone.text,
-                          selectdistrict.text,
-                          selectid.text,
-                          status.text,
-                          phonenum.text,
-                          pension.text,
-                          salary.text,
-                          work.text,
-                          email.text);
+                        selectapptype.text,
+                        surname.text,
+                        firstname.text,
+                        middlename.text,
+                        suffix.text,
+                        address.text,
+                        yearsofdresidence.text,
+                        birthplace.text,
+                        // DateofBirth.toIso8601String(),
+                        DateofBirth.text,
+                        selectsex.text,
+                        nationality.text,
+                        age.text,
+                        brgy.text,
+                        zone.text,
+                        selectdistrict.text,
+                        selectcivilstatus.text,
+                        selectstatus.text,
+                        MobilePhone.text,
+                        selectidpresented.text,
+                        public_id!,
+                        url!,
+                      );
+                      print('selectAppType: $selectapptype');
+                      print('surname: $surname');
+                      print('firstName: $firstname');
+                      print('middleName: $middlename');
+                      print('suffix: $suffix');
+                      print('address: $address');
+                      print('yearsOfResidence: $yearsofdresidence');
+                      print('birthplace: $birthplace');
+                      print('dateOfBirth: $DateofBirth');
+                      print('selectSex: $selectsex');
+                      print('nationality: $nationality');
+                      print('age: $age');
+                      print('brgy: $brgy');
+                      print('zone: $zone');
+                      print('selectDistrict: $selectdistrict');
+                      print('selectCivilStatus: $selectcivilstatus');
+                      print('selectStatus: $selectstatus');
+                      print('mobilePhone: $MobilePhone');
+                      print('selectIdPresented: $selectidpresented');
+                      print('publicId: $public_id');
+                      print('url: $url');
+                      setState(() {
+                        selectapptype = new TextEditingController();
+                        surname = new TextEditingController();
+                        firstname = new TextEditingController();
+                        middlename = new TextEditingController();
+                        suffix = new TextEditingController();
+                        address = new TextEditingController();
+                        yearsofdresidence = new TextEditingController();
+                        birthplace = new TextEditingController();
+                        // DateofBirth.toIso8601String(),
+                        DateofBirth = new TextEditingController();
+                        selectsex = new TextEditingController();
+                        nationality = new TextEditingController();
+                        age = new TextEditingController();
+                        brgy = new TextEditingController();
+                        zone = new TextEditingController();
+                        selectdistrict = new TextEditingController();
+                        selectcivilstatus = new TextEditingController();
+                        selectstatus = new TextEditingController();
+                        MobilePhone = new TextEditingController();
+                        selectidpresented = new TextEditingController();
+                        public_id = '';
+                        url = '';
+                      });
+
                     },
                   ),
                 ),
-//              Container(
-//                margin: EdgeInsets.only(bottom:10),
-//                child: Row(
-//                  mainAxisAlignment: MainAxisAlignment.center,
-//                  children: <Widget>[
-//                    Text("Already have an account?"),
-//                    Container(
-//                      child: Text(" Login", style:TextStyle(
-//                          fontWeight: FontWeight.w600,
-//                          fontSize: 18
-//                      ),
-//                      ),
-//                    )
-//                  ],
-//                ),
-//              )
-//
               ],
             ),
           ),
@@ -1466,52 +1309,57 @@ class ID_Reg2State extends State<ID_Reg2> {
       String selectapptype,
       String surname,
       String firstname,
-      String middle,
+      String middlename,
+      String suffix,
       String address,
       String yearsofresidence,
       String birthplace,
-      String dateofbirth,
+      String DateofBirth,
       String selectsex,
       String nationality,
       String age,
       String brgy,
       String zone,
       String selectdistrict,
-      String selectid,
-      String status,
-      String phonenum,
-      String pension,
-      String salary,
-      String work,
-      String email) async {
-    final data = MongoDbModel2(
-        id: null,
-        selectapptype: selectapptype,
-        surname: surname,
-        firstname: firstname,
-        middle: middle,
-        suffix: suffix,
-        address: address,
-        yearsofresidence: yearsofresidence,
-        birthplace: birthplace,
-        dateofbirth: dateofbirth,
-        selectsex: selectsex,
-        nationality: nationality,
-        age: age,
-        brgy: brgy,
-        zone: zone,
-        selectdistrict: selectdistrict,
-        selectid: selectid,
-        status: status,
-        phonenum: phonenum,
-        pension: pension,
-        salary: salary,
-        work: work,
-        email: email, );
+      String selectcivilstatus,
+      String selectstatus,
+      String MobilePhone,
+      String selectidpresented,
+      String public_id,
+      String url,
+      ) async {
+    if (validateReg()) {
+      try {
+        final data = MongoDbModel(
+          id: null,
+          selectapptype: selectapptype,
+          surname: surname,
+          firstname: firstname,
+          middlename: middlename,
+          suffix: suffix,
+          address: address,
+          yearsofresidence: yearsofresidence,
+          birthplace: birthplace,
+          DateofBirth: DateofBirth,
+          selectsex: selectsex,
+          nationality: nationality,
+          age: age,
+          brgy: brgy,
+          zone: zone,
+          selectdistrict: selectdistrict,
+          selectcivilstatus: selectcivilstatus,
+          selectstatus: selectstatus,
+          MobilePhone: MobilePhone,
+          selectidpresented: selectidpresented,
+          public_id: public_id,
+          url: url,
+        );
 
-    // var result = await MongoDatabase.insert(data);
-
-
+        var result = await MongoDatabase.insert(data);
+        // Navigator.push(result as BuildContext, MaterialPageRoute(builder: (context)=> RegSuccess()));
+      } catch (e) {
+        print("Error: $e");
+      }
+    }
   }
 }
-

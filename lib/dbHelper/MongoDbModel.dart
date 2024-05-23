@@ -6,102 +6,103 @@ MongoDbModel mongoDbModelFromJson(String str) =>
 
 String mongoDbModelToJson(MongoDbModel data) => json.encode(data.toJson());
 
+
 class MongoDbModel {
   MongoDbModel({
-    this.id,
+    required this.id,
     required this.selectapptype,
     required this.surname,
     required this.firstname,
-    required this.middle,
+    required this.middlename,
+    required this.suffix,
     required this.address,
     required this.yearsofresidence,
     required this.birthplace,
-    required this.dateofbirth,
+    required this.DateofBirth,
     required this.selectsex,
     required this.nationality,
     required this.age,
     required this.brgy,
     required this.zone,
     required this.selectdistrict,
-    required this.selectid,
-    required this.status,
-    required this.phonenum,
-    required this.pension,
-    required this.salary,
-    required this.work,
-    required this.email,
+    required this.selectcivilstatus,
+    required this.selectstatus,
+    required this.MobilePhone,
+    required this.selectidpresented,
+    required this.url,
+    required this.public_id,
   });
 
   ObjectId? id;
   String? selectapptype;
   String? surname;
   String? firstname;
-  String? middle;
+  String? middlename;
+  String? suffix;
   String? address;
   String? yearsofresidence;
   String? birthplace;
-  String? dateofbirth;
+  String? DateofBirth;
   String? selectsex;
   String? nationality;
   String? age;
   String? brgy;
   String? zone;
   String? selectdistrict;
-  String? selectid;
-  String? status;
-  String? phonenum;
-  String? pension;
-  String? salary;
-  String? work;
-  String? email;
+  String? selectcivilstatus;
+  String? selectstatus;
+  String? MobilePhone;
+  String? selectidpresented;
+  String? url;
+  String? public_id;
+
 
   factory MongoDbModel.fromJson(Map<String, dynamic> json) => MongoDbModel(
-    id: json["_id"],
-    selectapptype: json["TypeofApplication"],
-    surname: json["SurName"],
-    firstname: json["FirstName"],
-    middle: json["Middle"],
-    address: json["Address"],
-    yearsofresidence: json["YrsofResidenceInManila"],
-    birthplace: json["BirthPlace"],
-    dateofbirth: json["DateofBirth"],
-    selectsex: json["Gender"],
-    nationality: json["Nationality"],
-    age: json["Age"],
-    brgy: json["Barangay"],
-    zone: json["Zone"],
-    selectdistrict: json["District"],
-    selectid: json["ValidIdPresented"],
-    status: json["CivilStatus"],
-    phonenum: json["CellPhoneNumber"],
-    pension: json["Pension"],
-    salary: json["Salary"],
-    work: json["PresentWork"],
-    email: json["Email"],
-  );
+      id: json["_id"],
+      selectapptype: json["TypeofApplication"],
+      surname: json["SurName"],
+      firstname: json["FirstName"],
+      middlename: json["MiddleName"],
+      address: json["Address"],
+      suffix: json["Suffix"],
+      yearsofresidence: json["YrsofResidenceInManila"],
+      birthplace: json["BirthPlace"],
+      DateofBirth: json["DateofBirth"],
+      selectsex: json["Gender"],
+      nationality: json["Nationality"],
+      age: json["Age"],
+      brgy: json["Barangay"],
+      zone: json["Zone"],
+      selectdistrict: json["District"],
+      selectcivilstatus: json["CivilStatus"],
+      selectstatus: json["Status"],
+      MobilePhone: json["MobilePhone"],
+      selectidpresented: json["ValidIdPresented"],
+      url: json["Url"],
+      public_id: json["public_id"]);
 
   Map<String, dynamic> toJson() => {
     "_id": id,
     "TypeofApplication": selectapptype,
     "SurName": surname,
     "FirstName": firstname,
-    "Middle": middle,
+    "MiddleName": middlename,
+    "Suffix": suffix,
     "Address": address,
     "YrsofResidenceInManila": yearsofresidence,
     "BirthPlace": birthplace,
-    "DateofBirth": dateofbirth,
+    "DateofBirth": DateofBirth,
     "Gender": selectsex,
     "Nationality": nationality,
     "Age": age,
     "Barangay": brgy,
     "Zone": zone,
     "District": selectdistrict,
-    "ValidIdPresented": selectid,
-    "CivilStatus": status,
-    "CellPhoneNumber": phonenum,
-    "Pension": pension,
-    "Salary": salary,
-    "PresentWork": work,
-    "Email": email,
+    "CivilStatus": selectcivilstatus,
+    "Status": selectstatus,
+    "MobilePhone": MobilePhone,
+    "ValidIdPresented": selectidpresented,
+    "Url": url,
+    "public_id": public_id,
   };
 }

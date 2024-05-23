@@ -6,4 +6,5 @@ class AuthenticationProvider{
 
   Stream<User?> get authState => firebaseAuth.idTokenChanges();
 
+
 }

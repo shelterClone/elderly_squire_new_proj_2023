@@ -1,17 +1,18 @@
 import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/Login_Reg/AdminHomepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/News/NewsHome.dart';
 import 'package:flutter/material.dart';
 
 
 
-//-------------Splash screen to Homepage if the user is still logged in--------------------//
+//-------------Splash screen to Homepage if the Admin user is still logged in--------------------//
 
-class SplashScreenToHomepage extends StatefulWidget {
+class SplashScreenToAdminHomepage extends StatefulWidget {
   @override
-  _SplashScreenToHomepageState createState() => _SplashScreenToHomepageState();
+  _SplashScreenToAdminHomepageState createState() => _SplashScreenToAdminHomepageState();
 }
 
-class _SplashScreenToHomepageState extends State<SplashScreenToHomepage> {
+class _SplashScreenToAdminHomepageState extends State<SplashScreenToAdminHomepage> {
   @override
   void initState() {
     super.initState();
@@ -24,7 +25,7 @@ class _SplashScreenToHomepageState extends State<SplashScreenToHomepage> {
       Navigator.pushReplacement(
         context,
         // MaterialPageRoute(builder: (context) => NewsHome()),
-        MaterialPageRoute(builder: (context) => Homepage()),
+        MaterialPageRoute(builder: (context) => AdminHomepage()),
       );
     });
   }

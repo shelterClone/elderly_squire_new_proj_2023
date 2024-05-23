@@ -1,36 +1,33 @@
-import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/SelectGender.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Users.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/db_service.dart';
+import 'dart:convert';
+import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/ID_Registration/IDReg_Success_Screen.dart';
 import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel.dart';
 import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel2.dart';
-import 'package:elderly_squire_2023_remastered_v2/main.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:elderly_squire_2023_remastered_v2/Login_Reg/SelectGender.dart';
-import 'dart:core';
-import 'package:elderly_squire_2023_remastered_v2/dbHelper/MongoDbModel.dart';
 import 'package:elderly_squire_2023_remastered_v2/dbHelper/mongoDb.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 
-class ID_Reg2 extends StatefulWidget {
-  get user => null;
+import 'package:flutter/material.dart';
+import 'package:mongo_dart/mongo_dart.dart';
 
-  // var user;
+class RegistrationForm2 extends StatefulWidget {
+
 
   @override
-  ID_Reg2State createState() => ID_Reg2State();
+  _RegistrationFormState createState() => _RegistrationFormState();
 }
 
-class ID_Reg2State extends State<ID_Reg2> {
+class _RegistrationFormState extends State<RegistrationForm2> {
   RegExp numReg = RegExp(r".*[0-9].*");
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
   RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
 
   List<String> applicationtype = [
-    'New Senior(Voter)',
-    'New Senior(Non-Voter)',
-    'Old Senior'
+    // 'New Senior(Voter)',
+    // 'New Senior(Non-Voter)',
+    // 'Old Senior'
+    'Voter',
+    'Non-Voter',
   ];
   late TextEditingController selectapptype;
 
@@ -39,6 +36,8 @@ class ID_Reg2State extends State<ID_Reg2> {
   TextEditingController firstname = TextEditingController();
 
   TextEditingController middle = TextEditingController();
+
+  TextEditingController suffix = TextEditingController();
 
   TextEditingController address = TextEditingController();
 
@@ -94,87 +93,43 @@ class ID_Reg2State extends State<ID_Reg2> {
 
   bool ischecked = false;
 
-  // User? _user = FirebaseAuth.instance.currentUser;
-  //
-  // final _auth = FirebaseAuth.instance;
+  // final _formKey = GlobalKey<FormState>();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  get suffix => null;
+  get yearsofresidence => null;
 
-//   Future<void> _createUser( //-----------------------Create User Firebase------------------------------//
-//       String firstname,
-//       String middle,
-//       String surname,
-//       String sex,
-//       String address,
-//       String email,
-//       String password,) async {
-//     if (validateReg()) {
-//       try {
-//         print("Email: $email Password: $password");
-//         UserCredential userCredential = await FirebaseAuth.instance
-//             .createUserWithEmailAndPassword(
-//             email: email.characters.toString().trim(), password: password);
-//         // email: email, password: password);
-//
-//         await DBServices().saveUser(Users(
-//           uid: user?.uid,
-//           firstname: firstname,
-//           middle: middle,
-//           surname: surname,
-//           sex: sex,
-//           address: address,
-//           email: user?.email,
-//
-//           // contact_number: contact_number,
-//
-//         )
-//         );
-//         print("User: $userCredential");
-//         return showDialog(
-//             context: context,
-//             barrierDismissible: false,
-//             builder: (BuildContext context) {
-//               return AlertDialog(
-//                 title: Text("Success"),
-//                 content: SingleChildScrollView(
-//                     child: ListBody(
-//                       children: <Widget>[
-//                         Text("You are now offically registered!"),
-//                       ],
-//                     )),
-//                 actions: <Widget>[
-//                   TextButton(
-//                     child: Text("Close"),
-//                     onPressed: () {
-//                       Navigator.of(context).pop();
-//                       Navigator.push(
-//                         context,
-//                         MaterialPageRoute(builder: (context) => Homepage()),
-//                       );
-//                     },
-//                   )
-//                 ],
-//               );
-//             });
-//       } on FirebaseAuthException catch (e) {
-//         // print("Error: $e");
-//
-//
-//       } catch (e) {
-//         print("Error: $e");
-//       }
-// //    }
-//     }
-//   }
+  // MongoDbModel get data => null;
+  // final RegistrationForm _formData = RegistrationForm();
 
-  // User? get user => FirebaseAuth.instance.currentUser;
+  // late String _username;
+  // late String _email;
+  // late String _password;
+
+
+
+  void ID_Reg_Success(){
+    print("Data successfully inserted. Navigating to success screen...");
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => IDRegSuccess()),
+    );
+  }
+
+  void ID_Reg_Error(String errorMessage) {
+    // Display error message or handle error as needed
+    print("Error: $errorMessage");
+  }
+
+
+  @override
+
 
   void initState() {
     selectapptype = TextEditingController();
     surname.text = '';
     firstname.text = '';
     middle.text = '';
+    suffix.text = '';
     address.text = '';
     yearsodresidence.text = '';
     birthplace.text = '';
@@ -210,13 +165,13 @@ class ID_Reg2State extends State<ID_Reg2> {
     }
   }
 
-  @override
   Widget build(BuildContext context) {
     void dispose() {
       selectapptype.dispose();
       surname.dispose();
       firstname.dispose();
       middle.dispose();
+      suffix.dispose();
       address.dispose();
       yearsodresidence.dispose();
       birthplace.dispose();
@@ -234,6 +189,7 @@ class ID_Reg2State extends State<ID_Reg2> {
       super.dispose();
     }
 
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
@@ -241,17 +197,22 @@ class ID_Reg2State extends State<ID_Reg2> {
         elevation: 0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => Homepage()),
-            );
-          },
+          // onPressed: () {
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (context) => Homepage()),
+          //   );
+          // },
           icon: Icon(
             Icons.arrow_back_ios,
             size: 20,
             color: Colors.black,
-          ),
+          ), onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Homepage())
+
+          );},
         ),
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
@@ -261,7 +222,11 @@ class ID_Reg2State extends State<ID_Reg2> {
           padding: EdgeInsets.symmetric(horizontal: 40),
           // height: MediaQuery.of(context).size.height + 500,
           // height: MediaQuery.of(context).size.height + 700, //-----original
-          height: MediaQuery.of(context).size.height + 2050,
+          height: MediaQuery
+              .of(context)
+              .size
+          // .height + 2050,
+              .height + 2550,
           width: double.infinity,
           child: Form(
             key: formkey,
@@ -293,7 +258,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                         child: Text(
                           "Application form for Senior Citizen ID",
                           style:
-                              TextStyle(fontSize: 15, color: Colors.grey[700]),
+                          TextStyle(fontSize: 15, color: Colors.grey[700]),
                         ),
                       ),
                     )
@@ -303,7 +268,8 @@ class ID_Reg2State extends State<ID_Reg2> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      'Type of Application', //------------------Type of Application-----------------------//
+                      'Type of Application',
+                      //------------------Type of Application-----------------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -319,7 +285,8 @@ class ID_Reg2State extends State<ID_Reg2> {
                         hint: Text(
                           'Select Application Type',
                           style: TextStyle(fontSize: 15),
-                        ), // Not necessary for Option 1
+                        ),
+                        // Not necessary for Option 1
                         value: selectapptype.text.isEmpty
                             ? null
                             : selectapptype.text,
@@ -391,7 +358,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -442,7 +409,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -493,7 +460,45 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      'Suffix (Optional)',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black87),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 20),
+                      child: TextFormField(
+                        //----------------------Middle Name txtField-----------------------------//
+                        controller: suffix,
+                        onChanged: (value) {
+                          TextSelection previousSelection =
+                              suffix.selection; //----------new
+                          suffix.text = value;
+                          suffix.selection =
+                              previousSelection; //--------------new
+                        },
+
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.blueGrey),
+                            ),
+                            border: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -541,7 +546,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -589,7 +594,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -639,7 +644,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -685,7 +690,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -772,7 +777,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -818,7 +823,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -863,7 +868,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -908,7 +913,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -997,7 +1002,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -1044,7 +1049,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -1067,16 +1072,16 @@ class ID_Reg2State extends State<ID_Reg2> {
                         keyboardType: TextInputType.number,
                         controller: pension,
                         validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return "Monthly Required";
-                          // }
+                          if (value == null || value.isEmpty) {
+                            return "Monthly Required";
+                          }
                           // if (value.length >11 || value.length <11) {
                           //   return "Invalid Phone Number";
                           // }
-                          //
-                          // else {
-                          //   return null;
-                          // }
+
+                          else {
+                            return null;
+                          }
                         },
                         onChanged: (value) {
                           TextSelection previousSelection = pension.selection;
@@ -1093,7 +1098,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -1116,16 +1121,16 @@ class ID_Reg2State extends State<ID_Reg2> {
                         keyboardType: TextInputType.number,
                         controller: salary,
                         validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return "Monthly Required";
-                          // }
+                          if (value == null || value.isEmpty) {
+                            return "Salary Required";
+                          }
                           // if (value.length >11 || value.length <11) {
                           //   return "Invalid Phone Number";
                           // }
-                          //
-                          // else {
-                          //   return null;
-                          // }
+
+                          else {
+                            return null;
+                          }
                         },
                         onChanged: (value) {
                           TextSelection previousSelection = salary.selection;
@@ -1142,7 +1147,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
@@ -1164,16 +1169,16 @@ class ID_Reg2State extends State<ID_Reg2> {
                         //----------------------Present Work----------------------------//
                         controller: work,
                         validator: (value) {
-                          // if (value == null || value.isEmpty) {
-                          //   return "Monthly Required";
-                          // }
+                          if (value == null || value.isEmpty) {
+                            return "Work  Required";
+                          }
                           // if (value.length >11 || value.length <11) {
                           //   return "Invalid Phone Number";
                           // }
-                          //
-                          // else {
-                          //   return null;
-                          // }
+
+                          else {
+                            return null;
+                          }
                         },
                         onChanged: (value) {
                           TextSelection previousSelection = work.selection;
@@ -1190,14 +1195,15 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                     SizedBox(
                       height: 5,
                     ),
                     Text(
-                      'Valid ID Presented', //--------Valid ID Presented----------------------//
+                      'Proof of Valid ID Presented(Scanned/PDF)',
+                      //--------Valid ID Presented----------------------//
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -1213,7 +1219,8 @@ class ID_Reg2State extends State<ID_Reg2> {
                         hint: Text(
                           'Select ID Presented',
                           style: TextStyle(fontSize: 15),
-                        ), // Not necessary for Option 1
+                        ),
+                        // Not necessary for Option 1
                         value: selectid.text.isEmpty ? null : selectid.text,
                         onChanged: (String? newValue) {
                           setState(() {
@@ -1287,7 +1294,7 @@ class ID_Reg2State extends State<ID_Reg2> {
                             ),
                             border: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.blueGrey))),
+                                BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
                   ],
@@ -1332,15 +1339,16 @@ class ID_Reg2State extends State<ID_Reg2> {
                                 children: [
                                   Text('I agree to the'),
                                   TextButton(
+                                    onPressed: () {},
                                     child: Text('Privacy Policy',
                                         style: TextStyle(
-                                            // fontStyle: FontStyle.normal,
+                                          // fontStyle: FontStyle.normal,
 
-                                            )),
-                                    onPressed: () {
-                                      // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
-                                      PrivacyPolicyDialog(context);
-                                    },
+                                        )),
+                                    // onPressed: () {
+                                    //   // Navigator.push(context, MaterialPageRoute(builder: (context)=> TermsAndConditions()));
+                                    //   PrivacyPolicyDialog(context);
+                                    // },
                                   ),
                                 ],
                               ),
@@ -1350,7 +1358,9 @@ class ID_Reg2State extends State<ID_Reg2> {
                         Text(
                           state.errorText ?? '',
                           style: TextStyle(
-                            color: Theme.of(context).errorColor,
+                            color: Theme
+                                .of(context)
+                                .errorColor,
                           ),
                         )
                       ],
@@ -1387,54 +1397,10 @@ class ID_Reg2State extends State<ID_Reg2> {
                             fontWeight: FontWeight.w600),
                       ),
                     ),
-                    onPressed: () {
-                      // _createUser(
-                      //     selectapptype.text,
-                      //     surname.text,
-                      //     firstname.text,
-                      // middle.text,
-                      // address.text,
-                      // yearsodresidence.text,
-                      // birthplace.text,
-                      // dateofbirth.text,
-                      // selectsex.text,
-                      // nationality.text,
-                      // age.text,
-                      // brgy.text,
-                      // zone.text,
-                      // selectdistrict.text,
-                      // selectid.text,
-                      // status.text,
-                      // phonenum.text
-                      // pension.text
-                      // salary.text
-                      // work.text
-                      // id.text
-                      // email.text,
-                      //     );
-                      _insertData(
-                          selectapptype.text,
-                          surname.text,
-                          firstname.text,
-                          middle.text,
-                          address.text,
-                          yearsodresidence.text,
-                          birthplace.text,
-                          dateofbirth.text,
-                          selectsex.text,
-                          nationality.text,
-                          age.text,
-                          brgy.text,
-                          zone.text,
-                          selectdistrict.text,
-                          selectid.text,
-                          status.text,
-                          phonenum.text,
-                          pension.text,
-                          salary.text,
-                          work.text,
-                          email.text);
-                    },
+                    onPressed:(){
+                      _insertData;
+                  }
+
                   ),
                 ),
 //              Container(
@@ -1462,56 +1428,44 @@ class ID_Reg2State extends State<ID_Reg2> {
     );
   }
 
-  Future<void> _insertData(
-      String selectapptype,
-      String surname,
-      String firstname,
-      String middle,
-      String address,
-      String yearsofresidence,
-      String birthplace,
-      String dateofbirth,
-      String selectsex,
-      String nationality,
-      String age,
-      String brgy,
-      String zone,
-      String selectdistrict,
-      String selectid,
-      String status,
-      String phonenum,
-      String pension,
-      String salary,
-      String work,
-      String email) async {
-    final data = MongoDbModel2(
-        id: null,
-        selectapptype: selectapptype,
-        surname: surname,
-        firstname: firstname,
-        middle: middle,
-        suffix: suffix,
-        address: address,
-        yearsofresidence: yearsofresidence,
-        birthplace: birthplace,
-        dateofbirth: dateofbirth,
-        selectsex: selectsex,
-        nationality: nationality,
-        age: age,
-        brgy: brgy,
-        zone: zone,
-        selectdistrict: selectdistrict,
-        selectid: selectid,
-        status: status,
-        phonenum: phonenum,
-        pension: pension,
-        salary: salary,
-        work: work,
-        email: email, );
+  Future <void> _insertData() async{
 
-    // var result = await MongoDatabase.insert(data);
+    final idregdetails = MongoDbModel2 (
+        selectapptype: selectapptype.text,
+        surname: surname.text,
+        firstname: firstname.text,
+        middle: middle.text,
+        suffix:suffix.text,
+        address: address.text,
+        yearsofresidence: yearsofresidence.toString(),
+        birthplace:birthplace.text,
+        dateofbirth:dateofbirth.text,
+        selectsex: selectsex.text,
+        nationality: nationality.text,
+        age: age.text,
+        brgy: brgy.text,
+        zone: zone.text,
+        selectdistrict: selectdistrict.text,
+        selectid: selectid.text,
+        status: status.text,
+        phonenum: phonenum.text,
+        pension: pension.text,
+        salary: salary.text,
+        work: work.text,
+        id: id.toString(),
+        email: email.text,
+    );
 
+    if(validateReg()){
+      try{
+        final db = Db('"mongodb+srv://databasesean:Masterabed1@cluster0.uimbcsn.mongodb.net/?retryWrites=true&w=majority"');
+        await db.open();
 
+      }catch(e){
+        print('Error saving to MongoDb: $e');
+      }
+    }
+    }
   }
-}
+
 

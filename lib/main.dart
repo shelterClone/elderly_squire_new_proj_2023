@@ -1,12 +1,15 @@
 //import 'package:elderly_squire_2023_remastered/Homepage.dart';
 import 'dart:async';
 
-import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
+// import 'package:elderly_squire_2023_remastered_v2/Benefits/Benefits_P1/BenefitsMenu.dart';
 import 'package:elderly_squire_2023_remastered_v2/HomePage.dart';
+import 'package:elderly_squire_2023_remastered_v2/ID_Registration/IDReg_Success_Screen.dart';
 import 'package:elderly_squire_2023_remastered_v2/LaunchScreenToMainScreen.dart';
+import 'package:elderly_squire_2023_remastered_v2/Login_Reg/AdminLogin.dart';
 // import 'package:elderly_squire_2023_remastered_v2/Login_Reg/ID_Registration.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Register.dart';
+import 'package:elderly_squire_2023_remastered_v2/Login_Reg/RoleLogin.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/authenticate.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/authentication.dart';
 import 'package:elderly_squire_2023_remastered_v2/OnBoarding%20page/authenticateOnboard.dart';
@@ -84,10 +87,8 @@ class _MyAppState extends State<MyApp> {
       initScreen == 0 || initScreen == null ?
       "first" : "/",
       routes: {
-        '/': (context) => Authenticate(
-        ),
-        "first": (context) => AuthenticateOnboard(),
-
+        '/': (context) => Authenticate(),
+        // "id_reg_success": (context) => IDRegSuccess(),
 
       },
       // home: Authenticate(),
@@ -189,7 +190,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
                       child: Center(
-                        child: Text(
+                        child:
+                        Text(
                           "Login",
                           style: TextStyle(
                               fontSize: 18,
@@ -199,13 +201,65 @@ class HomeScreen extends StatelessWidget {
                       ),
                       onPressed: () {
 //                        _UserLogin(myEmail.text, password.text);
+//                         Navigator.push(
+//                             context,
+//                             MaterialPageRoute(
+//                                 builder: (context) => LoginPage2())
+//                         );
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => LoginPage2()));
+                                builder: (context) => RoleLoginPage())
+                        );
                       },
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
+//                   Container(
+//                     //------------------------Login as Admin--------------------------//
+//                     height: 60,
+//                     width: 330,
+//                     // height: 50,
+//                     // width: 280,
+//
+//                     // margin: EdgeInsets.only(bottom: 15),
+//                     child: ElevatedButton(
+//                       style: ElevatedButton.styleFrom(
+//                         elevation: 2,
+//                         // primary: Colors.orange[400],
+//                         primary: Colors.purple[500],
+//                         onPrimary: Colors.white,
+//                         shape: RoundedRectangleBorder(
+//                           borderRadius: BorderRadius.circular(10.0),
+//                         ),
+//                       ),
+//                       child: const Center(
+//                         child:
+//                         Text(
+//                           "Login as Admin",
+//                           style: TextStyle(
+//                               fontSize: 18,
+//                               fontFamily: ('OpenSans'),
+//                               fontWeight: FontWeight.w600),
+//                         ),
+//                       ),
+//                       onPressed: () {
+// //                        _UserLogin(myEmail.text, password.text);
+//                         Navigator.push(
+//                             context,
+//                             MaterialPageRoute(
+//                                 builder: (context) => AdminLoginPage()));
+//                       },
+//                     ),
+//                   ),
+
+
+
+
+
 
 //                   Container(//--------------------------------Register--------------------------//
 //                     height: 60,
@@ -235,6 +289,9 @@ class HomeScreen extends StatelessWidget {
 //                       },
 //                     ),
 //                   ), //---reg
+
+
+
 
                   Container(
                     padding: EdgeInsets.only(left: 35, bottom: 20),
@@ -2815,3 +2872,4 @@ void PrivacyPolicyDialog(BuildContext context) {
     },
   );
 }
+

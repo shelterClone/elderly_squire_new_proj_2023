@@ -29,7 +29,8 @@ apply plugin: 'com.google.gms.google-services'
 android {
     namespace "com.example.elderly_squire_2023_remastered_v2"
 //    compileSdkVersion flutter.compileSdkVersion
-    compileSdkVersion 33
+//    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -54,7 +55,9 @@ android {
         minSdkVersion 21
 //        targetSdkVersion flutter.targetSdkVersion
 //        targetSdkVersion 33
-        targetSdkVersion 33
+//        targetSdkVersion 33
+        targetSdkVersion 34
+//        targetSdkVersion 34 ----------------------------pag naglagay ka cloudinary
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
