@@ -360,6 +360,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                          hintText: 'ex: Dela Cruz',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -405,6 +406,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: Juan',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -449,6 +451,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: Juarez',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -486,6 +489,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: Jr or Sr',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -580,6 +584,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: 70',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -624,6 +629,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: Manila City',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -669,6 +675,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: 08/25/1950',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -697,7 +704,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       margin: EdgeInsets.only(right: 40),
                       child: DropdownButtonFormField(
                         hint: Text(
-                          'Select Sex',
+                          'ex: Male or Female',
                           style: TextStyle(fontSize: 15),
                         ),
                         value: selectsex.text.isEmpty ? null : selectsex.text,
@@ -756,6 +763,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: Filipino',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -802,6 +810,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: 60',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -847,6 +856,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: 115',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -892,6 +902,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: 10',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -1070,6 +1081,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
 
                         decoration: InputDecoration(
+                            hintText: 'ex: 9915270166',
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
