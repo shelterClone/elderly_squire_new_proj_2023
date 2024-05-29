@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/AboutUs.dart';
+import 'package:elderly_squire_2023_remastered_v2/Announcements/Announcements.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsUser.dart';
 import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
@@ -362,449 +363,539 @@ class _HomepageState extends State<Homepage> {
                     color: Colors.blue,
                   );
                 }
-                return Column(children: <Widget>[
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(right: 130),
-                    child: Text(
-                      'Hi, ${streamSnapshot.data!['First Name']}!',
-                      style: TextStyle(
-                        // fontWeight: FontWeight.w600,
-                        fontSize: 23,
-                        fontFamily: ('OpenSans'),
+                return SingleChildScrollView(
+                  child: Container(
+                    height: MediaQuery.of(context).size.height+100,
+                    child: Column(children: <Widget>[
+                      SizedBox(
+                        height: 20,
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      height: 120,
-                      child: Card(
-                        // color: Colors.indigo,
-                        color: Colors.blue[500],
-                        //------------------------------ID Registration---------------------------------//
-                        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                      Container(
+                        margin: EdgeInsets.only(right: 130),
+                        child: Text(
+                          'Hi, ${streamSnapshot.data!['First Name']}!',
+                          style: TextStyle(
+                            // fontWeight: FontWeight.w600,
+                            fontSize: 23,
+                            fontFamily: ('OpenSans'),
+                          ),
                         ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                                margin: EdgeInsets.only(left: 30, bottom: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          // builder: (context) => ID_Reg2()),
-                                        builder: (context) => RegistrationForm()),
-                                    );
-                                  },
-                                  child: Image.asset('assets/images/ID.png',
-                                      height: 75, width: 90),
-                                )),
-                            Container(
-                              margin: EdgeInsets.only(left: 15, top: 29),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
+                      ),
+                      GestureDetector(
+                        child: Container(
+                          height: 120,
+                          child: Card(
+                            // color: Colors.indigo,
+                            color: Colors.blue[500],
+                            //------------------------------ID Registration---------------------------------//
+                            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.only(left: 30, bottom: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              // builder: (context) => ID_Reg2()),
                                             builder: (context) => RegistrationForm()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'ID Registration',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('BebasNeue'),
-                                        // fontFamily: ('OpenSans'),
-                                        fontSize: 25,
+                                        );
+                                      },
+                                      child: Image.asset('assets/images/ID.png',
+                                          height: 75, width: 90),
+                                    )),
+                                Container(
+                                  margin: EdgeInsets.only(left: 15, top: 29),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => RegistrationForm()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'ID Registration',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('BebasNeue'),
+                                            // fontFamily: ('OpenSans'),
+                                            fontSize: 25,
 
 //                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  )),
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => RegistrationForm()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Application for Senior Citizens ID',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('OpenSans'),
-                                        fontSize: 10,
+                                          ),
+                                        ),
+                                      )),
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => RegistrationForm()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Application for Senior Citizens ID',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('OpenSans'),
+                                            fontSize: 10,
 
 //                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ))
-                                ],
-                              ),
+                                          ),
+                                        ),
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
 
-                  GestureDetector(
-                    child: Container(
-                      height: 120,
-                      child: Card(
-                        color: Colors.teal[400],
-                        // color: Colors.blueGrey[900],
-                        //------------------------------Medicine New---------------------------------//
-                        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                                margin: EdgeInsets.only(
-                                    left: 30, bottom: 10, top: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => MedicineMenu()),
-                                    );
-                                  },
-                                  child: Image.asset(
-                                      'assets/images/medicine.png',
-                                      height: 75,
-                                      width: 90),
-                                )),
-                            Container(
-                              margin: EdgeInsets.only(left: 15, top: 29),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                MedicineMenu()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Medicine',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('BebasNeue'),
-                                        fontSize: 25,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  )),
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                MedicineMenu()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Medicine Reminder, To-do List',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('OpenSans'),
-                                        fontSize: 10,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ))
-                                ],
-                              ),
+                      GestureDetector(
+                        child: Container(
+                          height: 120,
+                          child: Card(
+                            color: Colors.teal[400],
+                            // color: Colors.blueGrey[900],
+                            //------------------------------Medicine New---------------------------------//
+                            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ],
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.only(
+                                        left: 30, bottom: 10, top: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => MedicineMenu()),
+                                        );
+                                      },
+                                      child: Image.asset(
+                                          'assets/images/medicine.png',
+                                          height: 75,
+                                          width: 90),
+                                    )),
+                                Container(
+                                  margin: EdgeInsets.only(left: 15, top: 29),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MedicineMenu()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Medicine',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('BebasNeue'),
+                                            fontSize: 25,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      )),
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MedicineMenu()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Medicine Reminder, To-do List',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('OpenSans'),
+                                            fontSize: 10,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      height: 120,
-                      child: Card(
-                        color: Colors.orange[400],
-                        // color: Colors.blueGrey[900],
-                        //------------------------------Health Tips---------------------------------//
-                        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                                margin: EdgeInsets.only(
-                                    left: 30, bottom: 10, top: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              HealthTipsMenu()),
-                                    );
-                                  },
-                                  child: Image.asset(
-                                      'assets/images/healthy.png',
-                                      height: 75,
-                                      width: 90),
-                                )),
-                            Container(
-                              margin: EdgeInsets.only(left: 15, top: 29),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                HealthTipsMenu()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Health Tips',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('BebasNeue'),
-                                        fontSize: 25,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  )),
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                HealthTipsMenu()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Health Weight, Healthy Eating etc.',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('OpenSans'),
-                                        fontSize: 10,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ))
-                                ],
-                              ),
+                      GestureDetector(
+                        child: Container(
+                          height: 120,
+                          child: Card(
+                            color: Colors.orange[400],
+                            // color: Colors.blueGrey[900],
+                            //------------------------------Health Tips---------------------------------//
+                            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ],
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.only(
+                                        left: 30, bottom: 10, top: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  HealthTipsMenu()),
+                                        );
+                                      },
+                                      child: Image.asset(
+                                          'assets/images/healthy.png',
+                                          height: 75,
+                                          width: 90),
+                                    )),
+                                Container(
+                                  margin: EdgeInsets.only(left: 15, top: 29),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HealthTipsMenu()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Health Tips',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('BebasNeue'),
+                                            fontSize: 25,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      )),
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HealthTipsMenu()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Health Weight, Healthy Eating etc.',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('OpenSans'),
+                                            fontSize: 10,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      height: 120,
-                      child: Card(
-                        color: Colors.brown[400],
-                        // color: Colors.blueGrey[900],
-                        //------------------------------Benefits---------------------------------//
-                        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                                margin: EdgeInsets.only(
-                                    left: 30, bottom: 10, top: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => BenefitsUserPage()),
-                                    );
-                                  },
-                                  child:
-                                  Image.asset(
-                                      'assets/images/scardbene.png',
-                                      height: 75,
-                                      width: 90),
-                                )),
-                            Container(
-                              margin: EdgeInsets.only(left: 15, top: 29),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                BenefitsUserPage()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Benefits',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('BebasNeue'),
-                                        fontSize: 25,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  )),
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                BenefitsUserPage()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Senior Citizen Benefits',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('OpenSans'),
-                                        fontSize: 10,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ))
-                                ],
-                              ),
+                      GestureDetector(
+                        child: Container(
+                          height: 120,
+                          child: Card(
+                            color: Colors.brown[400],
+                            // color: Colors.blueGrey[900],
+                            //------------------------------Benefits---------------------------------//
+                            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ],
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.only(
+                                        left: 30, bottom: 10, top: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => BenefitsUserPage()),
+                                        );
+                                      },
+                                      child:
+                                      Image.asset(
+                                          'assets/images/scardbene.png',
+                                          height: 75,
+                                          width: 90),
+                                    )),
+                                Container(
+                                  margin: EdgeInsets.only(left: 15, top: 29),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BenefitsUserPage()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Benefits',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('BebasNeue'),
+                                            fontSize: 25,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      )),
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BenefitsUserPage()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Senior Citizen Benefits',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('OpenSans'),
+                                            fontSize: 10,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  GestureDetector(
-                    child: Container(
-                      height: 120,
-                      child: Card(
-                        color: Colors.purple[400],
-                        // color: Colors.blueGrey[900],
-                        //------------------------------Chat Support---------------------------------//
-                        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                                margin: EdgeInsets.only(
-                                    left: 30, bottom: 10, top: 10),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SupportPage()),
-                                    );
-                                  },
-                                  child: Image.asset('assets/images/chat2.png',
-                                      height: 75, width: 90),
-                                )),
-                            Container(
-                              margin: EdgeInsets.only(left: 15, top: 29),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SupportPage()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Chat Support',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('BebasNeue'),
-                                        fontSize: 25,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  )),
-                                  Container(
-                                      // margin: EdgeInsets.only(left: 25),
-                                      child: InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SupportPage()),
-                                      );
-                                    },
-                                    child: Text(
-                                      'Elderly Squire Customer Care',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: ('OpenSans'),
-                                        fontSize: 10,
-
-//                                  fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ))
-                                ],
-                              ),
+                      GestureDetector(
+                        child: Container(
+                          height: 120,
+                          child: Card(
+                            color: Colors.red[400],
+                            // color: Colors.blueGrey[900],
+                            //-------------------Announcements--------------------------------//
+                            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                          ],
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.only(
+                                        left: 30, bottom: 10, top: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => AnnouncementsPage()),
+                                        );
+                                      },
+                                      child:
+                                      Image.asset(
+                                          'assets/images/megaphone.png',
+                                          height: 75,
+                                          width: 90),
+                                    )),
+                                Container(
+                                  margin: EdgeInsets.only(left: 15, top: 29),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        AnnouncementsPage()),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Announcements',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: ('BebasNeue'),
+                                                fontSize: 25,
+
+//                                  fontWeight: FontWeight.bold
+                                              ),
+                                            ),
+                                          )),
+                                      Container(
+                                        // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        AnnouncementsPage()),
+                                              );
+                                            },
+                                            child: Text(
+                                              'City of Manila Bulletin Board',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: ('OpenSans'),
+                                                fontSize: 10,
+
+//                                  fontWeight: FontWeight.bold
+                                              ),
+                                            ),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
+                      GestureDetector(
+                        child: Container(
+                          height: 120,
+                          child: Card(
+                            color: Colors.purple[400],
+                            // color: Colors.blueGrey[900],
+                            //------------------------------Chat Support---------------------------------//
+                            margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                    margin: EdgeInsets.only(
+                                        left: 30, bottom: 10, top: 10),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => SupportPage()),
+                                        );
+                                      },
+                                      child: Image.asset('assets/images/chat2.png',
+                                          height: 75, width: 90),
+                                    )),
+                                Container(
+                                  margin: EdgeInsets.only(left: 15, top: 29),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SupportPage()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Chat Support',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('BebasNeue'),
+                                            fontSize: 25,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      )),
+                                      Container(
+                                          // margin: EdgeInsets.only(left: 25),
+                                          child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    SupportPage()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Elderly Squire Customer Care',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('OpenSans'),
+                                            fontSize: 10,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ))
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
 //             GestureDetector(
 //               child: Container(
 //                 height: 150,
@@ -1004,7 +1095,9 @@ class _HomepageState extends State<Homepage> {
 //                 ),
 //               ),
 //             ),
-                ]);
+                    ]),
+                  ),
+                );
               })
 
 //

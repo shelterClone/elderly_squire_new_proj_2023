@@ -1,3 +1,4 @@
+import 'package:elderly_squire_2023_remastered_v2/Medicine/MedicineMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'loading.dart';
@@ -54,7 +55,7 @@ class _TodoListState extends State<Todos> {
         leading: GestureDetector(
           onTap: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Homepage()));
+                context, MaterialPageRoute(builder: (context) => MedicineMenu()));
           },
           child: Icon(Icons.arrow_back),
         ),

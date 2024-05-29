@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elderly_squire_2023_remastered_v2/AboutUs.dart';
+import 'package:elderly_squire_2023_remastered_v2/Announcements(Admin)/AnnouncementsAdmin.dart';
 import 'package:elderly_squire_2023_remastered_v2/Benefits(Admin)/BenefitsAdmin.dart';
 import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
@@ -443,6 +444,93 @@ class  AdminHomepageState extends State< AdminHomepage> {
                                         },
                                         child: Text(
                                           'Senior Citizen Benefits',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('OpenSans'),
+                                            fontSize: 10,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      ))
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  GestureDetector(
+                    child: Container(
+                      height: 120,
+                      child: Card(
+                        color: Colors.purple[500],
+                        // color: Colors.blueGrey[900],
+                        //------------------Announcements--------------------------------//
+                        margin: EdgeInsets.only(left: 20, right: 20, top: 20),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                                margin: EdgeInsets.only(
+                                    left: 30, bottom: 10, top: 10),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => AnnouncementsAdminPage()),
+                                    );
+                                  },
+                                  child: Image.asset(
+                                      'assets/images/megaphone.png',
+                                      height: 75,
+                                      width: 90),
+                                )),
+                            Container(
+                              margin: EdgeInsets.only(left: 15, top: 29),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    // margin: EdgeInsets.only(left: 25),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AnnouncementsAdminPage()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'Announcements',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontFamily: ('BebasNeue'),
+                                            fontSize: 25,
+
+//                                  fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+                                      )),
+                                  Container(
+                                    // margin: EdgeInsets.only(left: 25),
+                                      child: InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AnnouncementsAdminPage()),
+                                          );
+                                        },
+                                        child: Text(
+                                          'City of Manila Bulletin Board',
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontFamily: ('OpenSans'),

@@ -1,5 +1,6 @@
 //import 'package:elderly_squire_capstone/HomePage2.dart';
 //import 'package:elderly_squire_capstone/todo_list.dart';
+import 'package:elderly_squire_2023_remastered_v2/Calendar/calendar.dart';
 import 'package:elderly_squire_2023_remastered_v2/Homepage.dart';
 import 'package:elderly_squire_2023_remastered_v2/Medicine%20Reminder/ReminderHome.dart';
 import 'package:elderly_squire_2023_remastered_v2/To%20Do%20List/todos.dart';
@@ -232,7 +233,7 @@ class MedicineMenu extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => TodoLanding()),
+                                    builder: (context) => Calendar()),
                               );
                             },
                             child: Image.asset('assets/images/calendar.png',
@@ -252,7 +253,7 @@ class MedicineMenu extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => TodoLanding()),
+                                          builder: (context) => Calendar()),
                                     );
                                   },
                                   child: Text(
@@ -273,7 +274,7 @@ class MedicineMenu extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => TodoLanding()),
+                                          builder: (context) => Calendar()),
                                     );
                                   },
                                   child: Text(

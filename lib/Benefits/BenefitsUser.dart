@@ -11,7 +11,6 @@ import '../Benefits(Admin)/loading.dart';
 
 class BenefitsUserPage extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -67,13 +66,13 @@ class  BenefitsState extends State<Benefits> {
         ),
         title: Row(
           children: [
-            Text(
-              "Edit Benefits",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
-            ),
+            // Text(
+            //   "Edit Benefits",
+            //   style: TextStyle(
+            //     fontSize: 20,
+            //     color: Colors.white,
+            //   ),
+            // ),
             Spacer(),
             IconButton(
               icon: Icon(
@@ -189,100 +188,66 @@ class  BenefitsState extends State<Benefits> {
                           child: Card(
                             // color: Colors.grey[100],
                             // color: Colors.purple[500],
-                            color: Colors.brown[400],
+                            // color: Colors.brown[400],
 
                             elevation: 2,
                             margin: EdgeInsets.symmetric(vertical: 8),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: ListTile(
-                              onTap: () {
-                                BenefitsDatabaseService().updateBenefits(
-                                  benefits[index].uid,
-                                  {'completed': benefits[index]},
-                                );
-                              },
-                              title: Row(
+                            child:
+                            // ListTile(
+                              // onTap: () {
+                              //   BenefitsDatabaseService().updateBenefits(
+                              //     benefits[index].uid,
+                              //     {'completed': benefits[index]},
+                              //   );
+                              // },
+                              // title:
+                            //   Container(
+                            //         margin:EdgeInsets.only(top:20),
+                            //         child:Text(
+                            //         overflow: TextOverflow.ellipsis,
+                            //         benefits[index].title,
+                            //         style: TextStyle(
+                            //             fontSize: 25,
+                            //             // color: Colors.white,
+                            //             color: Colors.grey[700],
+                            //             // fontWeight: FontWeight.w600,
+                            //             fontFamily: 'BebasNeue'
+                            //         ),
+                            //       ),
+                            // ),
+                              Row(
                                 children: [
                                   Container(
-                                    margin:EdgeInsets.only(top:20),
-                                    child: Image.asset(
-                                        'assets/images/benefits.png',
-                                        height: 55,
-                                        width: 55),
+                                    margin:EdgeInsets.only(left:20),
+                                      child: Image.asset(
+                                          'assets/images/benefits.png',
+                                          height:40,
+                                          width:40)
                                   ),
-                                  Flexible(
-                                    child: Container(
-                                      margin:EdgeInsets.only(top:5,left:20,right:20),
-                                      child: Text(
-                                        overflow: TextOverflow.ellipsis,
-                                        benefits[index].title,
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            color: Colors.white,
-                                            // color: Colors.grey[700],
-                                            // fontWeight: FontWeight.w600,
-                                            fontFamily: 'BebasNeue'
+                                    Container(
+                                          margin:EdgeInsets.only(left:30),
+                                          child:Text(
+                                          overflow: TextOverflow.ellipsis,
+                                          benefits[index].title,
+                                          style: TextStyle(
+                                              fontSize: 25,
+                                              // color: Colors.white,
+                                              color: Colors.grey[700],
+                                              // fontWeight: FontWeight.w600,
+                                              fontFamily: 'BebasNeue'
+                                          ),
                                         ),
-                                      ),
-                                    ),
                                   ),
+
                                 ],
+
                               ),
-                              // trailing: Row(
-                              //   mainAxisSize: MainAxisSize.min,
-                              //   children: [
-                              //     IconButton(
-                              //       icon: Icon(
-                              //           Icons.edit,
-                              //           // color: Colors.blueGrey
-                              //           color: Colors.lightBlueAccent
-                              //       ),
-                              //       onPressed: () {
-                              //         showEditDialog(benefits[index]);
-                              //       },
-                              //     ),
-                              //     IconButton(
-                              //       icon: Icon(Icons.delete, color: Colors.red),
-                              //       onPressed: () async {
-                              //         showDialog(
-                              //           context: context,
-                              //           builder: (BuildContext context) {
-                              //             return AlertDialog(
-                              //               title: Text('Confirmation'),
-                              //               content: Text(
-                              //                   'Are you sure you want to delete?'),
-                              //               actions: <Widget>[
-                              //                 TextButton(
-                              //                   child: Text('Cancel'),
-                              //                   onPressed: () {
-                              //                     Navigator.of(context)
-                              //                         .pop(); // Close the dialog.
-                              //                   },
-                              //                 ),
-                              //                 TextButton(
-                              //                   child: Text('Delete'),
-                              //                   onPressed: () async {
-                              //                     Navigator.pop(context);
-                              //                     await BenefitsDatabaseService().removeBenefits(
-                              //                       benefits[index].uid,
-                              //                     );
-                              //                   },
-                              //                 ),
-                              //               ],
-                              //             );
-                              //           },
-                              //         );
-                              //         // await BenefitsDatabaseService().removeBenefits(
-                              //         //   benefits[index].uid,
-                              //         // );
-                              //
-                              //       },
-                              //     ),
-                              //   ],
-                              // ),
-                            ),
+
+                                // trailing:
+
                           ),
                         );
                       },
