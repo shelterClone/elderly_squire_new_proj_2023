@@ -1154,14 +1154,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         //-------------------------------PDF Uploader--------------//
                         onPressed: selectPDF,
                         child: Text('Select PDF'),
+
                       ),
                     ),
-                    // ElevatedButton(
-                    //   onPressed: _uploadPDF,
-                    //   child: Text('Upload PDF to Cloudinary'),
-                    // ),
-                    // url == null ? Container() : Text('Uploaded PDF URL: $url ')
-                    // url == null ? Container() : Text('Uploaded PDF URL: $url ')
                   ],
                 ),
                 FormField<bool>(

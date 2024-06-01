@@ -35,12 +35,14 @@ class RegistrationPageState extends State<RegistrationPage> {
   late TextEditingController selectsex;
   bool ischecked = false;
   TextEditingController address = TextEditingController();
-  TextEditingController email = TextEditingController();
+  // TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
   TextEditingController password = TextEditingController();
   // TextEditingController contactnum = TextEditingController();
   TextEditingController confirmpassword = TextEditingController();
   bool isPasswordHidden = true;
-  String emailError = '';
+  // String emailError = '';
+  String usernameError = '';
   String passwordError = '';
 
 
@@ -57,14 +59,16 @@ class RegistrationPageState extends State<RegistrationPage> {
       String surname,
       String sex,
       String address,
-      String email,
+      // String email,
+      // String email,
+      String username,
       String password,) async {
     if (validateReg()) {
       try {
-        print("Email: $email Password: $password");
+        print("Email: $username Password: $password");
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-            email: email.characters.toString().trim(), password: password);
+            email: username.characters.toString().trim(), password: password);
         // email: email, password: password);
 
         await DBServices().saveUser(Users(
@@ -74,7 +78,8 @@ class RegistrationPageState extends State<RegistrationPage> {
           surname: surname,
           sex: sex,
           address: address,
-          email: user?.email,
+          // email: user?.email,
+          username: user?.email,
           password: password
           // contact_number: contact_number,
 
@@ -117,22 +122,24 @@ class RegistrationPageState extends State<RegistrationPage> {
         // print("Error: $e");
         if (e.code == 'email-already-in-use') {
           setState(() {
-            emailError = 'Email address already exist.';
+            // emailError = 'Email address already exist.';
+            usernameError = 'Username already exist.';
             passwordError = '';
           });
         }
-        else if (e.code == 'invalid-email') {
-          setState(() {
-            emailError = 'Invalid Email format';
-            passwordError = '';
-          });
-        }
+        // else if (e.code == 'invalid-email') {
+        //   setState(() {
+        //     emailError = 'Invalid Email format';
+        //     passwordError = '';
+        //   });
+        // }
 
       }
       catch (e) {
         // print("Error: $e");
         setState(() {
-          emailError = '';
+          // emailError = '';
+          usernameError = '';
           passwordError = 'An error occurred: $e';
         });
       }
@@ -148,7 +155,8 @@ class RegistrationPageState extends State<RegistrationPage> {
     surname.text = '';
     selectsex = TextEditingController();
     address.text = '';
-    email.text = '';
+    // email.text = '';
+    username.text = '';
     password.text = '';
     confirmpassword.text = '';
     // contactnum.text = '';
@@ -175,7 +183,8 @@ class RegistrationPageState extends State<RegistrationPage> {
       surname.dispose();
       selectsex.dispose();
       address.dispose();
-      email.dispose();
+      // email.dispose();
+      username.dispose();
       password.dispose();
       confirmpassword.dispose();
       super.dispose();
@@ -489,8 +498,15 @@ class RegistrationPageState extends State<RegistrationPage> {
                     ),
 
 
+                    // Text(
+                    //   'Email Address',
+                    //   style: TextStyle(
+                    //       fontSize: 15,
+                    //       fontWeight: FontWeight.w400,
+                    //       color: Colors.black87),
+                    // ),
                     Text(
-                      'Email Address',
+                      'Username',
                       style: TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w400,
@@ -502,19 +518,19 @@ class RegistrationPageState extends State<RegistrationPage> {
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
-                        //----------------------Email Address txtField-----------------------------//
-                        controller: email,
+                        //----------------------Username txtField-----------------------------//
+                        controller: username,
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return "Email Required";
+                            return "Username Required";
                           }
                           // else if (value.isEmpty ||
                           //     !value.contains('@gmail.com')) {
                           //   return "Invalid Email";
                           // }
-                          else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')) {
+                         /* else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')) {
                             return "Invalid Email";
-                          }
+                          }*/
 
                           else {
                             return null;
@@ -522,13 +538,13 @@ class RegistrationPageState extends State<RegistrationPage> {
                         },
                         onChanged: (value) {
                           TextSelection previousSelection =
-                              email.selection; //----------new
-                          email.text = value;
-                          email.selection = previousSelection; //--------------new
+                              username.selection; //----------new
+                          username.text = value;
+                          username.selection = previousSelection; //--------------new
                         },
 
                         decoration: InputDecoration(
-                            errorText: emailError.isNotEmpty ? emailError : null,
+                            errorText: usernameError.isNotEmpty ? usernameError : null,
                             contentPadding:
                             EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
@@ -538,6 +554,45 @@ class RegistrationPageState extends State<RegistrationPage> {
                                 borderSide: BorderSide(color: Colors.blueGrey))),
                       ),
                     ),
+                    // Container(
+                    //   margin: EdgeInsets.only(bottom: 20),
+                    //   child: TextFormField(
+                    //     //----------------------Email Address txtField-----------------------------//
+                    //     controller: email,
+                    //     validator: (value) {
+                    //       if (value!.isEmpty) {
+                    //         return "Email Required";
+                    //       }
+                    //       // else if (value.isEmpty ||
+                    //       //     !value.contains('@gmail.com')) {
+                    //       //   return "Invalid Email";
+                    //       // }
+                    //       else if (value.isEmpty || !value.contains('@') || !value.contains('.') || !value.contains('.com')) {
+                    //         return "Invalid Email";
+                    //       }
+                    //
+                    //       else {
+                    //         return null;
+                    //       }
+                    //     },
+                    //     onChanged: (value) {
+                    //       TextSelection previousSelection =
+                    //           email.selection; //----------new
+                    //       email.text = value;
+                    //       email.selection = previousSelection; //--------------new
+                    //     },
+                    //
+                    //     decoration: InputDecoration(
+                    //         errorText: emailError.isNotEmpty ? emailError : null,
+                    //         contentPadding:
+                    //         EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                    //         enabledBorder: OutlineInputBorder(
+                    //           borderSide: BorderSide(color: Colors.blueGrey),
+                    //         ),
+                    //         border: OutlineInputBorder(
+                    //             borderSide: BorderSide(color: Colors.blueGrey))),
+                    //   ),
+                    // ),
                     Text(
                       'Password',
                       style: TextStyle(
@@ -750,7 +805,8 @@ class RegistrationPageState extends State<RegistrationPage> {
                           surname.text,
                           selectsex.text,
                           address.text,
-                          email.text,
+                          // email.text,
+                          username.text,
                           password.text);
 
                     },

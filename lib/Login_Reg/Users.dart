@@ -4,7 +4,8 @@ class Users{
     String? surname;
     String? sex;
     String? address;
-    String? email;
+    // String? email;
+    String? username;
     String? password;
     // String? contact_number;
     String? uid;
@@ -16,7 +17,8 @@ class Users{
     required this.surname,
     required this.sex,
     required this.address,
-    required this.email,
+    // required this.email,
+    required this.username,
     required this.password,
 
     // required this.contact_number,
@@ -28,7 +30,8 @@ class Users{
     surname = json['surname'];
     sex =json['gender'];
     address = json['address'];
-    email = json['email'];
+    // email = json['email'];
+    username = json['username'];
     password = json['password'];
     // contact_number = json['contactnum'];
     uid = json['uid'];
@@ -41,7 +44,8 @@ class Users{
       "Last Name":surname,
       "Sex": sex,
       "Address":address,
-      "email":email,
+      // "email":email,
+      "username":username,
       "password":password,
       // "contact number":contact_number,
       "uid":uid,
