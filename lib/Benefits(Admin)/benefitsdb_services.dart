@@ -10,11 +10,12 @@ class BenefitsDatabaseService {
   final CollectionReference<Map<String, dynamic>> benefits =
   FirebaseFirestore.instance.collection("SeniorBenefits");
 
-  Future<void> addBenefits(String title) async {
+  Future<void> addBenefits(String title, String description) async {
     try {
       await benefits.add({
         "title": title,
-        "isComplet": false,
+        // "isComplet": false,
+        "description": description,
       });
     } catch (e) {
       print('Failed to create new todo: $e');
@@ -50,6 +51,7 @@ class BenefitsDatabaseService {
       return BenefitsVarModel(
         // isComplet: doc.data()["isComplet"] as bool,
         title: doc.data()["title"] as String,
+        desc: doc.data()["description"] as String,
         uid: doc.id,
       );
     }).toList();

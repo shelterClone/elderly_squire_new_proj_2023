@@ -44,6 +44,7 @@ class Benefits extends StatefulWidget {
 
 class  BenefitsState extends State<Benefits> {
   TextEditingController benefitsTitleController = TextEditingController();
+  TextEditingController benefitsDescController = TextEditingController();
 
   @override
   void dispose() {
@@ -53,6 +54,8 @@ class  BenefitsState extends State<Benefits> {
 
   void showEditDialog(BenefitsVarModel benefits) {
     benefitsTitleController.text = benefits.title;
+    benefitsDescController.text = benefits.desc;
+
     showDialog(
       context: context,
       builder: (context) => SimpleDialog(
@@ -95,7 +98,22 @@ class  BenefitsState extends State<Benefits> {
             ),
             autofocus: true,
             decoration: InputDecoration(
-              hintText: "eg. exercise",
+              // hintText: "eg. exercise",
+              hintStyle: TextStyle(color: Colors.white70),
+              border: InputBorder.none,
+            ),
+          ),
+          TextFormField(
+            controller: benefitsDescController,
+            style: TextStyle(
+              fontSize: 18,
+              height: 1.5,
+              // color: Colors.white,
+              color: Colors.grey[800],
+            ),
+            autofocus: true,
+            decoration: InputDecoration(
+              hintText: "Description",
               hintStyle: TextStyle(color: Colors.white70),
               border: InputBorder.none,
             ),
@@ -184,7 +202,7 @@ class  BenefitsState extends State<Benefits> {
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return Container(
-                          height:120,
+                          height:180,
                           child: Card(
                             // color: Colors.grey[100],
                             // color: Colors.purple[500],
@@ -220,26 +238,45 @@ class  BenefitsState extends State<Benefits> {
                             // ),
                               Row(
                                 children: [
+
+                                    Column(
+                                      children: [
+                                        Container(
+                                              margin:EdgeInsets.only(left:30,top:50),
+                                              child:Text(
+                                              overflow: TextOverflow.ellipsis,
+                                              benefits[index].title,
+                                              style: TextStyle(
+                                                  fontSize: 25,
+                                                  // color: Colors.white,
+                                                  color: Colors.grey[700],
+                                                  // fontWeight: FontWeight.w600,
+                                                  fontFamily: 'BebasNeue'
+                                              ),
+                                            ),
+                                  ),
+                                        Container(
+                                          margin:EdgeInsets.only(left:5),
+                                          child:Text(
+                                            overflow: TextOverflow.ellipsis,
+                                            benefits[index].desc,
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                // color: Colors.white,
+                                                color: Colors.grey[700],
+                                                // fontWeight: FontWeight.w600,
+                                                fontFamily: 'OpenSans'
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   Container(
-                                    margin:EdgeInsets.only(left:20),
+                                      margin:EdgeInsets.only(left:100,bottom:5),
                                       child: Image.asset(
                                           'assets/images/benefits.png',
                                           height:40,
                                           width:40)
-                                  ),
-                                    Container(
-                                          margin:EdgeInsets.only(left:30),
-                                          child:Text(
-                                          overflow: TextOverflow.ellipsis,
-                                          benefits[index].title,
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              // color: Colors.white,
-                                              color: Colors.grey[700],
-                                              // fontWeight: FontWeight.w600,
-                                              fontFamily: 'BebasNeue'
-                                          ),
-                                        ),
                                   ),
 
                                 ],

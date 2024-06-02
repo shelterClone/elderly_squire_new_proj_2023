@@ -48,6 +48,13 @@ class  AnnouncementsState extends State<Announcements> {
 
   @override
 
+  void dispose() {
+    announcementsTitleController.dispose();
+    announcementsDescController.dispose();
+    super.dispose();
+  }
+
+
 
   void showEditDialog(AnnouncementsVarModel announcements) {
     announcementsTitleController.text = announcements.title;
@@ -157,11 +164,6 @@ class  AnnouncementsState extends State<Announcements> {
   @override
   Widget build(BuildContext context) {
 
-    void dispose() {
-      announcementsTitleController.dispose();
-      announcementsDescController.dispose();
-      super.dispose();
-    }
 
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -388,7 +390,7 @@ class  AnnouncementsState extends State<Announcements> {
                     border: InputBorder.none,
                   ),
                 ),
-                Divider(),
+                // Divider(),
                 TextFormField(
                   controller: announcementsDescController,
                   style: TextStyle(
@@ -423,7 +425,8 @@ class  AnnouncementsState extends State<Announcements> {
                       Navigator.pop(context);
                       if (announcementsTitleController.text.isNotEmpty && announcementsDescController.text.isNotEmpty) {
                         await AnnouncementsDatabaseService()
-                            .addAnnouncements(announcementsTitleController.text.trim(),announcementsDescController.text.trim()
+                            .addAnnouncements(
+                            announcementsTitleController.text.trim(),announcementsDescController.text.trim()
                         );
                         announcementsTitleController.clear();
                         announcementsDescController.clear();

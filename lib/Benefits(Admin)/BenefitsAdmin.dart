@@ -45,15 +45,18 @@ class Benefits extends StatefulWidget {
 
 class  BenefitsState extends State<Benefits> {
   TextEditingController benefitsTitleController = TextEditingController();
+  TextEditingController benefitsDescController = TextEditingController();
 
   @override
   void dispose() {
     benefitsTitleController.dispose();
+    benefitsDescController.dispose();
     super.dispose();
   }
 
   void showEditDialog(BenefitsVarModel benefits) {
     benefitsTitleController.text = benefits.title;
+    benefitsDescController.text = benefits.title;
     showDialog(
       context: context,
       builder: (context) => SimpleDialog(
@@ -99,7 +102,22 @@ class  BenefitsState extends State<Benefits> {
             ),
             autofocus: true,
             decoration: InputDecoration(
-              hintText: "eg. exercise",
+              // hintText: "eg. exercise",
+              hintStyle: TextStyle(color: Colors.white70),
+              border: InputBorder.none,
+            ),
+          ),
+          TextFormField(
+            controller: benefitsDescController,
+            style: TextStyle(
+              fontSize: 18,
+              height: 1.5,
+              // color: Colors.white,
+              color: Colors.grey[800],
+            ),
+            autofocus: true,
+            decoration: InputDecoration(
+              hintText: "Description",
               hintStyle: TextStyle(color: Colors.white70),
               border: InputBorder.none,
             ),
@@ -120,10 +138,12 @@ class  BenefitsState extends State<Benefits> {
               child: Text("Save"),
               onPressed: () async {
                 Navigator.pop(context);
-                if (benefitsTitleController.text.isNotEmpty) {
+                if (benefitsTitleController.text.isNotEmpty && benefitsDescController.text.isNotEmpty) {
                   await BenefitsDatabaseService().updateBenefits(
                     benefits.uid,
-                    {'title': benefitsTitleController.text.trim()},
+                    {'title': benefitsTitleController.text.trim(),
+                      'description': benefitsDescController.text.trim()
+                    },
                   );
 
                 }
@@ -134,8 +154,8 @@ class  BenefitsState extends State<Benefits> {
       ),
     );
   }
-  
-  
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +207,7 @@ class  BenefitsState extends State<Benefits> {
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
                         return Container(
-                          height:120,
+                          height:180,
                           child: Card(
                             // color: Colors.grey[100],
                             // color: Colors.purple[500],
@@ -197,79 +217,98 @@ class  BenefitsState extends State<Benefits> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: ListTile(
-                              onTap: () {
-                                BenefitsDatabaseService().updateBenefits(
-                                  benefits[index].uid,
-                                  {'completed': benefits[index]},
-                                );
-                              },
-                              title: Container(
-                                margin:EdgeInsets.only(top:20),
-                                child: Text(
-                                  overflow: TextOverflow.ellipsis,
-                                  benefits[index].title,
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    // color: Colors.white,
-                                      color: Colors.grey[700],
-                                    // fontWeight: FontWeight.w600,
-                                    fontFamily: 'BebasNeue'
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  onTap: () {
+                                    BenefitsDatabaseService().updateBenefits(
+                                      benefits[index].uid,
+                                      {'completed': benefits[index]},
+                                    );
+                                  },
+                                  title: Container(
+                                    margin:EdgeInsets.only(top:20),
+                                    child: Text(
+                                      overflow: TextOverflow.ellipsis,
+                                      benefits[index].title,
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          // color: Colors.white,
+                                          color: Colors.grey[700],
+                                          // fontWeight: FontWeight.w600,
+                                          fontFamily: 'BebasNeue'
+                                      ),
+                                    ),
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      IconButton(
+                                        icon: Icon(
+                                            Icons.edit,
+                                            // color: Colors.blueGrey
+                                            color: Colors.lightBlueAccent
+                                        ),
+                                        onPressed: () {
+                                          showEditDialog(benefits[index]);
+                                        },
+                                      ),
+                                      IconButton(
+                                        icon: Icon(Icons.delete, color: Colors.red),
+                                        onPressed: () async {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return AlertDialog(
+                                                title: Text('Confirmation'),
+                                                content: Text(
+                                                    'Are you sure you want to delete?'),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    child: Text('Cancel'),
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop(); // Close the dialog.
+                                                    },
+                                                  ),
+                                                  TextButton(
+                                                    child: Text('Delete'),
+                                                    onPressed: () async {
+                                                      Navigator.pop(context);
+                                                      await BenefitsDatabaseService().removeBenefits(
+                                                        benefits[index].uid,
+                                                      );
+                                                    },
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          );
+                                          // await BenefitsDatabaseService().removeBenefits(
+                                          //   benefits[index].uid,
+                                          // );
+
+                                        },
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ),
-                              trailing: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  IconButton(
-                                    icon: Icon(
-                                        Icons.edit,
-                                        // color: Colors.blueGrey
-                                        color: Colors.lightBlueAccent
+                                Container(
+                                  margin:EdgeInsets.only(left:18,right:18),
+                                  alignment: Alignment.topLeft,
+                                  child: Text(//-----------------------------------------------Desc--------------------//
+                                    overflow: TextOverflow.ellipsis,
+                                    benefits[index].desc,
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        // color: Colors.white,
+                                        color: Colors.grey[700],
+                                        // fontWeight: FontWeight.w600,
+                                        fontFamily: 'OpenSans'
                                     ),
-                                    onPressed: () {
-                                      showEditDialog(benefits[index]);
-                                    },
                                   ),
-                                  IconButton(
-                                    icon: Icon(Icons.delete, color: Colors.red),
-                                    onPressed: () async {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text('Confirmation'),
-                                            content: Text(
-                                                'Are you sure you want to delete?'),
-                                            actions: <Widget>[
-                                              TextButton(
-                                                child: Text('Cancel'),
-                                                onPressed: () {
-                                                  Navigator.of(context)
-                                                      .pop(); // Close the dialog.
-                                                },
-                                              ),
-                                              TextButton(
-                                                child: Text('Delete'),
-                                                onPressed: () async {
-                                                  Navigator.pop(context);
-                                                  await BenefitsDatabaseService().removeBenefits(
-                                                    benefits[index].uid,
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      );
-                                      // await BenefitsDatabaseService().removeBenefits(
-                                      //   benefits[index].uid,
-                                      // );
-                                      
-                                    },
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         );
@@ -334,8 +373,23 @@ class  BenefitsState extends State<Benefits> {
                   ),
                   autofocus: true,
                   decoration: InputDecoration(
-                    // hintText: "eg. exercise",
-                    hintStyle: TextStyle(color: Colors.white70),
+                    hintText: "Title",
+                    hintStyle: TextStyle(color: Colors.black26),
+                    border: InputBorder.none,
+                  ),
+                ),
+                TextFormField(
+                  controller: benefitsDescController,
+                  style: TextStyle(
+                    fontSize: 18,
+                    height: 1.5,
+                    // color: Colors.white,
+                    color: Colors.grey[800],
+                  ),
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: "Description",
+                    hintStyle: TextStyle(color: Colors.black26),
                     border: InputBorder.none,
                   ),
                 ),
@@ -356,9 +410,12 @@ class  BenefitsState extends State<Benefits> {
                     child: Text("Add"),
                     onPressed: () async {
                       Navigator.pop(context);
-                      if (benefitsTitleController.text.isNotEmpty) {
+                      if (benefitsTitleController.text.isNotEmpty ) {
                         await BenefitsDatabaseService()
-                            .addBenefits(benefitsTitleController.text.trim());
+                            // .addBenefits(benefitsTitleController.text.trim());
+                            .addBenefits(benefitsTitleController.text.trim(),
+                                benefitsDescController.text.trim(),
+                        );
 
                       }
                     },
@@ -373,5 +430,4 @@ class  BenefitsState extends State<Benefits> {
     );
   }
 }
-
 
