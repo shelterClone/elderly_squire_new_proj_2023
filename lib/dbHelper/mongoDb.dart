@@ -9,13 +9,17 @@ class MongoDatabase {
 
   static connect() async {
     db = await Db.create(
-        "mongodb+srv://databasesean:Masterabed1@cluster0.uimbcsn.mongodb.net/?retryWrites=true&w=majority");
-    // "mongodb+srv://capstoneosca:osca12345@capstoneosca.bi2nv0c.mongodb.net/");
+        // "mongodb+srv://databasesean:Masterabed1@cluster0.uimbcsn.mongodb.net/?retryWrites=true&w=majority");
+    "mongodb+srv://capstoneosca:osca12345@capstoneosca.bi2nv0c.mongodb.net/");
+
+
+
     await db.open();
     inspect(db);
-    eldersRegistrations = db.collection("registrationform");
+    // eldersRegistrations = db.collection("registrationform");
+    eldersRegistrations = db.collection("eldersregistrations");
     //registrationform
-    //eldersregistrations
+
 
   }
 

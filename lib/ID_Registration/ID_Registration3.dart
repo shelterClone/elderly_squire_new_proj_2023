@@ -21,8 +21,8 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
-  // final cloudinary = CloudinaryPublic('dqs4lb8kt', 'cuuz8bg0', cache: false);
-  final cloudinary = CloudinaryPublic('dtdtiuwxl', 'azfvz29n', cache: false);
+  final cloudinary = CloudinaryPublic('dqs4lb8kt', 'cuuz8bg0', cache: false);
+  // final cloudinary = CloudinaryPublic('dtdtiuwxl', 'azfvz29n', cache: false);
   File? pdffile;
   String? url;
   String? public_id;
@@ -31,6 +31,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
   RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
   RegExp mobilenumReg = RegExp(r'^9[0-9]{9}$');
+  DateTime? DateOfBirth;
 
   List<String> applicationtype = [
     'Voter',
@@ -53,7 +54,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   TextEditingController birthplace = TextEditingController();
 
-  TextEditingController DateofBirth = TextEditingController();
+  // TextEditingController DateofBirth = TextEditingController();
+
+
 
   List<String> sex = ['Male', 'Female'];
   late TextEditingController selectsex;
@@ -121,6 +124,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
     }
   }
 
+
   Future<void> _uploadPDF() async {
     if (pdffile != null) {
       try {
@@ -149,6 +153,19 @@ class _RegistrationFormState extends State<RegistrationForm> {
     }
   }
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: DateOfBirth ?? DateTime.now(),
+        firstDate: DateTime(1900),
+        lastDate: DateTime.now());
+    if (picked != null && picked != DateOfBirth)
+      setState(() {
+        DateOfBirth = picked;
+      });
+
+  }
+
   bool ischecked = false;
 
   // final _formKey = GlobalKey<FormState>();
@@ -164,8 +181,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
     address.text = '';
     yearsofdresidence.text = '';
     birthplace.text = '';
-    // DateofBirth.toIso8601String();
-    DateofBirth.text = '';
+    DateOfBirth?.toIso8601String();
+    // DatefBirth.text = '';
     selectsex = TextEditingController();
     nationality.text = '';
     age.text = '';
@@ -204,8 +221,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
       address.text = '';
       yearsofdresidence.text = '';
       birthplace.text = '';
-      // DateofBirth.toIso8601String();
-      DateofBirth.text = '';
+      DateOfBirth?.toIso8601String();
+      // DateOfBirth.text = '';
       selectsex.text = '';
       nationality.text = '';
       age.text = '';
@@ -656,36 +673,51 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     ),
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
+                      // child: TextFormField(
+                      //   //----------------------Date of Birth txtField-----------------------------//
+                      //   controller: DateofBirth,
+                      //   validator: (value) {
+                      //     if (value == null || value.isEmpty) {
+                      //       return "Date of Birth Required";
+                      //     } else {
+                      //       return null;
+                      //     }
+                      //   },
+                      //
+                      //   onChanged: (value) {
+                      //     TextSelection previousSelection =
+                      //         DateofBirth.selection; //----------new
+                      //     DateofBirth.text = value;
+                      //     DateofBirth.selection =
+                      //         previousSelection; //--------------new
+                      //   },
+                      //
+                      //   decoration: InputDecoration(
+                      //       hintText: 'ex: 08/25/1950',
+                      //       contentPadding: EdgeInsets.symmetric(
+                      //           vertical: 0, horizontal: 10),
+                      //       enabledBorder: OutlineInputBorder(
+                      //         borderSide: BorderSide(color: Colors.blueGrey),
+                      //       ),
+                      //       border: OutlineInputBorder(
+                      //           borderSide:
+                      //           BorderSide(color: Colors.blueGrey))),
+                      // ),
                       child: TextFormField(
-                        //----------------------Date of Birth txtField-----------------------------//
-                        controller: DateofBirth,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "Date of Birth Required";
-                          } else {
-                            return null;
-                          }
-                        },
-
-                        onChanged: (value) {
-                          TextSelection previousSelection =
-                              DateofBirth.selection; //----------new
-                          DateofBirth.text = value;
-                          DateofBirth.selection =
-                              previousSelection; //--------------new
-                        },
-
+                        readOnly: true,
+                        controller: TextEditingController(
+                            text: DateOfBirth != null
+                                ? "${DateOfBirth?.month}-${DateOfBirth?.day}-${DateOfBirth?.year}" : ""),
                         decoration: InputDecoration(
-                            hintText: 'ex: 08/25/1950',
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.blueGrey),
-                            ),
-                            border: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Colors.blueGrey))),
+                          labelText: 'Date of Birth',
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.calendar_today),
+                            onPressed: () => _selectDate(context),
+                          ),
+                        ),
                       ),
+
+
                     ),
                     SizedBox(
                       height: 5,
@@ -1244,8 +1276,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         address.text,
                         yearsofdresidence.text,
                         birthplace.text,
-                        // DateofBirth.toIso8601String(),
-                        DateofBirth.text,
+                        DateOfBirth!.toIso8601String(),
+                        // DateofBirth.text,
                         selectsex.text,
                         nationality.text,
                         age.text,
@@ -1256,8 +1288,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         selectstatus.text,
                         MobilePhone.text,
                         selectidpresented.text,
-                        public_id!,
-                        url!,
+                        ProofOfValidID(
+                          publicId: public_id!, // Assuming you have a variable called public_id
+                          url: url!, // Assuming you have a variable called url
+                        ),
+                        // public_id!,
+                        // url!,
                       );
                       print('selectAppType: $selectapptype');
                       print('surname: $surname');
@@ -1267,7 +1303,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       print('address: $address');
                       print('yearsOfResidence: $yearsofdresidence');
                       print('birthplace: $birthplace');
-                      print('dateOfBirth: $DateofBirth');
+                      print('dateOfBirth: $DateOfBirth');
                       print('selectSex: $selectsex');
                       print('nationality: $nationality');
                       print('age: $age');
@@ -1289,8 +1325,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         address = new TextEditingController();
                         yearsofdresidence = new TextEditingController();
                         birthplace = new TextEditingController();
-                        // DateofBirth.toIso8601String(),
-                        DateofBirth = new TextEditingController();
+                        // DateofBirth!.toIso8601String();
+                        DateOfBirth = '' as DateTime?;
+                        // DateofBirth = new TextEditingController();
                         selectsex = new TextEditingController();
                         nationality = new TextEditingController();
                         age = new TextEditingController();
@@ -1325,7 +1362,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
       String address,
       String yearsofresidence,
       String birthplace,
-      String DateofBirth,
+      String DateOfBirth,
       String selectsex,
       String nationality,
       String age,
@@ -1336,13 +1373,16 @@ class _RegistrationFormState extends State<RegistrationForm> {
       String selectstatus,
       String MobilePhone,
       String selectidpresented,
-      String public_id,
-      String url,
+      ProofOfValidID proofOfValidID,
+      // String public_id,
+      // String url,
       ) async {
     if (validateReg()) {
       try {
         final data = MongoDbModel(
           id: null,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
           selectapptype: selectapptype,
           surname: surname,
           firstname: firstname,
@@ -1351,7 +1391,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
           address: address,
           yearsofresidence: yearsofresidence,
           birthplace: birthplace,
-          DateofBirth: DateofBirth,
+          DateOfBirth: DateOfBirth,
           selectsex: selectsex,
           nationality: nationality,
           age: age,
@@ -1362,12 +1402,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
           selectstatus: selectstatus,
           MobilePhone: MobilePhone,
           selectidpresented: selectidpresented,
-          public_id: public_id,
-          url: url,
+          proofOfValidID: proofOfValidID,
+          // public_id: public_id,
+          // url: url,
         );
 
         var result = await MongoDatabase.insert(data);
         // Navigator.push(result as BuildContext, MaterialPageRoute(builder: (context)=> RegSuccess()));
+        Navigator.push(context as BuildContext, MaterialPageRoute(builder: (context)=> RegSuccess()));
       } catch (e) {
         print("Error: $e");
       }

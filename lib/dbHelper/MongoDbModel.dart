@@ -10,6 +10,8 @@ String mongoDbModelToJson(MongoDbModel data) => json.encode(data.toJson());
 class MongoDbModel {
   MongoDbModel({
     required this.id,
+    required this.createdAt,
+    required this.updatedAt,
     required this.selectapptype,
     required this.surname,
     required this.firstname,
@@ -18,7 +20,7 @@ class MongoDbModel {
     required this.address,
     required this.yearsofresidence,
     required this.birthplace,
-    required this.DateofBirth,
+    required this.DateOfBirth,
     required this.selectsex,
     required this.nationality,
     required this.age,
@@ -29,11 +31,14 @@ class MongoDbModel {
     required this.selectstatus,
     required this.MobilePhone,
     required this.selectidpresented,
-    required this.url,
-    required this.public_id,
+    // required this.url,
+    // required this.public_id,
+    required this.proofOfValidID,
   });
 
   ObjectId? id;
+  DateTime createdAt;
+  DateTime updatedAt;
   String? selectapptype;
   String? surname;
   String? firstname;
@@ -42,7 +47,7 @@ class MongoDbModel {
   String? address;
   String? yearsofresidence;
   String? birthplace;
-  String? DateofBirth;
+  String? DateOfBirth;
   String? selectsex;
   String? nationality;
   String? age;
@@ -53,12 +58,14 @@ class MongoDbModel {
   String? selectstatus;
   String? MobilePhone;
   String? selectidpresented;
-  String? url;
-  String? public_id;
-
+  // String? url;
+  // String? public_id;
+  ProofOfValidID proofOfValidID;
 
   factory MongoDbModel.fromJson(Map<String, dynamic> json) => MongoDbModel(
       id: json["_id"],
+      createdAt: DateTime.parse(json['createdAt']),
+      updatedAt: DateTime.parse(json['updatedAt']),
       selectapptype: json["TypeofApplication"],
       surname: json["SurName"],
       firstname: json["FirstName"],
@@ -67,7 +74,7 @@ class MongoDbModel {
       suffix: json["Suffix"],
       yearsofresidence: json["YrsofResidenceInManila"],
       birthplace: json["BirthPlace"],
-      DateofBirth: json["DateofBirth"],
+      DateOfBirth: json["DateOfBirth"],
       selectsex: json["Gender"],
       nationality: json["Nationality"],
       age: json["Age"],
@@ -78,11 +85,14 @@ class MongoDbModel {
       selectstatus: json["Status"],
       MobilePhone: json["MobilePhone"],
       selectidpresented: json["ValidIdPresented"],
-      url: json["Url"],
-      public_id: json["public_id"]);
+      // url: json["Url"],
+      // public_id: json["public_id"],
+      proofOfValidID: ProofOfValidID.fromJson(json['ProofOfValidID']));
 
   Map<String, dynamic> toJson() => {
     "_id": id,
+    'createdAt': createdAt.toIso8601String(),
+    'updatedAt': updatedAt.toIso8601String(),
     "TypeofApplication": selectapptype,
     "SurName": surname,
     "FirstName": firstname,
@@ -91,7 +101,7 @@ class MongoDbModel {
     "Address": address,
     "YrsofResidenceInManila": yearsofresidence,
     "BirthPlace": birthplace,
-    "DateofBirth": DateofBirth,
+    "DateOfBirth": DateOfBirth,
     "Gender": selectsex,
     "Nationality": nationality,
     "Age": age,
@@ -102,7 +112,27 @@ class MongoDbModel {
     "Status": selectstatus,
     "MobilePhone": MobilePhone,
     "ValidIdPresented": selectidpresented,
-    "Url": url,
-    "public_id": public_id,
+    // "Url": url,
+    // "public_id": public_id,
+    'ProofOfValidID': proofOfValidID.toJson(),
+  };
+}
+
+class ProofOfValidID {
+  String publicId;
+  String url;
+
+  ProofOfValidID({required this.publicId, required this.url});
+
+  factory ProofOfValidID.fromJson(Map<String, dynamic> json) {
+    return ProofOfValidID(
+      publicId: json['public_id'],
+      url: json['url'],
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'public_id': publicId,
+    'url': url,
   };
 }

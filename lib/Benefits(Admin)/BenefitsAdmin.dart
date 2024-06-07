@@ -56,7 +56,7 @@ class  BenefitsState extends State<Benefits> {
 
   void showEditDialog(BenefitsVarModel benefits) {
     benefitsTitleController.text = benefits.title;
-    benefitsDescController.text = benefits.title;
+    benefitsDescController.text = benefits.desc;
     showDialog(
       context: context,
       builder: (context) => SimpleDialog(
@@ -328,6 +328,7 @@ class  BenefitsState extends State<Benefits> {
         backgroundColor: Colors.purple[400],
         onPressed: () {
           benefitsTitleController.clear();
+          benefitsDescController.clear();
           showDialog(
             builder: (context) => SimpleDialog(
               contentPadding: EdgeInsets.symmetric(
