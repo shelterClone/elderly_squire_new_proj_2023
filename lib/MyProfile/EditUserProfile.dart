@@ -47,7 +47,7 @@ class _UserProfileState extends State<EditUserProfile> {
     _getUserInfo();
 
     super.initState();
-    // Fetch the user information when the page is initialized.
+
   }
 
   void _getUserInfo() {
@@ -397,7 +397,7 @@ class _UserProfileState extends State<EditUserProfile> {
                                       return 'Sex required';
                                     }
                                     else {
-                                      return null;
+                                      return selectsex.text;
                                     }
                                   },
                                   items: sex.map((sex) {

@@ -30,6 +30,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
   RegExp numReg = RegExp(r".*[0-9].*");
   RegExp letterReg = RegExp(r".*[A-Za-z].*");
   RegExp specialReg = RegExp(r".*[!@#$%^&*()_+\-=\[\]{};':" "\\|,.<>/?].*");
+  RegExp mobilenumReg = RegExp(r'^9[0-9]{9}$');
 
   List<String> applicationtype = [
     'Voter',
@@ -1058,9 +1059,12 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
                       child: TextFormField(
+                        maxLength: 10,
+
                         //----------------------Phone Number----------------------------//
                         keyboardType: TextInputType.number,
                         controller: MobilePhone,
+
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Phone Number Required";

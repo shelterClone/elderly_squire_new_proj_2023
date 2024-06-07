@@ -272,7 +272,7 @@ class  BenefitsState extends State<Benefits> {
                                       ],
                                     ),
                                   Container(
-                                      margin:EdgeInsets.only(left:100,bottom:5),
+                                      margin:EdgeInsets.only(left:50,right:20,bottom:5),
                                       child: Image.asset(
                                           'assets/images/benefits.png',
                                           height:40,

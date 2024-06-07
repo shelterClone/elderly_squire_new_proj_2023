@@ -14,12 +14,12 @@ class LoginPage2 extends StatefulWidget {
   class LoginState2 extends State<LoginPage2>{
 
     FirebaseAuth _auth = FirebaseAuth.instance;
-    // TextEditingController myEmail = TextEditingController() ;
-    TextEditingController myUsername = TextEditingController() ;
+    TextEditingController myEmail = TextEditingController() ;
+    // TextEditingController myUsername = TextEditingController() ;
     TextEditingController password = TextEditingController();
     bool isPasswordHidden = true;
-    // String emailError = '';
-    String usernameError = '';
+    String emailError = '';
+    // String usernameError = '';
     String passwordError = '';
 
     final GlobalKey <FormState> formkey = GlobalKey<FormState>();
@@ -36,28 +36,28 @@ class LoginPage2 extends StatefulWidget {
           );
         } on FirebaseAuthException catch (e)
         {
-          // if (e.code == 'user-not-found') {
-          //   setState(() {
-          //     emailError = 'Email address does not exist.';
-          //     passwordError = '';
-          //   });
-          // }
           if (e.code == 'user-not-found') {
             setState(() {
-              usernameError = 'Username does not exist.';
+              emailError = 'Email address does not exist.';
               passwordError = '';
             });
           }
+          // if (e.code == 'user-not-found') {
+          //   setState(() {
+          //     usernameError = 'Username does not exist.';
+          //     passwordError = '';
+          //   });
+          // }
           else if (e.code == 'wrong-password') {
             setState(() {
               passwordError = 'Incorrect Password.';
-              usernameError = '';
+              emailError = '';
             });
           }
         }
         catch (e) {
           setState(() {
-            usernameError = '';
+            emailError = '';
             passwordError = 'An error occurred: $e';
           });
         }
@@ -164,43 +164,9 @@ class LoginPage2 extends StatefulWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    // Container(
-                    //   margin: EdgeInsets.only(bottom: 20),
-                    //   child: TextFormField( //----------------------Email txtField-----------------------------//
-                    //     enableSuggestions: true,
-                    //     keyboardType: TextInputType.emailAddress,
-                    //
-                    //     obscureText: false,
-                    //     validator: EmailValidator.validate,
-                    //     // onSaved: (input)=> myEmail.text = input!,
-                    //     onChanged: (value){
-                    //       TextSelection previousSelection = myEmail.selection;
-                    //       myEmail.text = value;
-                    //       myEmail.selection = previousSelection;
-                    //     },
-                    //
-                    //     decoration: InputDecoration(
-                    //         errorText: emailError.isNotEmpty ? emailError : null,
-                    //         contentPadding: EdgeInsets.symmetric(
-                    //             vertical: 0,
-                    //             horizontal: 10),
-                    //
-                    //         enabledBorder: OutlineInputBorder(
-                    //           borderSide: BorderSide(
-                    //               color: Colors.blueGrey
-                    //           ),
-                    //
-                    //         ),
-                    //         border: OutlineInputBorder(
-                    //             borderSide: BorderSide(color: Colors.blueGrey)
-                    //         )
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(height: 10,),
                     Container(
                       margin: EdgeInsets.only(bottom: 20),
-                      child: TextFormField( //--------------Username txtField-----------------------------//
+                      child: TextFormField( //----------------------Email txtField-----------------------------//
                         enableSuggestions: true,
                         keyboardType: TextInputType.emailAddress,
 
@@ -208,13 +174,13 @@ class LoginPage2 extends StatefulWidget {
                         validator: EmailValidator.validate,
                         // onSaved: (input)=> myEmail.text = input!,
                         onChanged: (value){
-                          TextSelection previousSelection = myUsername.selection;
-                          myUsername.text = value;
-                          myUsername.selection = previousSelection;
+                          TextSelection previousSelection = myEmail.selection;
+                          myEmail.text = value;
+                          myEmail.selection = previousSelection;
                         },
 
                         decoration: InputDecoration(
-                            errorText: usernameError.isNotEmpty ? usernameError : null,
+                            errorText: emailError.isNotEmpty ? emailError : null,
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0,
                                 horizontal: 10),
@@ -231,6 +197,40 @@ class LoginPage2 extends StatefulWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 10,),
+                    // Container(
+                    //   margin: EdgeInsets.only(bottom: 20),
+                    //   child: TextFormField( //--------------Username txtField-----------------------------//
+                    //     enableSuggestions: true,
+                    //     keyboardType: TextInputType.emailAddress,
+                    //
+                    //     obscureText: false,
+                    //     validator: EmailValidator.validate,
+                    //     // onSaved: (input)=> myEmail.text = input!,
+                    //     onChanged: (value){
+                    //       TextSelection previousSelection = myUsername.selection;
+                    //       myUsername.text = value;
+                    //       myUsername.selection = previousSelection;
+                    //     },
+                    //
+                    //     decoration: InputDecoration(
+                    //         errorText: usernameError.isNotEmpty ? usernameError : null,
+                    //         contentPadding: EdgeInsets.symmetric(
+                    //             vertical: 0,
+                    //             horizontal: 10),
+                    //
+                    //         enabledBorder: OutlineInputBorder(
+                    //           borderSide: BorderSide(
+                    //               color: Colors.blueGrey
+                    //           ),
+                    //
+                    //         ),
+                    //         border: OutlineInputBorder(
+                    //             borderSide: BorderSide(color: Colors.blueGrey)
+                    //         )
+                    //     ),
+                    //   ),
+                    // ),
                     Text(
                       'Password',
                       style: TextStyle(
@@ -310,7 +310,7 @@ class LoginPage2 extends StatefulWidget {
                       ),
                     ),
                     onPressed: (){
-                         _UserLogin(myUsername.text, password.text);
+                         _UserLogin(myEmail.text, password.text);
                       // Navigator.push(context, MaterialPageRoute(builder: (context)=> Homepage()));
 
                     },
