@@ -38,12 +38,9 @@ class _UserProfileState extends State<EditUserProfile> {
   CollectionReference usersCollection =
   FirebaseFirestore.instance.collection('Users');
 
-  // User? _user;
-  // get email => null;
+
 
   void initState() {
-
-    // selectsex = TextEditingController();
     _getUserInfo();
 
     super.initState();
@@ -57,14 +54,7 @@ class _UserProfileState extends State<EditUserProfile> {
     });
   }
 
-  // Future<void> _directUpdateImage(File? file) async {
-  //   if (file == null) return;
-  //
-  //   setState(() {
-  //     _profilePicFile = file;
-  //   });
-  // }
-  //
+
 
   @override
   Widget build(BuildContext context) {

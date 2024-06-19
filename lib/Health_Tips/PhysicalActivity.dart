@@ -1,20 +1,10 @@
 
-// import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
 import 'package:flutter/material.dart';
-// import 'MedicineMenu.dart';
-// import 'package:provider/provider.dart';
-// import 'HomePage.dart';
+
 
 class PhysicalActContent extends StatelessWidget {
-//  final String email;
-////  final screenHeight = MediaQuery.of(context).size.height;
-//
-//  HealthyEatingContent({@required this.email});
-
-//  Home({this.email});
-
-//LoginState login =  LoginState();
 
   @override
   Widget build(BuildContext context) {

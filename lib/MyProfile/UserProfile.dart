@@ -37,17 +37,6 @@ class _UserProfileState extends State<UserProfile> {
     });
   }
 
-  // Future<void> _directUpdateImage(File? file) async {
-  //   if (file == null) return;
-  //
-  //   setState(() {
-  //     _profilePicFile = file;
-  //   });
-  // }
-  //
-
-
-
 
 
   @override

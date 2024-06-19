@@ -4,8 +4,8 @@ import 'package:elderly_squire_2023_remastered_v2/Announcements/Announcements.da
 import 'package:elderly_squire_2023_remastered_v2/Benefits/BenefitsUser.dart';
 import 'package:elderly_squire_2023_remastered_v2/Chat%20Support/support_page.dart';
 import 'package:elderly_squire_2023_remastered_v2/Health_Tips/HealthTipsMenu.dart';
-import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration.dart';
-import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration2.dart';
+// import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration.dart';
+// import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration2.dart';
 import 'package:elderly_squire_2023_remastered_v2/ID_Registration/ID_Registration3.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login.dart';
 import 'package:elderly_squire_2023_remastered_v2/Login_Reg/Login2.dart';

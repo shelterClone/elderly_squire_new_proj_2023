@@ -4,14 +4,6 @@ import 'package:flutter/material.dart';
 //import 'package:provider/provider.dart';
 
 class HealthWeightContent extends StatelessWidget {
-//  final String email;
-//  final screenHeight = MediaQuery.of(context).size.height;
-
-//  HealthWeightContent({@required this.email});
-
-//  Home({this.email});
-
-//LoginState login =  LoginState();
 
   @override
   Widget build(BuildContext context) {

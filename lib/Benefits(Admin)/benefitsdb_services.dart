@@ -22,14 +22,6 @@ class BenefitsDatabaseService {
     }
   }
 
-  // Future<void> completeTask(DocumentUID uid) async {
-  //   try {
-  //     await benefits.doc(uid).update({"isComplet": true});
-  //   } catch (e) {
-  //     print('Failed to complete task: $e');
-  //   }
-  // }
-
   Future<void> removeBenefits(DocumentUID uid) async {
     try {
       await benefits.doc(uid).delete();
@@ -49,7 +41,6 @@ class BenefitsDatabaseService {
   List<BenefitsVarModel> benefitsFromFirestore(FirestoreQuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return BenefitsVarModel(
-        // isComplet: doc.data()["isComplet"] as bool,
         title: doc.data()["title"] as String,
         desc: doc.data()["description"] as String,
         uid: doc.id,

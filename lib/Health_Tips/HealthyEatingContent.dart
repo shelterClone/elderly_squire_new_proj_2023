@@ -3,14 +3,6 @@ import 'package:flutter/material.dart';
 
 
 class HealthyEatingContent extends StatelessWidget {
-//  final String email;
-////  final screenHeight = MediaQuery.of(context).size.height;
-//
-//  HealthyEatingContent({@required this.email});
-
-//  Home({this.email});
-
-//LoginState login =  LoginState();
 
   @override
   Widget build(BuildContext context) {
